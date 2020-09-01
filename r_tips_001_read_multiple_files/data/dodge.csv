@@ -1,0 +1,38 @@
+manufacturer,model,displ,year,cyl,trans,drv,cty,hwy,fl,class
+dodge,caravan 2wd,2.4,1999,4,auto(l3),f,18,24,r,minivan
+dodge,caravan 2wd,3,1999,6,auto(l4),f,17,24,r,minivan
+dodge,caravan 2wd,3.3,1999,6,auto(l4),f,16,22,r,minivan
+dodge,caravan 2wd,3.3,1999,6,auto(l4),f,16,22,r,minivan
+dodge,caravan 2wd,3.3,2008,6,auto(l4),f,17,24,r,minivan
+dodge,caravan 2wd,3.3,2008,6,auto(l4),f,17,24,r,minivan
+dodge,caravan 2wd,3.3,2008,6,auto(l4),f,11,17,e,minivan
+dodge,caravan 2wd,3.8,1999,6,auto(l4),f,15,22,r,minivan
+dodge,caravan 2wd,3.8,1999,6,auto(l4),f,15,21,r,minivan
+dodge,caravan 2wd,3.8,2008,6,auto(l6),f,16,23,r,minivan
+dodge,caravan 2wd,4,2008,6,auto(l6),f,16,23,r,minivan
+dodge,dakota pickup 4wd,3.7,2008,6,manual(m6),4,15,19,r,pickup
+dodge,dakota pickup 4wd,3.7,2008,6,auto(l4),4,14,18,r,pickup
+dodge,dakota pickup 4wd,3.9,1999,6,auto(l4),4,13,17,r,pickup
+dodge,dakota pickup 4wd,3.9,1999,6,manual(m5),4,14,17,r,pickup
+dodge,dakota pickup 4wd,4.7,2008,8,auto(l5),4,14,19,r,pickup
+dodge,dakota pickup 4wd,4.7,2008,8,auto(l5),4,14,19,r,pickup
+dodge,dakota pickup 4wd,4.7,2008,8,auto(l5),4,9,12,e,pickup
+dodge,dakota pickup 4wd,5.2,1999,8,manual(m5),4,11,17,r,pickup
+dodge,dakota pickup 4wd,5.2,1999,8,auto(l4),4,11,15,r,pickup
+dodge,durango 4wd,3.9,1999,6,auto(l4),4,13,17,r,suv
+dodge,durango 4wd,4.7,2008,8,auto(l5),4,13,17,r,suv
+dodge,durango 4wd,4.7,2008,8,auto(l5),4,9,12,e,suv
+dodge,durango 4wd,4.7,2008,8,auto(l5),4,13,17,r,suv
+dodge,durango 4wd,5.2,1999,8,auto(l4),4,11,16,r,suv
+dodge,durango 4wd,5.7,2008,8,auto(l5),4,13,18,r,suv
+dodge,durango 4wd,5.9,1999,8,auto(l4),4,11,15,r,suv
+dodge,ram 1500 pickup 4wd,4.7,2008,8,manual(m6),4,12,16,r,pickup
+dodge,ram 1500 pickup 4wd,4.7,2008,8,auto(l5),4,9,12,e,pickup
+dodge,ram 1500 pickup 4wd,4.7,2008,8,auto(l5),4,13,17,r,pickup
+dodge,ram 1500 pickup 4wd,4.7,2008,8,auto(l5),4,13,17,r,pickup
+dodge,ram 1500 pickup 4wd,4.7,2008,8,manual(m6),4,12,16,r,pickup
+dodge,ram 1500 pickup 4wd,4.7,2008,8,manual(m6),4,9,12,e,pickup
+dodge,ram 1500 pickup 4wd,5.2,1999,8,auto(l4),4,11,15,r,pickup
+dodge,ram 1500 pickup 4wd,5.2,1999,8,manual(m5),4,11,16,r,pickup
+dodge,ram 1500 pickup 4wd,5.7,2008,8,auto(l5),4,13,17,r,pickup
+dodge,ram 1500 pickup 4wd,5.9,1999,8,auto(l4),4,11,15,r,pickup

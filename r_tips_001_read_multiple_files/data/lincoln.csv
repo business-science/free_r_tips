@@ -1,0 +1,4 @@
+manufacturer,model,displ,year,cyl,trans,drv,cty,hwy,fl,class
+lincoln,navigator 2wd,5.4,1999,8,auto(l4),r,11,17,r,suv
+lincoln,navigator 2wd,5.4,1999,8,auto(l4),r,11,16,p,suv
+lincoln,navigator 2wd,5.4,2008,8,auto(l6),r,12,18,r,suv

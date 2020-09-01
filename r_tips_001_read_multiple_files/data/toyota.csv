@@ -1,0 +1,35 @@
+manufacturer,model,displ,year,cyl,trans,drv,cty,hwy,fl,class
+toyota,4runner 4wd,2.7,1999,4,manual(m5),4,15,20,r,suv
+toyota,4runner 4wd,2.7,1999,4,auto(l4),4,16,20,r,suv
+toyota,4runner 4wd,3.4,1999,6,auto(l4),4,15,19,r,suv
+toyota,4runner 4wd,3.4,1999,6,manual(m5),4,15,17,r,suv
+toyota,4runner 4wd,4,2008,6,auto(l5),4,16,20,r,suv
+toyota,4runner 4wd,4.7,2008,8,auto(l5),4,14,17,r,suv
+toyota,camry,2.2,1999,4,manual(m5),f,21,29,r,midsize
+toyota,camry,2.2,1999,4,auto(l4),f,21,27,r,midsize
+toyota,camry,2.4,2008,4,manual(m5),f,21,31,r,midsize
+toyota,camry,2.4,2008,4,auto(l5),f,21,31,r,midsize
+toyota,camry,3,1999,6,auto(l4),f,18,26,r,midsize
+toyota,camry,3,1999,6,manual(m5),f,18,26,r,midsize
+toyota,camry,3.5,2008,6,auto(s6),f,19,28,r,midsize
+toyota,camry solara,2.2,1999,4,auto(l4),f,21,27,r,compact
+toyota,camry solara,2.2,1999,4,manual(m5),f,21,29,r,compact
+toyota,camry solara,2.4,2008,4,manual(m5),f,21,31,r,compact
+toyota,camry solara,2.4,2008,4,auto(s5),f,22,31,r,compact
+toyota,camry solara,3,1999,6,auto(l4),f,18,26,r,compact
+toyota,camry solara,3,1999,6,manual(m5),f,18,26,r,compact
+toyota,camry solara,3.3,2008,6,auto(s5),f,18,27,r,compact
+toyota,corolla,1.8,1999,4,auto(l3),f,24,30,r,compact
+toyota,corolla,1.8,1999,4,auto(l4),f,24,33,r,compact
+toyota,corolla,1.8,1999,4,manual(m5),f,26,35,r,compact
+toyota,corolla,1.8,2008,4,manual(m5),f,28,37,r,compact
+toyota,corolla,1.8,2008,4,auto(l4),f,26,35,r,compact
+toyota,land cruiser wagon 4wd,4.7,1999,8,auto(l4),4,11,15,r,suv
+toyota,land cruiser wagon 4wd,5.7,2008,8,auto(s6),4,13,18,r,suv
+toyota,toyota tacoma 4wd,2.7,1999,4,manual(m5),4,15,20,r,pickup
+toyota,toyota tacoma 4wd,2.7,1999,4,auto(l4),4,16,20,r,pickup
+toyota,toyota tacoma 4wd,2.7,2008,4,manual(m5),4,17,22,r,pickup
+toyota,toyota tacoma 4wd,3.4,1999,6,manual(m5),4,15,17,r,pickup
+toyota,toyota tacoma 4wd,3.4,1999,6,auto(l4),4,15,19,r,pickup
+toyota,toyota tacoma 4wd,4,2008,6,manual(m6),4,15,18,r,pickup
+toyota,toyota tacoma 4wd,4,2008,6,auto(l5),4,16,20,r,pickup

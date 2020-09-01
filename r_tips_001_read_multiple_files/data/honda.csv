@@ -1,0 +1,10 @@
+manufacturer,model,displ,year,cyl,trans,drv,cty,hwy,fl,class
+honda,civic,1.6,1999,4,manual(m5),f,28,33,r,subcompact
+honda,civic,1.6,1999,4,auto(l4),f,24,32,r,subcompact
+honda,civic,1.6,1999,4,manual(m5),f,25,32,r,subcompact
+honda,civic,1.6,1999,4,manual(m5),f,23,29,p,subcompact
+honda,civic,1.6,1999,4,auto(l4),f,24,32,r,subcompact
+honda,civic,1.8,2008,4,manual(m5),f,26,34,r,subcompact
+honda,civic,1.8,2008,4,auto(l5),f,25,36,r,subcompact
+honda,civic,1.8,2008,4,auto(l5),f,24,36,c,subcompact
+honda,civic,2,2008,4,manual(m6),f,21,29,p,subcompact

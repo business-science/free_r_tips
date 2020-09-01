@@ -1,0 +1,15 @@
+manufacturer,model,displ,year,cyl,trans,drv,cty,hwy,fl,class
+subaru,forester awd,2.5,1999,4,manual(m5),4,18,25,r,suv
+subaru,forester awd,2.5,1999,4,auto(l4),4,18,24,r,suv
+subaru,forester awd,2.5,2008,4,manual(m5),4,20,27,r,suv
+subaru,forester awd,2.5,2008,4,manual(m5),4,19,25,p,suv
+subaru,forester awd,2.5,2008,4,auto(l4),4,20,26,r,suv
+subaru,forester awd,2.5,2008,4,auto(l4),4,18,23,p,suv
+subaru,impreza awd,2.2,1999,4,auto(l4),4,21,26,r,subcompact
+subaru,impreza awd,2.2,1999,4,manual(m5),4,19,26,r,subcompact
+subaru,impreza awd,2.5,1999,4,manual(m5),4,19,26,r,subcompact
+subaru,impreza awd,2.5,1999,4,auto(l4),4,19,26,r,subcompact
+subaru,impreza awd,2.5,2008,4,auto(s4),4,20,25,p,compact
+subaru,impreza awd,2.5,2008,4,auto(s4),4,20,27,r,compact
+subaru,impreza awd,2.5,2008,4,manual(m5),4,19,25,p,compact
+subaru,impreza awd,2.5,2008,4,manual(m5),4,20,27,r,compact
