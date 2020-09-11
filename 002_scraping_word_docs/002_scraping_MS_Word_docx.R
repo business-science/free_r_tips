@@ -11,7 +11,7 @@ library(tidyverse)
 
 
 # 2.0 EXTRACT THE DOCX CONTENTS -----
-doc <- read_docx("r_tips_002_scraping_word_docs/Business Science.docx")
+doc <- read_docx("002_scraping_word_docs/Business Science.docx")
 
 content_tbl <- docx_summary(doc) %>% as_tibble()
 

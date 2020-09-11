@@ -6,7 +6,7 @@
 library(tidyverse)
 library(fs)
 
-file_paths <- fs::dir_ls("r_tips_001_read_multiple_files/data")
+file_paths <- fs::dir_ls("001_read_multiple_files/data")
 file_paths
 
 # 1.0 FOR LOOP ----
