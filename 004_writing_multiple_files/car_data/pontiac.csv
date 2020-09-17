@@ -1,0 +1,6 @@
+file_path,manufacturer,model,displ,year,cyl,trans,drv,cty,hwy,fl,class
+004_writing_multiple_files/car_data_01/pontiac.csv,pontiac,grand prix,3.1,1999,6,auto(l4),f,18,26,r,midsize
+004_writing_multiple_files/car_data_01/pontiac.csv,pontiac,grand prix,3.8,1999,6,auto(l4),f,16,26,p,midsize
+004_writing_multiple_files/car_data_01/pontiac.csv,pontiac,grand prix,3.8,1999,6,auto(l4),f,17,27,r,midsize
+004_writing_multiple_files/car_data_01/pontiac.csv,pontiac,grand prix,3.8,2008,6,auto(l4),f,18,28,r,midsize
+004_writing_multiple_files/car_data_01/pontiac.csv,pontiac,grand prix,5.3,2008,8,auto(s4),f,16,25,p,midsize

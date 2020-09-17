@@ -1,0 +1,20 @@
+file_path,manufacturer,model,displ,year,cyl,trans,drv,cty,hwy,fl,class
+004_writing_multiple_files/car_data_01/chevrolet.csv,chevrolet,c1500 suburban 2wd,5.3,2008,8,auto(l4),r,14,20,r,suv
+004_writing_multiple_files/car_data_01/chevrolet.csv,chevrolet,c1500 suburban 2wd,5.3,2008,8,auto(l4),r,11,15,e,suv
+004_writing_multiple_files/car_data_01/chevrolet.csv,chevrolet,c1500 suburban 2wd,5.3,2008,8,auto(l4),r,14,20,r,suv
+004_writing_multiple_files/car_data_01/chevrolet.csv,chevrolet,c1500 suburban 2wd,5.7,1999,8,auto(l4),r,13,17,r,suv
+004_writing_multiple_files/car_data_01/chevrolet.csv,chevrolet,c1500 suburban 2wd,6,2008,8,auto(l4),r,12,17,r,suv
+004_writing_multiple_files/car_data_01/chevrolet.csv,chevrolet,corvette,5.7,1999,8,manual(m6),r,16,26,p,2seater
+004_writing_multiple_files/car_data_01/chevrolet.csv,chevrolet,corvette,5.7,1999,8,auto(l4),r,15,23,p,2seater
+004_writing_multiple_files/car_data_01/chevrolet.csv,chevrolet,corvette,6.2,2008,8,manual(m6),r,16,26,p,2seater
+004_writing_multiple_files/car_data_01/chevrolet.csv,chevrolet,corvette,6.2,2008,8,auto(s6),r,15,25,p,2seater
+004_writing_multiple_files/car_data_01/chevrolet.csv,chevrolet,corvette,7,2008,8,manual(m6),r,15,24,p,2seater
+004_writing_multiple_files/car_data_01/chevrolet.csv,chevrolet,k1500 tahoe 4wd,5.3,2008,8,auto(l4),4,14,19,r,suv
+004_writing_multiple_files/car_data_01/chevrolet.csv,chevrolet,k1500 tahoe 4wd,5.3,2008,8,auto(l4),4,11,14,e,suv
+004_writing_multiple_files/car_data_01/chevrolet.csv,chevrolet,k1500 tahoe 4wd,5.7,1999,8,auto(l4),4,11,15,r,suv
+004_writing_multiple_files/car_data_01/chevrolet.csv,chevrolet,k1500 tahoe 4wd,6.5,1999,8,auto(l4),4,14,17,d,suv
+004_writing_multiple_files/car_data_01/chevrolet.csv,chevrolet,malibu,2.4,1999,4,auto(l4),f,19,27,r,midsize
+004_writing_multiple_files/car_data_01/chevrolet.csv,chevrolet,malibu,2.4,2008,4,auto(l4),f,22,30,r,midsize
+004_writing_multiple_files/car_data_01/chevrolet.csv,chevrolet,malibu,3.1,1999,6,auto(l4),f,18,26,r,midsize
+004_writing_multiple_files/car_data_01/chevrolet.csv,chevrolet,malibu,3.5,2008,6,auto(l4),f,18,29,r,midsize
+004_writing_multiple_files/car_data_01/chevrolet.csv,chevrolet,malibu,3.6,2008,6,auto(s6),f,17,26,r,midsize

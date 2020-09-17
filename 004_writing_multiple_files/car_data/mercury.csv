@@ -1,0 +1,5 @@
+file_path,manufacturer,model,displ,year,cyl,trans,drv,cty,hwy,fl,class
+004_writing_multiple_files/car_data_01/mercury.csv,mercury,mountaineer 4wd,4,1999,6,auto(l5),4,14,17,r,suv
+004_writing_multiple_files/car_data_01/mercury.csv,mercury,mountaineer 4wd,4,2008,6,auto(l5),4,13,19,r,suv
+004_writing_multiple_files/car_data_01/mercury.csv,mercury,mountaineer 4wd,4.6,2008,8,auto(l6),4,13,19,r,suv
+004_writing_multiple_files/car_data_01/mercury.csv,mercury,mountaineer 4wd,5,1999,8,auto(l4),4,13,17,r,suv

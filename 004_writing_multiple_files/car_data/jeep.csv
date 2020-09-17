@@ -1,0 +1,9 @@
+file_path,manufacturer,model,displ,year,cyl,trans,drv,cty,hwy,fl,class
+004_writing_multiple_files/car_data_01/jeep.csv,jeep,grand cherokee 4wd,3,2008,6,auto(l5),4,17,22,d,suv
+004_writing_multiple_files/car_data_01/jeep.csv,jeep,grand cherokee 4wd,3.7,2008,6,auto(l5),4,15,19,r,suv
+004_writing_multiple_files/car_data_01/jeep.csv,jeep,grand cherokee 4wd,4,1999,6,auto(l4),4,15,20,r,suv
+004_writing_multiple_files/car_data_01/jeep.csv,jeep,grand cherokee 4wd,4.7,1999,8,auto(l4),4,14,17,r,suv
+004_writing_multiple_files/car_data_01/jeep.csv,jeep,grand cherokee 4wd,4.7,2008,8,auto(l5),4,9,12,e,suv
+004_writing_multiple_files/car_data_01/jeep.csv,jeep,grand cherokee 4wd,4.7,2008,8,auto(l5),4,14,19,r,suv
+004_writing_multiple_files/car_data_01/jeep.csv,jeep,grand cherokee 4wd,5.7,2008,8,auto(l5),4,13,18,r,suv
+004_writing_multiple_files/car_data_01/jeep.csv,jeep,grand cherokee 4wd,6.1,2008,8,auto(l5),4,11,14,p,suv

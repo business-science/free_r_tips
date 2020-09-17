@@ -1,0 +1,19 @@
+file_path,manufacturer,model,displ,year,cyl,trans,drv,cty,hwy,fl,class
+004_writing_multiple_files/car_data_01/audi.csv,audi,a4,1.8,1999,4,auto(l5),f,18,29,p,compact
+004_writing_multiple_files/car_data_01/audi.csv,audi,a4,1.8,1999,4,manual(m5),f,21,29,p,compact
+004_writing_multiple_files/car_data_01/audi.csv,audi,a4,2,2008,4,manual(m6),f,20,31,p,compact
+004_writing_multiple_files/car_data_01/audi.csv,audi,a4,2,2008,4,auto(av),f,21,30,p,compact
+004_writing_multiple_files/car_data_01/audi.csv,audi,a4,2.8,1999,6,auto(l5),f,16,26,p,compact
+004_writing_multiple_files/car_data_01/audi.csv,audi,a4,2.8,1999,6,manual(m5),f,18,26,p,compact
+004_writing_multiple_files/car_data_01/audi.csv,audi,a4,3.1,2008,6,auto(av),f,18,27,p,compact
+004_writing_multiple_files/car_data_01/audi.csv,audi,a4 quattro,1.8,1999,4,manual(m5),4,18,26,p,compact
+004_writing_multiple_files/car_data_01/audi.csv,audi,a4 quattro,1.8,1999,4,auto(l5),4,16,25,p,compact
+004_writing_multiple_files/car_data_01/audi.csv,audi,a4 quattro,2,2008,4,manual(m6),4,20,28,p,compact
+004_writing_multiple_files/car_data_01/audi.csv,audi,a4 quattro,2,2008,4,auto(s6),4,19,27,p,compact
+004_writing_multiple_files/car_data_01/audi.csv,audi,a4 quattro,2.8,1999,6,auto(l5),4,15,25,p,compact
+004_writing_multiple_files/car_data_01/audi.csv,audi,a4 quattro,2.8,1999,6,manual(m5),4,17,25,p,compact
+004_writing_multiple_files/car_data_01/audi.csv,audi,a4 quattro,3.1,2008,6,auto(s6),4,17,25,p,compact
+004_writing_multiple_files/car_data_01/audi.csv,audi,a4 quattro,3.1,2008,6,manual(m6),4,15,25,p,compact
+004_writing_multiple_files/car_data_01/audi.csv,audi,a6 quattro,2.8,1999,6,auto(l5),4,15,24,p,midsize
+004_writing_multiple_files/car_data_01/audi.csv,audi,a6 quattro,3.1,2008,6,auto(s6),4,17,25,p,midsize
+004_writing_multiple_files/car_data_01/audi.csv,audi,a6 quattro,4.2,2008,8,auto(s6),4,16,23,p,midsize

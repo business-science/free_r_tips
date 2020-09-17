@@ -1,0 +1,15 @@
+file_path,manufacturer,model,displ,year,cyl,trans,drv,cty,hwy,fl,class
+004_writing_multiple_files/car_data_01/subaru.csv,subaru,forester awd,2.5,1999,4,manual(m5),4,18,25,r,suv
+004_writing_multiple_files/car_data_01/subaru.csv,subaru,forester awd,2.5,1999,4,auto(l4),4,18,24,r,suv
+004_writing_multiple_files/car_data_01/subaru.csv,subaru,forester awd,2.5,2008,4,manual(m5),4,20,27,r,suv
+004_writing_multiple_files/car_data_01/subaru.csv,subaru,forester awd,2.5,2008,4,manual(m5),4,19,25,p,suv
+004_writing_multiple_files/car_data_01/subaru.csv,subaru,forester awd,2.5,2008,4,auto(l4),4,20,26,r,suv
+004_writing_multiple_files/car_data_01/subaru.csv,subaru,forester awd,2.5,2008,4,auto(l4),4,18,23,p,suv
+004_writing_multiple_files/car_data_01/subaru.csv,subaru,impreza awd,2.2,1999,4,auto(l4),4,21,26,r,subcompact
+004_writing_multiple_files/car_data_01/subaru.csv,subaru,impreza awd,2.2,1999,4,manual(m5),4,19,26,r,subcompact
+004_writing_multiple_files/car_data_01/subaru.csv,subaru,impreza awd,2.5,1999,4,manual(m5),4,19,26,r,subcompact
+004_writing_multiple_files/car_data_01/subaru.csv,subaru,impreza awd,2.5,1999,4,auto(l4),4,19,26,r,subcompact
+004_writing_multiple_files/car_data_01/subaru.csv,subaru,impreza awd,2.5,2008,4,auto(s4),4,20,25,p,compact
+004_writing_multiple_files/car_data_01/subaru.csv,subaru,impreza awd,2.5,2008,4,auto(s4),4,20,27,r,compact
+004_writing_multiple_files/car_data_01/subaru.csv,subaru,impreza awd,2.5,2008,4,manual(m5),4,19,25,p,compact
+004_writing_multiple_files/car_data_01/subaru.csv,subaru,impreza awd,2.5,2008,4,manual(m5),4,20,27,r,compact
