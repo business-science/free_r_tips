@@ -4,6 +4,7 @@
 # 👉 For Weekly R-Tips, Sign Up Here: https://mailchi.mp/business-science/r-tips-newsletter
 
 # 1.0 LIBRARIES ----
+
 library(tidyverse)
 library(fs)
 
@@ -43,7 +44,7 @@ car_data_tbl <- car_data_list %>%
     set_names(dir_ls(directory_that_holds_files)) %>%
     bind_rows(.id = "file_path")
 
-car_data_list
+car_data_tbl
 
 
 # 4.0 CREATE A DIRECTORY ----
@@ -63,6 +64,6 @@ car_data_tbl %>%
     group_split() %>%
     map(
         .f = function(data) {
-            write_rds(data, path = unique(data$file_path))
+            write_csv(data, path = unique(data$file_path))
         }
     )
