@@ -46,7 +46,7 @@ wb %>% insertPlot(sheet = "stock_analysis", startCol = "G", startRow = 3)
 writeDataTable(wb, sheet = "stock_analysis", x = stock_pivot_table)
 
 # * Save Workbook ----
-saveWorkbook(wb, "stock_analysis.xlsx", overwrite = TRUE)
+saveWorkbook(wb, "005_excel_workbook/stock_analysis.xlsx", overwrite = TRUE)
 
 # * Open the Workbook ----
 openXL("stock_analysis.xlsx")
