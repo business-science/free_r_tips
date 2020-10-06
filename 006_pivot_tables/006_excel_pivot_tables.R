@@ -12,14 +12,14 @@ library(gt)
 # 2.0 GET DATA ----
 
 stock_data_tbl <- c("AAPL", "GOOG", "NFLX", "NVDA") %>%
-    tq_get(from = "2010-01-01", to = "2019-12-31")
+    tq_get(from = "2010-01-01", to = "2019-12-31") %>%
+    select(symbol, date, adjusted)
 
 # 3.0 PIVOT TABLE - Percent Change by Year ----
 
 # * Basics ----
 
 stock_data_tbl %>%
-    select(symbol, date, adjusted) %>%
     pivot_table(
         .rows    = c(~ symbol, ~ MONTH(date, label = TRUE)),
         .columns = ~ YEAR(date),
@@ -28,7 +28,6 @@ stock_data_tbl %>%
     rename_at(.vars = 1:2, ~ c("Symbol", "Month"))
 
 stock_data_tbl %>%
-    select(symbol, date, adjusted) %>%
     pivot_table(
         .rows    = c(~ YEAR(date), ~ MONTH(date, label = TRUE)),
         .columns = symbol,
@@ -37,7 +36,6 @@ stock_data_tbl %>%
     rename_at(.vars = 1:2, ~ c("Year", "Month"))
 
 stock_data_tbl %>%
-    select(symbol, date, adjusted) %>%
     pivot_table(
         .columns = ~ MONTH(date, label = TRUE),
         .rows    = c(~ YEAR(date), symbol),
