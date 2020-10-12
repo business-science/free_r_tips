@@ -1,0 +1,68 @@
+---
+title: "Investment Report"
+author: "Business Science"
+output:
+  pdf_document: default
+  html_document:
+    df_print: paged
+params:
+  portfolio_name: Technology Portfolio
+  symbols: AAPL
+  start: '2010-01-01'
+  end: '2019-12-31'
+  show_code: yes
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+    echo    = as.logical(params$show_code),
+    message = FALSE, 
+    warning = FALSE
+)
+```
+
+```{r}
+library(gt)
+library(tidyquant)
+library(timetk)
+library(tidyverse)
+```
+
+
+This report contains information on a __`r params$portfolio_name`__ that consists of __`r str_c(params$symbols, collapse = ", ")`__ over the time period from __`r params$start`__ to __`r params$end`__.
+
+```{r}
+# Get stock data ----
+stock_data_tbl <- tq_get(
+        x    = params$symbols,
+        from = params$start, 
+        to   = params$end
+    ) %>%
+    select(symbol, date, adjusted)
+
+# * Percent Change by Year ----
+stock_performance_tbl <- stock_data_tbl %>%
+    pivot_table(
+        .rows    = ~ YEAR(date),
+        .columns = ~ symbol,
+        .values  = ~ PCT_CHANGE_FIRSTLAST(adjusted)
+    ) %>%
+    rename(YEAR = 1)
+
+# PIVOT CHARTS ----
+
+color_fill <- "#1ecbe1"
+
+column_names <- setdiff(names(stock_performance_tbl), "YEAR")
+
+pivot_table_gt <- stock_performance_tbl %>%
+    gt() %>%
+    tab_header("Stock Returns", subtitle = md(str_glue("_{params$portfolio_name}_"))) %>%
+    fmt_percent(columns = vars(column_names)) %>%
+    tab_source_note(
+        source_note = md("_Data Source:_ Stock data retreived from Yahoo! Finance via tidyquant.")
+    )
+
+pivot_table_gt
+```
+
