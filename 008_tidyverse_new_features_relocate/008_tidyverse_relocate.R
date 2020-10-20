@@ -19,6 +19,7 @@ mpg %>%
 mpg  %>%
     relocate(model, manufacturer, class, year)
 
+?relocate
 
 # 1.0 RELOCATE BY COLUMN NAME ----
 # - Move single column by position
@@ -29,10 +30,10 @@ mpg %>%
 ?last_col
 
 mpg %>%
-    relocate(manufacturer, .after = last_col())
+    relocate(manufacturer, .before = last_col())
 
 mpg %>%
-    relocate(manufacturer, .after = last_col(offset = 2))
+    relocate(manufacturer, .after = last_col(offset = 3))
 
 
 # 2.0 RELOCATE BY DATA TYPE ----
@@ -50,5 +51,7 @@ mpg %>%
 
 # 3.0 RELOCATE WITH TIDYSELECT ----
 
+?contains
+
 mpg %>%
-    relocate(contains("d"), .before = year)
+    relocate(starts_with("m"), .before = year)
