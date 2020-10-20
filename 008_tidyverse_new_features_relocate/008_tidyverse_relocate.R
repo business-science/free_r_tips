@@ -30,7 +30,7 @@ mpg %>%
 ?last_col
 
 mpg %>%
-    relocate(manufacturer, .before = last_col())
+    relocate(manufacturer, .after = last_col())
 
 mpg %>%
     relocate(manufacturer, .after = last_col(offset = 3))
