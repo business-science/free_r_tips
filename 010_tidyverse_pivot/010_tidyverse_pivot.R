@@ -35,7 +35,7 @@ mpg_pivot_table_2 <- mpg %>%
 # - Using lists to capture complex objects
 mpg %>%
     pivot_table(
-        .columns = class,
+        .rows    = class,
         .values  = ~ list(lm(hwy ~ displ + cyl - 1))
     )
 
@@ -45,8 +45,9 @@ mpg %>%
 
 mpg_long_summary_table <- mpg_pivot_table_1 %>%
     pivot_longer(
-        cols     = compact:subcompact,
-        names_to = "class"
+        cols      = compact:subcompact,
+        names_to  = "class",
+        values_to = "value"
     )
 
 mpg_long_summary_table %>%
