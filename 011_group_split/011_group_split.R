@@ -10,7 +10,7 @@ library(tidyquant)
 library(tidyverse)
 library(broom)
 
-devtools::install_github("rstudio/fontawesome")
+# devtools::install_github("rstudio/fontawesome")
 library(gt)
 library(fontawesome)
 
@@ -19,6 +19,7 @@ mpg
 
 # 1.0 GROUP SPLIT ----
 # - Turns a grouped data frame into an list of data frames (iterable)
+# - Iteration & functions - Covered in Week 5 of DS4B 101-R
 
 # Group Split
 mpg %>%
@@ -38,6 +39,8 @@ mpg %>%
 
 # 2.0 POWER OF BROOM ----
 # - Tidy up our linear regression metrics with glance()
+# - Modeling & Machine Learning - Covered in Week 6 of DS4B 101-R Course
+
 hwy_vs_city_tbl <- mpg %>%
     mutate(manufacturer = as_factor(manufacturer)) %>%
     group_by(manufacturer) %>%
@@ -49,7 +52,7 @@ hwy_vs_city_tbl <- mpg %>%
             add_column(manufacturer = unique(df$manufacturer), .before = 1)
     })
 
-# 3.0 SUPER AWESOME WITH GT PACKAGE ----
+# 3.0 SUPER AWESOME TABLE WITH GT PACKAGE ----
 
 # Source: https://themockup.blog/posts/2020-10-31-embedding-custom-features-in-gt-tables/
 rating_stars <- function(rating, max_rating = 5) {
