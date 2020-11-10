@@ -13,6 +13,7 @@ library(broom)
 # devtools::install_github("rstudio/fontawesome")
 library(gt)
 library(fontawesome)
+library(htmltools)
 
 # DATA ----
 mpg
