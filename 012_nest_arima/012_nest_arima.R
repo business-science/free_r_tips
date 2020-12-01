@@ -28,6 +28,8 @@ data_nested <- walmart_sales_weekly %>%
     select(id, Date, Weekly_Sales) %>%
     nest(nested_column = -id)
 
+data_nested$nested_column
+
 # Unnesting
 data_nested %>%
     unnest(nested_column)
@@ -41,13 +43,17 @@ model_table <- data_nested %>%
 
     # Map Fitted Models
     mutate(fitted_model = map(nested_column, .f = function(df) {
+
         arima_reg(seasonal_period = 52) %>%
             set_engine("auto_arima") %>%
             fit(Weekly_Sales ~ Date, data = df)
+
     })) %>%
 
     # Map Forecasts
-    mutate(nested_forecast = map2(fitted_model, nested_column, .f = function(arima_model, df) {
+    mutate(nested_forecast = map2(fitted_model, nested_column,
+                                  .f = function(arima_model, df) {
+
         modeltime_table(
             arima_model
         ) %>%
