@@ -109,7 +109,8 @@ g <- autoplot(
 
     scale = 0
 ) +
-    labs(title = "Visualizing PCA in R")
+    labs(title = "Visualizing PCA in R")+
+    theme_minimal()
 
 g
 
