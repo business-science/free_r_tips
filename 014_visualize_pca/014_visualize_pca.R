@@ -1,6 +1,6 @@
 # R TIPS ----
 # TIP 014 | Intro to PCA in R ----
-# - PCA - Principle Component Analysis
+# - PCA - Principal Component Analysis
 # - Interactively Visualizing PCA
 #
 # 👉 For Weekly R-Tips, Sign Up Here: https://mailchi.mp/business-science/r-tips-newsletter
@@ -69,7 +69,7 @@ x_tbl <- mpg %>%
         names_prefix = "fl_"
     )
 
-x_tbl
+x_tbl %>% glimpse()
 
 
 # PCA  ----
