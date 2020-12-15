@@ -8,7 +8,6 @@
 # LIBRARIES ----
 
 library(tidymodels)
-library(broom)
 library(vip)
 library(tidyverse)
 
@@ -71,7 +70,7 @@ results_tbl %>%
 # - Visualization with ggplot is covered in DSRB 101-R Week 4
 
 # * Visualize Most Important Features ----
-g <- model_fit_glm$fit %>%
+model_fit_glm$fit %>%
     vip(
         num_features = 20,
         geom         = "point",
@@ -83,10 +82,14 @@ g <- model_fit_glm$fit %>%
     theme_minimal(base_size = 18) +
     labs(title = "Logistic Regression: Feature Importance")
 
-ggplotly(g)
 
-# * Tidy the Model Coefficients ----
-model_fit_glm$fit %>%
-    tidy() %>%
-    arrange(p.value)
+# * Visualize Top Features ----
+data_prepared_tbl %>%
+    ggplot(aes(class, log(hwy), color = year)) +
+    geom_boxplot() +
+    geom_jitter(alpha = 0.25) +
+    theme_minimal(base_size = 18) +
+    scale_color_viridis_d(end = 0.4) +
+    labs(title = "Older Vehicles have Lower Fuel Economy")
+
 
