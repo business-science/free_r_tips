@@ -85,7 +85,7 @@ model_fit_glm$fit %>%
 
 # * Visualize Top Features ----
 data_prepared_tbl %>%
-    ggplot(aes(class, log(hwy), color = year)) +
+    ggplot(aes(class, hwy, color = year)) +
     geom_boxplot() +
     geom_jitter(alpha = 0.25) +
     theme_minimal(base_size = 18) +
