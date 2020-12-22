@@ -29,7 +29,7 @@ g1 <- walmart_sales_weekly %>%
         .value       = Weekly_Sales,
         .color_var   = id,
         .smooth      = TRUE,
-        .facet_ncol  = 2,
+        .facet_ncol  = 3,
         .interactive = FALSE
     )
 
@@ -73,7 +73,7 @@ theme_cyberpunk <- function() {
     theme(
         # Plot / Panel
         plot.background = element_rect(fill = clr_bg, colour = clr_bg),
-        plot.margin = margin(1.5, 2, 1.5, 1.5, "cm"),
+        # plot.margin = margin(1.5, 2, 1.5, 1.5, "cm"),
         panel.background = element_rect(fill = clr_bg, color = clr_bg),
         # Grid
         panel.grid = element_line(colour = clr_grid, size = 1),
