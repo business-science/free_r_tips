@@ -64,7 +64,8 @@ results_tbl %>%
         options = list(
             smooth = TRUE
         )
-    )
+    ) +
+    labs(title = "Area Under the Curve (AUC): 0.752")
 
 # 7.0 FEATURE IMPORTANCE ----
 # - Visualization with ggplot is covered in DSRB 101-R Week 4
