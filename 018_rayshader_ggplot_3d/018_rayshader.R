@@ -14,7 +14,7 @@ library(tidyverse)
 
 # ggplot (2D visualization) - DS4B 101-R, Week 4
 g1 <- mtcars %>%
-    ggplot(aes(mpg, disp, color = cyl)) +
+    ggplot(aes(disp, mpg, color = cyl)) +
     geom_point(size=2) +
     scale_color_continuous(limits=c(0,8)) +
     ggtitle("mtcars: Displacement vs mpg vs # of cylinders") +
@@ -31,8 +31,8 @@ g1 %>%
         soliddepth    = -200
     )
 
-render_camera(zoom = 0.5, theta = -30, phi = 30)
-render_snapshot(clear = TRUE)
+render_camera(zoom = 0.75, theta = -30, phi = 30)
+render_snapshot(clear = FALSE)
 
 # 3D ELEVATION MATRIX ----
 volcano
