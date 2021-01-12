@@ -63,9 +63,13 @@ air_quality_tbl %>%
     # Label if Ozone is missing
     add_label_missings(Ozone) %>%
 
-    # Imputation - Decision Trees
+    # Imputation - Ozone
     mutate(Ozone = as.double(Ozone)) %>%
     impute_rf(Ozone ~ Temp + Wind) %>%
+
+    # Imputation - Solar.R
+    mutate(Solar.R = as.double(Solar.R)) %>%
+    impute_rf(Solar.R ~ Temp + Wind) %>%
 
     # Visualize
     ggplot(aes(Solar.R, Ozone, color = any_missing)) +
