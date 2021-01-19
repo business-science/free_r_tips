@@ -27,7 +27,7 @@ manufacturer_aggregations_tblcon <- tbl(con, "MPG") %>%
     group_by(manufacturer) %>%
     summarise(
         N = n(),
-        across(.cols = c(displ, cty, hwy), .fns = c(mean, median))
+        across(.cols = c(displ, cty, hwy), .fns = c(mean, median), na.rm = TRUE)
     )
 
 manufacturer_aggregations_tblcon %>% show_query()
