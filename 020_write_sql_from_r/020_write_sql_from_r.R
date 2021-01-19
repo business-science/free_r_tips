@@ -3,6 +3,9 @@
 #
 # 👉 For Weekly R-Tips, Sign Up Here: https://mailchi.mp/business-science/r-tips-newsletter
 
+# SPECIAL SHOUT-OUT:
+# - Emily Riederer's SQL dbplyr tutorial: https://emilyriederer.netlify.app/post/sql-generation/
+# - LLPRO SQL for Data Science Series (Labs 21-23): https://university.business-science.io/p/learning-labs-pro
 
 # LIBRARIES ----
 
