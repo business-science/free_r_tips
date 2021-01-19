@@ -15,7 +15,10 @@ library(tidyverse)
 
 # 1.0 CONNECT TO SQL DB ----
 
-con <- DBI::dbConnect(RSQLite::SQLite(), dbname = "020_write_sql_from_r/mpg.sqlite")
+con <- DBI::dbConnect(
+    RSQLite::SQLite(),
+    dbname = "020_write_sql_from_r/mpg.sqlite"
+)
 
 con
 
@@ -30,7 +33,8 @@ manufacturer_aggregations_tblcon <- tbl(con, "MPG") %>%
     group_by(manufacturer) %>%
     summarise(
         N = n(),
-        across(.cols = c(displ, cty, hwy), .fns = c(mean, median), na.rm = TRUE)
+        across(.cols = c(displ, cty, hwy),
+               .fns  = c(mean, median), na.rm = TRUE)
     )
 
 manufacturer_aggregations_tblcon %>% show_query()
