@@ -25,7 +25,9 @@ is.data.frame(df)
 #  - Data Import is covered in Data Wrangling (Week 2 & 3) of DS4B 101-R
 #  - Line Plots are covered in Data Visualization (Week 4) of DS4B 101-R
 
-interest_rate_tbl <- readxl::read_xlsx("021_make_dataframes_in_r/interest_rate.xlsx", sheet = 1)
+interest_rate_tbl <- readxl::read_xlsx(
+    "021_make_dataframes_in_r/interest_rate.xlsx",
+    sheet = 1)
 
 interest_rate_tbl
 
@@ -40,7 +42,10 @@ ggplotly(g)
 # 3. FROM OTHER DATA STRUCTURES ----
 
 moneyball_list <- list(
-    user_name = c("Bill James", "Billy Beane", "Peter Brand", "Art Howe"),
+    user_name = c("Bill James",
+                  "Billy Beane",
+                  "Peter Brand",
+                  "Art Howe"),
     email     = c(
         "bill.james@gmail.com",
         "billy.beane@gmail.com",
