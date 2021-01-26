@@ -25,7 +25,7 @@ is.data.frame(df)
 #  - Data Import is covered in Data Wrangling (Week 2 & 3) of DS4B 101-R
 #  - Line Plots are covered in Data Visualization (Week 4) of DS4B 101-R
 
-interest_rate_tbl <- readxl::read_xlsx("021_dataframe_in_r/interest_rate.xlsx", sheet = 1)
+interest_rate_tbl <- readxl::read_xlsx("021_make_dataframes_in_r/interest_rate.xlsx", sheet = 1)
 
 interest_rate_tbl
 
@@ -82,10 +82,10 @@ interest_rate_tbl <- tibble(
     date          = timetk::tk_make_timeseries("2010", length_out = 12, by = "year"),
     interest_rate = (seq(12, 3, length.out = 12) * (sin(1:12) + 2)) / 12
 )
-interest_rate_tbl %>% writexl::write_xlsx("021_dataframe_in_r/interest_rate.xlsx")
+interest_rate_tbl %>% writexl::write_xlsx("021_make_dataframes_in_r/interest_rate.xlsx")
 
 # QUOTE ----
-# "THE BEST INVESTMENT IS AN INVESTMENT IN YOURSELF"
+# "THE BEST INVESTMENT IS AN INVESTMENT IN YOURSELF."
 # ~ Warren Buffet
 
 
