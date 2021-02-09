@@ -30,12 +30,18 @@ churn_ppsr_score <- customer_churn_tbl %>%
 
 churn_ppsr_score %>% glimpse()
 
-# * Plotting ----
+# * Plotting 1Bar ----
 customer_churn_tbl %>%
     select(-customerID) %>%
-    visualize_pps(y = 'Churn', do_parallel = TRUE)
+    visualize_pps(y = "Churn", do_parallel = TRUE)
 
+# * Plotting Matrix ----
+g <- customer_churn_tbl %>%
+    select(-customerID) %>%
+    visualize_pps(do_parallel = TRUE)
 
+g +
+    theme(axis.text.x = element_text(angle = 45, hjust = 1))
 
 # 2.0 CORRELATION FUNNEL: A Binary Version of the Correlation Matrix ----
 # - PROS:
