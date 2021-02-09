@@ -1,0 +1,85 @@
+# R TIPS ----
+# TIP 023 | PPSCORE VS CORRELATION FUNNEL! ----
+#
+# 👉 For Weekly R-Tips, Sign Up Here: https://mailchi.mp/business-science/r-tips-newsletter
+
+# Battle of the EDA Packages
+
+# LIBRARIES ----
+
+library(ppsr) # devtools::install_github('https://github.com/paulvanderlaken/ppsr')
+library(correlationfunnel)
+library(tidyverse)
+
+customer_churn_tbl %>% glimpse()
+
+
+# 1.0 THE CONTENDER: Predictive Power Score (ppscore) ----
+# - PROS:
+#   - Non-linear (can detect relationships that standard correlations can't)
+#   - Works on Categorical Data (standard correlations only work on numeric data)
+# - Cons:
+#   - Iterative, takes more time (see do_parallel option)
+#   - Does not show direction (only magnitude of relationship)
+
+# * Make the ppscore ----
+churn_ppsr_score <- customer_churn_tbl %>%
+    select(-customerID) %>%
+    score_predictors(y = 'Churn', do_parallel = TRUE) %>%
+    as_tibble()
+
+churn_ppsr_score %>% glimpse()
+
+# * Plotting ----
+customer_churn_tbl %>%
+    select(-customerID) %>%
+    visualize_pps(y = 'Churn', do_parallel = TRUE)
+
+
+
+# 2.0 CORRELATION FUNNEL: A Binary Version of the Correlation Matrix ----
+# - PROS:
+#   - Works on categorical data (bins everything to make numeric)
+#   - Shows direction (positive vs negative relationships)
+#   - Works on non-linear (uses binning trick)
+#   - Fast - Uses Pearson Correlation
+# - Cons:
+#   - Non-linear relationship detection is based on the binning strategy.
+#   - Can suffer from issues with high data imbalance (correlations shrink)
+
+customer_churn_binned_tbl <- customer_churn_tbl %>%
+    select(-customerID) %>%
+    mutate(TotalCharges = ifelse(is.na(TotalCharges), 0, TotalCharges)) %>%
+    binarize()
+
+customer_churn_binned_tbl %>% glimpse()
+
+customer_churn_binned_tbl %>%
+    correlate(target = Churn__Yes) %>%
+    plot_correlation_funnel()
+
+
+# 3.0 TOP FEATURES ----
+# - USE XGBoost
+
+library(tidymodels)
+library(xgboost)
+library(vip)
+
+recipe_spec <- recipe(Churn ~ ., data = customer_churn_tbl) %>%
+    step_rm(customerID) %>%
+    step_dummy(all_nominal(), -Churn)
+
+recipe_spec %>% prep() %>% juice() %>% glimpse()
+
+wflw_fit_xgb <- workflow() %>%
+    add_model(boost_tree(mode = "classification") %>% set_engine("xgboost")) %>%
+    add_recipe(recipe_spec) %>%
+    fit(customer_churn_tbl)
+
+wflw_fit_xgb$fit$fit$fit %>% vip()
+
+# LEARNING MORE----
+# - DS4B 201-R Course (Advanced ML & Business Consulting)
+#   - H2O Automatic Machine Learning (AutoML) &
+#   - Explainable ML (Local Feature Importance)
