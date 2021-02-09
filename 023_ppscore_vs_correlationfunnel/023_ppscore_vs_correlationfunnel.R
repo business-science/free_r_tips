@@ -56,7 +56,8 @@ customer_churn_binned_tbl %>% glimpse()
 
 customer_churn_binned_tbl %>%
     correlate(target = Churn__Yes) %>%
-    plot_correlation_funnel()
+    plot_correlation_funnel() +
+    geom_point(size = 3, color = "#2c3e50")
 
 
 # 3.0 TOP FEATURES ----
