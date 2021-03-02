@@ -13,8 +13,8 @@ library(timetk)
 # 2.0 DATA ----
 # - Use tidyquant to pull in some stock data
 
-stock_data_tbl <- c("AAPL", "GOOG", "FB", "NVDA") %>%
-    tq_get(from = "2019-01-01", to = "2020-08-31")
+stock_data_tbl <- c("AAPL", "GOOG", "FB", "NVDA") %>%  #these are stock prices we want
+    tq_get(from = "2019-01-01", to = "2020-08-31") #tq_get pulls these from web for the dates provided
 
 
 # 3.0 DATA WRANGLING ----
@@ -25,11 +25,17 @@ stock_returns_tbl <- stock_data_tbl %>%
     group_by(symbol) %>%
     summarise(
         week    = last(adjusted) / first(tail(adjusted, 7)) - 1,
+        #last price for that commodity / first value of the last 7 values
         month   = last(adjusted) / first(tail(adjusted, 30)) - 1,
         quarter = last(adjusted) / first(tail(adjusted, 90)) - 1,
         year    = last(adjusted) / first(tail(adjusted, 365)) - 1,
         all     = last(adjusted) / first(adjusted) - 1
     )
+
+#MW working out the steps using last and first(tail) functions
+# stock_data_tbl %>%
+#     group_by(symbol) %>%
+#     summarise(tail(adjusted, 7)-1)
 
 # 4.0 PLOTS & TABLES ----
 # - ggplot2 (DS4B 101-R Weeks 4)
@@ -38,7 +44,9 @@ stock_returns_tbl <- stock_data_tbl %>%
 stock_plot <- stock_data_tbl %>%
     group_by(symbol) %>%
     summarize_by_time(adjusted = AVERAGE(adjusted), .by = "week") %>%
+    #summarise_by_time is a dplyr is a time based variant of summarise
     plot_time_series(date, adjusted, .facet_ncol = 2, .interactive = FALSE)
+    #plot_time_series = timetk package function plotting time series with plotly
 
 stock_plot
 
@@ -53,10 +61,11 @@ stock_table
 
 # 5.0 MAKE A POWERPOINT DECK -----
 
-doc <- read_pptx()
+doc <- read_pptx() #from the officer package (I have the web page bookmarked)
 doc <- add_slide(doc)
-doc <- ph_with(doc, value = "Stock Report", location = ph_location_type(type = "title"))
-doc <- ph_with(doc, value = stock_table, location = ph_location_left())
-doc <- ph_with(doc, value = stock_plot, location = ph_location_right())
+doc <- ph_with(doc, value = "Mark's Stock Report", location = ph_location_type(type = "title"))
+#ph = placeholder = add object into a new shape on current slide, ph_location_type = locate ph type (e.g. title, body etc)
+doc <- ph_with(doc, value = stock_plot, location = ph_location_left())
+doc <- ph_with(doc, value = stock_table, location = ph_location_right())
 
-print(doc, target = "003_powerpoint_slidedeck/stock_report.pptx")
+print(doc, target = "003_powerpoint_slidedeck/stock_report_MW.pptx")
