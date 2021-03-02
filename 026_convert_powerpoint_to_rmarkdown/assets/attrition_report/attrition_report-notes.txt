@@ -1,0 +1,11 @@
+
+---#1
+We designed this template so that each member of the project team has a set of slides with its own theme. Members, here’s how you add a new slide to just your set:  Mark where you want to add the slide: Select an existing one in the Thumbnails pane, click the New Slide button, then choose a layout. The new slide gets the same theme as the other slides in your set. Careful ! Don’t annoy your fellow presenters by accidentally changing their themes. That can happen if you choose a different theme from the Design tab, which changes all of the slides in the presentation to that look.
+
+
+---#2
+
+
+
+---#3
+
