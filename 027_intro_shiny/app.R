@@ -3,6 +3,10 @@
 #
 # 👉 For Weekly R-Tips, Sign Up Here: https://mailchi.mp/business-science/r-tips-newsletter
 
+# Why Shiny?
+# - Example of Nostradamus (My Forecasting App built with modeltime)
+#   https://business-science.shinyapps.io/nostradamus/
+
 # LIBRARIES ----
 
 # Shiny
