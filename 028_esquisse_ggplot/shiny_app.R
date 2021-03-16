@@ -10,6 +10,7 @@
 # LIBRARIES ----
 
 library(esquisse)
+library(modeldata)
 library(shiny)
 
 data("drinks")
