@@ -1,0 +1,69 @@
+---
+title: "RMarkdown Visual Editor"
+author: "Business Science"
+date: "3/23/2021"
+output:
+  html_document:
+    theme: flatly
+    df_print: paged
+  pdf_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+    echo    = FALSE,
+    message = FALSE, 
+    warning = FALSE
+)
+```
+
+# Making a Report
+
+This is just a quick example of how to make a report using the **NEW RMarkdown Visual Editor!**
+
+## Load Libraries
+
+```{r, echo = TRUE}
+library(tidyverse)
+library(tidyquant)
+```
+
+## Dataset
+
+The `mpg` dataset.
+
+```{r}
+mpg
+```
+
+## Make a Plot
+
+Learn `ggplot2` visualization - [Business Analytics with R (DS4B 101-R)](https://university.business-science.io/p/ds4b-101-r-business-analysis-r).
+
+```{r, out.height="700px"}
+mpg %>%
+    ggplot(aes(factor(year), log(hwy))) +
+    geom_violin() +
+    geom_jitter(alpha = 0.5) +
+    facet_wrap(~ manufacturer) +
+    theme_tq() +
+    labs(x = "Year", y = "Log Fuel Economy (Highway)")
+
+```
+
+## Tables
+
+| Following Business Science | Chance of Success | Speed of Learning |
+|----------------------------|-------------------|-------------------|
+| Yes                        | High              | Fast              |
+| No                         | Low               | Slow              |
+
+: Why Learn Data Science from Business Science
+
+\newpage
+
+## Add an Image
+
+Get the [Free R-Tips](https://mailchi.mp/business-science/r-tips-newsletter)!
+
+![](images/tues_r_tips.jpg){width="509"}
