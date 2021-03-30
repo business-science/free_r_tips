@@ -1,5 +1,5 @@
 ---
-title: "Intro to Xaringan"
+title: "Intro to Interactive Slide Decks | Xaringan"
 subtitle: "Let's do this"
 author: "Matt Dancho"
 institute: "Business Science"
@@ -17,7 +17,10 @@ output:
 
 
 ```{r setup, include=FALSE}
-options(htmltools.dir.version = FALSE)
+options(
+  htmltools.dir.version  = FALSE,
+  htmltools.preserve.raw = FALSE # needed for windows
+)
 ```
 
 
@@ -32,7 +35,12 @@ Here is some text.
 code <- "awesome"
 ```
 
-And don't forget to set up Infinite Moon Reader RStudio Addin!
+And don't forget to set up __Infinite Moon Reader RStudio Addin!__
+
+---
+# New Slide
+
+This is a simple introduction to Xaringan
 
 ---
 class: top, center
@@ -55,6 +63,10 @@ Next
 --
 
 Next
+
+--
+
+One final piece
 
 ---
 
@@ -80,7 +92,7 @@ Next
 
 # Code Highlight & Tables
 
-```{r}
+```{r, echo=T}
 library(tidyverse)
 
 mpg %>%
@@ -111,7 +123,7 @@ leaflet() %>%
 
 ---
 
-## Plots
+# Plots
 
 ```{r, out.width="100%", out.height="50%"}
 library(timetk)
@@ -121,7 +133,7 @@ m4_monthly %>%
 ```
 
 ---
-## Side-by-Side
+# Side-by-Side
 
 .pull-left[
 
@@ -147,6 +159,16 @@ p
 
 
 ]
+
+---
+
+# Themes
+
+```{r}
+names(xaringan:::list_css())
+```
+
+
 
 ---
 
