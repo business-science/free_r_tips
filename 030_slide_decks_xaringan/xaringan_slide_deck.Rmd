@@ -113,7 +113,7 @@ mpg %>% DT::datatable()
 
 # Maps
 
-```{r, out.width="100%"}
+```{r, out.width="100%", warning=F}
 library(leaflet)
 
 leaflet() %>%
@@ -125,7 +125,7 @@ leaflet() %>%
 
 # Plots
 
-```{r, out.width="100%", out.height="50%"}
+```{r, out.width="100%", out.height="70%"}
 library(timetk)
 
 m4_monthly %>%
