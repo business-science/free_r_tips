@@ -1,0 +1,188 @@
+---
+title: "Intro to Interactive Slide Decks | Xaringan"
+subtitle: "Let's do this"
+author: "Matt Dancho"
+institute: "Business Science"
+date: "2016/12/12 (updated: `r Sys.Date()`)"
+output:
+  xaringan::moon_reader:
+    css: [default, metropolis, metropolis-fonts]
+    lib_dir: libs
+    nature:
+      highlightStyle: arta
+      highlightLines: true
+      countIncrementalSlides: false
+---
+
+
+
+```{r setup, include=FALSE}
+options(
+  htmltools.dir.version  = FALSE,
+  htmltools.preserve.raw = FALSE # needed for windows
+)
+```
+
+
+# Awesome Title
+
+Here is some text. 
+
+- Bullet 1
+- Bullet 2
+
+``` r
+code <- "awesome"
+```
+
+And don't forget to set up __Infinite Moon Reader RStudio Addin!__
+
+---
+# New Slide
+
+This is a simple introduction to Xaringan
+
+---
+class: top, center
+
+#  Top Center
+
+More stuff
+
+.left[And more]
+
+.right[And right]
+
+---
+# Incremental Reveals
+
+--
+
+Next
+
+--
+
+Next
+
+--
+
+One final piece
+
+---
+
+# Two-Columns
+
+.pull-left[
+
+## Column 1
+
+- First Bullet
+
+]
+
+.pull-right[
+
+## Column 2
+
+- First Comparison
+
+]
+
+---
+
+# Code Highlight & Tables
+
+```{r, echo=T}
+library(tidyverse)
+
+mpg %>%
+  knitr::kable()
+```
+
+---
+
+# DT Tables
+
+```{r}
+library(DT)
+
+mpg %>% DT::datatable()
+```
+
+---
+
+# Maps
+
+```{r, out.width="100%", warning=F}
+library(leaflet)
+
+leaflet() %>%
+  setView(lng = -71.0589, lat = 42.3601, zoom = 12) %>%
+  addProviderTiles(providers$Esri.NatGeoWorldMap)
+```
+
+---
+
+# Plots
+
+```{r, out.width="100%", out.height="70%"}
+library(timetk)
+
+m4_monthly %>%
+  plot_time_series(date, value, .facet_vars = id, .facet_ncol = 2)
+```
+
+---
+# Side-by-Side
+
+.pull-left[
+
+Let's check out the monthly seasonality. 
+
+```{r}
+library(timetk)
+
+p <- m4_monthly %>%
+  filter(id == "M750") %>%
+  plot_time_series(
+    .date_var   = date, 
+    .value      = value
+  )
+```
+
+]
+
+.pull-right[
+```{r, echo=F, out.width="100%"}
+p
+```
+
+
+]
+
+---
+
+# Themes
+
+```{r}
+names(xaringan:::list_css())
+```
+
+
+
+---
+
+# Lot's more!
+
+- [_"Meet xaringan"_: Allison Hill's RStudio 2019 Conf Talk](https://arm.rbind.io/slides/xaringan.html)
+
+- [_"Applying design guidelines to slides with {xaringanthemer}"_: By Katie Jolly](https://www.katiejolly.io/blog/2021-03-16/designing-slides)
+
+- [_"Presentation Ninja with xaringan"_ by Yihui Xie](https://slides.yihui.org/xaringan/#1)
+
+.center[
+  ![](https://upload.wikimedia.org/wikipedia/commons/b/be/Sharingan_triple.svg)
+]
+
+
+
