@@ -28,8 +28,9 @@ ggcorrm(data = mpg) +
     utri_heatmap() +
     utri_corrtext() +
     dia_names(y_pos = 0.15, size = 3) +
-    dia_density(lower = 0.3, fill = "grey80", color = 1) +
-    scale_fill_corr()
+    dia_histogram(lower = 0.3, fill = "grey80", color = 1) +
+    scale_fill_corr() +
+    labs(title = "Correlation Plot")
 
 # Within Groups
 corfun <- function(x, y)  round(cor(x, y,method = "pearson", use = "pairwise.complete.obs"), 2)
