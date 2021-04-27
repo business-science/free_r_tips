@@ -18,7 +18,11 @@ data_wrangled <- mpg %>%
     group_by(manufacturer, cyl) %>%
     summarise(across(.cols = c(cty, hwy), .fns = mean)) %>%
     ungroup() %>%
-    pivot_longer(cols = c(cty, hwy), names_to = "fuel_economy_type", values_to = "fuel_economy")
+    pivot_longer(
+        cols = c(cty, hwy),
+        names_to = "fuel_economy_type",
+        values_to = "fuel_economy"
+    )
 
 data_wrangled
 
@@ -30,9 +34,10 @@ main_table <- data_wrangled %>%
     mmtable(table_data = fuel_economy, table_name = "Fuel Economy") +
 
     # Specify Headers
+    header_top(manufacturer) +
     header_left(cyl) +
     header_left_top(fuel_economy_type) +
-    header_top(manufacturer) +
+
 
     # Specify formatting
     header_format(manufacturer, list(cell_text(transform = "capitalize"))) +
