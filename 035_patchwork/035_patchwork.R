@@ -103,9 +103,9 @@ gg_tx_map
 gg_tx_map + (gg_tx_timeseries / gg_tx_ridge) +
     plot_layout(widths = c(3,2), tag_level = "new") +
     plot_annotation(
-        title = "Texas Real-Estate Statistics",
-        subtitle = "The untold secrets of prime-real estate in the Lonestar State.\n",
-        tag_levels = c("A"),
+        title      = "Texas Real-Estate Statistics",
+        subtitle   = "The untold secrets of prime-real estate in the Lonestar State.\n",
+        tag_levels = "A",
         tag_prefix = "Fig. ",
         tag_suffix = ":"
     ) &
