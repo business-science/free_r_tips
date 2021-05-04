@@ -5,8 +5,6 @@
 
 # LIBRARIES ----
 
-# remotes::install_github("ianmoran11/mmtable2")
-
 library(patchwork)
 library(ggridges)
 library(ggrepel)
@@ -41,7 +39,7 @@ gg_tx_timeseries <- txhousing_tbl %>%
     labs(y = "", x = "", title = "Median Home Price Over Time")
 gg_tx_timeseries
 
-# 2.2 Top Cities Ridgline Plot ----
+# 2.2 Top Cities Ridgeline Plot ----
 
 gg_tx_ridge <- txhousing_tbl %>%
     drop_na() %>%
@@ -102,12 +100,11 @@ gg_tx_map
 
 # 3.0 Patchwork ----
 
-gg_tx_map +
-    (gg_tx_timeseries / gg_tx_ridge) +
+gg_tx_map + (gg_tx_timeseries / gg_tx_ridge) +
     plot_layout(widths = c(3,2), tag_level = "new") +
     plot_annotation(
         title = "Texas Real-Estate Statistics",
-        subtitle = "The untold secrets of prime-real estate in Texas\n",
+        subtitle = "The untold secrets of prime-real estate in the Lonestar State.\n",
         tag_levels = c("A"),
         tag_prefix = "Fig. ",
         tag_suffix = ":"
