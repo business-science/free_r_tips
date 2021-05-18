@@ -30,7 +30,8 @@ mpg %>%
             fill = class
         ),
         alpha    = 0.5,
-        size     = 1,
+        size     = 1
+        ,
         position = "stack"
     ) +
     geom_ysidedensity(
@@ -39,7 +40,8 @@ mpg %>%
             fill = class
         ),
         alpha    = 0.5,
-        size     = 1,
+        size     = 1
+        ,
         position = "stack"
     ) +
     scale_color_tq() +
@@ -70,6 +72,9 @@ mpg %>%
     facet_grid(cols = vars(cyl), scales = "free_x") +
     labs(
         title = "Fuel Economy by Engine Size (Cylinders)"
+    ) +
+    theme(
+        ggside.panel.scale.x = 0.4
     )
 
 # 2.0 LEARNING MORE -----
