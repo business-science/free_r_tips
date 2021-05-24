@@ -36,6 +36,7 @@ mpg_subset <- data_edit(
 
 
 mpg %>%
+
     select(manufacturer, model, cty, hwy, class) %>%
     pivot_longer(cols = c(cty, hwy)) %>%
     mutate(
@@ -45,6 +46,7 @@ mpg %>%
         ),
         name = str_to_upper(name)
     ) %>%
+
     ggplot(aes(x = model, y = value, fill = class)) +
     geom_boxplot() +
     facet_grid(cols = vars(name), scales = "free_y") +
