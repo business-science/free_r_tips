@@ -1,5 +1,5 @@
 # R TIPS ----
-# TIP 039 | Introduction to Modeltime: In 5-Minutes ----
+# TIP 039 | Introduction to Modeltime: In 10-Minutes ----
 #
 # 👉 For Weekly R-Tips, Sign Up Here:
 #    https://mailchi.mp/business-science/r-tips-newsletter
@@ -100,8 +100,9 @@ future_forecast_tbl %>%
     plot_modeltime_forecast()
 
 # LEARNING MORE ----
-# 1. FEATURE ENGINEERING - A LOT OF ROOM FOR IMPROVEMENT
-# 2. MACHINE LEARNING ALGORIMTHMS | TIDYMODELS API
+# - A LOT OF ROOM FOR IMPROVEMENT
+# 1. FEATURE ENGINEERING | RECIPES
+# 2. MACHINE LEARNING ALGORIMTHMS | TIDYMODELS & MODELTIME
 # 3. MODELTIME ECOSYSTEM | MODELTIME H2O, GLUONTS
 
 # HIGH PERFORMANCE TIME SERIES COURSE:
