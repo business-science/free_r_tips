@@ -35,7 +35,7 @@ splits %>%
 
 # FORECAST ----
 
-# * AUTO ARIMA ---
+# * AUTO ARIMA ----
 model_arima <- arima_reg() %>%
     set_engine("auto_arima") %>%
     fit(cnt ~ dteday, training(splits))
