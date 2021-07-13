@@ -4,8 +4,9 @@
 # 👉 For Weekly R-Tips, Sign Up Here:
 #    https://mailchi.mp/business-science/r-tips-newsletter
 
-# Credits:
-# https://www.cedricscherer.com/2021/06/06/visualizing-distributions-with-raincloud-plots-with-ggplot2/
+# CREDIT ----
+#  Cedric Scherer
+#  https://www.cedricscherer.com/2021/06/06/visualizing-distributions-with-raincloud-plots-with-ggplot2/
 
 # LIBRARIES ----
 

@@ -4,6 +4,9 @@
 # 👉 For Weekly R-Tips, Sign Up Here:
 #    https://mailchi.mp/business-science/r-tips-newsletter
 
+# REFERENCE:
+# https://easystats.github.io/performance/
+
 # LIBRARIES ----
 
 # install.packages("performance", dependencies = TRUE)
