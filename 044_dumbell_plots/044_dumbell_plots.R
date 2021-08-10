@@ -1,5 +1,5 @@
 # R TIPS ----
-# TIP 044 | ggalt: dumbell plots ----
+# TIP 044 | ggalt: dumbbell plots ----
 #
 # 👉 For Weekly R-Tips, Sign Up Here:
 #    https://mailchi.mp/business-science/r-tips-newsletter
@@ -32,14 +32,14 @@ mpg_by_year_tbl <- mpg %>%
 # 2.0 VISUALIZATION (Dumbell Plots) ----
 # - Learn ggplot2 in R for Business Analysis DS4B 101-R Course
 
-# * Basic Dumbell Plot with ggalt ----
+# * Basic Dumbbell Plot with ggalt ----
 g1 <- mpg_by_year_tbl %>%
     ggplot(aes(x = year_1999, xend = year_2008, y = model, group = model)) +
 
     geom_dumbbell(
         colour="#a3c4dc",
         colour_xend="#0e668b",
-        size=2.0,
+        size=4.0,
         dot_guide=TRUE,
         dot_guide_size=0.15,
         dot_guide_colour = "grey60"
