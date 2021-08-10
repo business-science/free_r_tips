@@ -9,7 +9,7 @@
 
 library(tidyverse)
 library(tidyquant)
-library(ggalt) # devtools::install_github("hrbrmstr/ggalt")
+library(ggalt)
 
 # DATA ----
 mpg
