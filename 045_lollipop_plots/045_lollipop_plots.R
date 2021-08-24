@@ -26,7 +26,7 @@ mpg_by_class_tbl <- mpg %>%
 
 mpg_by_class_tbl
 
-# 2.0 VISUALIZATION (Dumbell Plots) ----
+# 2.0 VISUALIZATION (Lollipop Plots) ----
 # - More on ggplot2 in the R-Track
 
 # * Basic Dumbbell Plot with ggalt ----
@@ -43,7 +43,7 @@ g1 <- mpg_by_class_tbl %>%
 
 g1
 
-# * Customize Theme with tidyquant ----
+# * Customize Theme with geom_label and tidyquant theme_tq ----
 
 g2 <- g1 +
     geom_label(
