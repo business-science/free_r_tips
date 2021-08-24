@@ -36,7 +36,7 @@ g1 <- mpg_by_class_tbl %>%
     geom_lollipop(
         horizontal   = TRUE,
         point.colour = "dodgerblue",
-        point.size   = 6,
+        point.size   = 10,
         color        = "#2c3e50",
         size         = 1
     )
@@ -44,7 +44,16 @@ g1 <- mpg_by_class_tbl %>%
 g1
 
 # * Customize Theme with tidyquant ----
+
 g2 <- g1 +
+    geom_label(
+        aes(label = str_glue("Vehicle Class: {toupper(class)}
+                             mpg: {round(mean_hwy)}")),
+        size    = 3,
+        hjust   = "outward",
+        nudge_x = 2
+    ) +
+    expand_limits(x = 45) +
     labs(
         title = "Vehicle Fuel Economy Lollipop Plot",
         x="Fuel Economy (MPG)", y = "Vehicle Class"
