@@ -70,7 +70,7 @@ prop_sales_by_customer_tbl %>%
 
 # FREE MASTERCLASS
 # - 10 SECRETS TO BECOMING A DATA SCIENTIST
-#   https://mailchi.mp/business-science/rtrack-master-class-signup
+#   https://www.business-science.io/rtrack_freewebinar.html
 
 # 5-COURSE R-TRACK
 # - Beginner to Expert in 6-months
