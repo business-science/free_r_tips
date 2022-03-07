@@ -2,7 +2,7 @@
 # TIP 041 | Easystats Performance | Check Model ----
 #
 # 👉 For Weekly R-Tips, Sign Up Here:
-#    https://mailchi.mp/business-science/r-tips-newsletter
+#    https://learn.business-science.io/r-tips-newsletter
 
 # REFERENCE:
 # https://easystats.github.io/performance/

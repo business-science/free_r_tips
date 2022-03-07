@@ -1,7 +1,7 @@
 # R TIPS ----
 # TIP 008 | Must-Know Tidyverse Features: Relocate ----
 #
-# 👉 For Weekly R-Tips, Sign Up Here: https://mailchi.mp/business-science/r-tips-newsletter
+# 👉 For Weekly R-Tips, Sign Up Here: https://learn.business-science.io/r-tips-newsletter
 
 # LIBRARIES ----
 library(tidyverse)

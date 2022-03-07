@@ -2,7 +2,7 @@
 # TIP 046| furrr: Parallel Processing ----
 #
 # 👉 For Weekly R-Tips, Sign Up Here:
-#    https://mailchi.mp/business-science/r-tips-newsletter
+#    https://learn.business-science.io/r-tips-newsletter
 
 # furrr package: https://furrr.futureverse.org/
 

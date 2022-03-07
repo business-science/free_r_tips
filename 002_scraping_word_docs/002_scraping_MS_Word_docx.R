@@ -1,7 +1,7 @@
 # R TIPS ----
 # TIP 002: Scraping MS Word (docx) Files with R ----
 #
-# 👉 For Weekly R-Tips, Sign Up Here: https://mailchi.mp/business-science/r-tips-newsletter
+# 👉 For Weekly R-Tips, Sign Up Here: https://learn.business-science.io/r-tips-newsletter
 
 # 1.0 LIBRARIES ----
 library(officer)

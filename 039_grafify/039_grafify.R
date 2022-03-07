@@ -2,7 +2,7 @@
 # TIP 039 | grafify: Easy Graphs and ANOVAs ----
 #
 # 👉 For Weekly R-Tips, Sign Up Here:
-#    https://mailchi.mp/business-science/r-tips-newsletter
+#    https://learn.business-science.io/r-tips-newsletter
 
 # LIBRARIES ----
 

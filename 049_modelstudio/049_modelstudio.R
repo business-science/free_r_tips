@@ -2,7 +2,7 @@
 # TIP 049| ModelStudio: Interactive Studio for Explanatory Model Analysis  ----
 #
 # 👉 For Weekly R-Tips, Sign Up Here:
-#    https://mailchi.mp/business-science/r-tips-newsletter
+#    https://learn.business-science.io/r-tips-newsletter
 
 # Documentation: https://modelstudio.drwhy.ai/index.html
 

@@ -1,7 +1,7 @@
 # R TIPS ----
 # TIP 033 | corrmorrant: ggplot2 extension for correlation matricies ----
 #
-# 👉 For Weekly R-Tips, Sign Up Here: https://mailchi.mp/business-science/r-tips-newsletter
+# 👉 For Weekly R-Tips, Sign Up Here: https://learn.business-science.io/r-tips-newsletter
 
 # LIBRARIES ----
 

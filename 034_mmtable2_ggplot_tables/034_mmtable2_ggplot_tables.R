@@ -1,7 +1,7 @@
 # R TIPS ----
 # TIP 034 | mmtable2: ggplot2 syntax for tables ----
 #
-# 👉 For Weekly R-Tips, Sign Up Here: https://mailchi.mp/business-science/r-tips-newsletter
+# 👉 For Weekly R-Tips, Sign Up Here: https://learn.business-science.io/r-tips-newsletter
 
 # LIBRARIES ----
 

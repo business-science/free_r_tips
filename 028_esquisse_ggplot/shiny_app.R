@@ -1,7 +1,7 @@
 # R TIPS ----
 # TIP 028 | Esquisse ggplot Builder ---
 #
-# 👉 For Weekly R-Tips, Sign Up Here: https://mailchi.mp/business-science/r-tips-newsletter
+# 👉 For Weekly R-Tips, Sign Up Here: https://learn.business-science.io/r-tips-newsletter
 
 # Why Shiny?
 # - Example of Nostradamus (My Forecasting App built with modeltime)

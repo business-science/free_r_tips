@@ -2,7 +2,7 @@
 # TIP 040 | Introduction to Modeltime: In Under 10-Minutes ----
 #
 # 👉 For Weekly R-Tips, Sign Up Here:
-#    https://mailchi.mp/business-science/r-tips-newsletter
+#    https://learn.business-science.io/r-tips-newsletter
 
 # LIBRARIES ----
 

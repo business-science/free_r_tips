@@ -64,6 +64,6 @@ mpg %>%
 
 ## Add an Image
 
-Get the [Free R-Tips](https://mailchi.mp/business-science/r-tips-newsletter)!
+Get the [Free R-Tips](https://learn.business-science.io/r-tips-newsletter)!
 
 ![](images/tues_r_tips.jpg){width="509"}

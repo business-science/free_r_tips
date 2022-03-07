@@ -2,7 +2,7 @@
 # TIP 038 | gghalves: Half Dot Plots and Half Boxplots ----
 #
 # 👉 For Weekly R-Tips, Sign Up Here:
-#    https://mailchi.mp/business-science/r-tips-newsletter
+#    https://learn.business-science.io/r-tips-newsletter
 
 # LIBRARIES ----
 

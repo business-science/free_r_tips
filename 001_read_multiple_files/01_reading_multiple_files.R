@@ -1,7 +1,7 @@
 # R TIPS ----
 # TIP 001: Reading Multiple Files ----
 #
-# 👉 For Weekly R-Tips, Signup Here: https://mailchi.mp/business-science/r-tips-newsletter
+# 👉 For Weekly R-Tips, Signup Here: https://learn.business-science.io/r-tips-newsletter
 
 library(tidyverse)
 library(fs)

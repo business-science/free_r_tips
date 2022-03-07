@@ -2,7 +2,7 @@
 # TIP 037 | DataEditR: GUI for Data Wrangling in R ----
 #
 # 👉 For Weekly R-Tips, Sign Up Here:
-#    https://mailchi.mp/business-science/r-tips-newsletter
+#    https://learn.business-science.io/r-tips-newsletter
 
 # LIBRARIES ----
 
