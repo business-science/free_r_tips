@@ -11,6 +11,8 @@ library(mmtable2)
 library(gt)
 library(tidyverse)
 
+mpg
+
 
 # 1.0 Data Transformation -----
 
