@@ -31,7 +31,7 @@ data_wrangled
 main_table <- data_wrangled %>%
     mutate(fuel_economy = round(fuel_economy, 1)) %>%
 
-    mmtable(table_data = fuel_economy, table_name = "Fuel Economy") +
+    mmtable(cells = fuel_economy, table_name = "Fuel Economy") +
 
     # Specify Headers
     header_top(manufacturer) +
