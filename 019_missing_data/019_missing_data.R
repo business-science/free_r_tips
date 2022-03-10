@@ -74,3 +74,11 @@ air_quality_tbl %>%
     # Visualize
     ggplot(aes(Solar.R, Ozone, color = any_missing)) +
     geom_point()
+
+# LEARNING MORE ----
+
+# FREE MASTERCLASS
+# - 10 SECRETS TO BECOMING A DATA SCIENTIST
+#   https://learn.business-science.io/free-rtrack-masterclass
+
+

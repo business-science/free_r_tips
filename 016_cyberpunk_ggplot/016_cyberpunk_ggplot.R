@@ -118,3 +118,10 @@ g_cyberpunk
 # * Make Interactive plotly ----
 ggplotly(g_cyberpunk)
 
+# LEARNING MORE ----
+
+# FREE MASTERCLASS
+# - 10 SECRETS TO BECOMING A DATA SCIENTIST
+#   https://learn.business-science.io/free-rtrack-masterclass
+
+

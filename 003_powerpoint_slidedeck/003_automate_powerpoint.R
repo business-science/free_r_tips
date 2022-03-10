@@ -60,3 +60,10 @@ doc <- ph_with(doc, value = stock_table, location = ph_location_left())
 doc <- ph_with(doc, value = stock_plot, location = ph_location_right())
 
 print(doc, target = "003_powerpoint_slidedeck/stock_report.pptx")
+
+# LEARNING MORE ----
+
+# FREE MASTERCLASS
+# - 10 SECRETS TO BECOMING A DATA SCIENTIST
+#   https://learn.business-science.io/free-rtrack-masterclass
+

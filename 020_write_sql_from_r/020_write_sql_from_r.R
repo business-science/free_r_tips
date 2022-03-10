@@ -53,4 +53,10 @@ manufacturer_aggregations_tblcon %>%
     str_replace_all("`", "") %>%
     str_c(collapse = " ")
 
+# LEARNING MORE ----
+
+# FREE MASTERCLASS
+# - 10 SECRETS TO BECOMING A DATA SCIENTIST
+#   https://learn.business-science.io/free-rtrack-masterclass
+
 

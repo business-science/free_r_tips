@@ -60,3 +60,9 @@ main_table %>%
         subtitle = "Audi, VW, and Honda are leaders in Fuel Economy"
     )
 
+# LEARNING MORE ----
+
+# FREE MASTERCLASS
+# - 10 SECRETS TO BECOMING A DATA SCIENTIST
+#   https://learn.business-science.io/free-rtrack-masterclass
+

@@ -64,9 +64,9 @@ mpg %>%
 
 # LEARNING MORE ----
 
-# R FOR BUSINESS ANALYSIS COURSE (DS4B 101-R)
-# - Learn visualization {ggplot2} in Week 4 (4+ hours just on ggplot)
-#   https://university.business-science.io/p/ds4b-101-r-business-analysis-r
+# FREE MASTERCLASS
+# - 10 SECRETS TO BECOMING A DATA SCIENTIST
+#   https://learn.business-science.io/free-rtrack-masterclass
 
 # 5-COURSE R-TRACK
 # - Beginner to Expert in 6-months

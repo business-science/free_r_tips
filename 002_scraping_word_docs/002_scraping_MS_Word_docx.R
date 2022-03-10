@@ -57,8 +57,8 @@ lecture_analysis_tbl %>%
     expand_limits(y = 0) +
     theme_minimal()
 
-# LEARN MORE:
-# - Recommendation: DS4B 101-R Course
-# - I cover data manipulation & data visualization in-depth in my "R for Business Analysis Course" (DS4B 101-R)
-# - LEARN MORE: https://university.business-science.io/p/ds4b-101-r-business-analysis-r
+# LEARNING MORE ----
 
+# FREE MASTERCLASS
+# - 10 SECRETS TO BECOMING A DATA SCIENTIST
+#   https://learn.business-science.io/free-rtrack-masterclass

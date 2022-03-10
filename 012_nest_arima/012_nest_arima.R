@@ -72,3 +72,11 @@ model_table %>%
     unnest(nested_forecast) %>%
     group_by(id) %>%
     plot_modeltime_forecast(.facet_ncol = 2)
+
+# LEARNING MORE ----
+
+# FREE MASTERCLASS
+# - 10 SECRETS TO BECOMING A DATA SCIENTIST
+#   https://learn.business-science.io/free-rtrack-masterclass
+
+

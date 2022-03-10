@@ -34,10 +34,13 @@ economics %>% skim()
 economics_long %>% group_by(variable) %>% skim()
 
 
-# MORE R-TIPS ----
+# LEARNING MORE ----
 
-# R-Tip 025: Super Fast EDA with DataExplorer
-# R-Tip 023: Correlation Funnel vs PPScore
+# FREE MASTERCLASS
+# - 10 SECRETS TO BECOMING A DATA SCIENTIST
+#   https://learn.business-science.io/free-rtrack-masterclass
+
+
 
 
 

@@ -53,3 +53,10 @@ library(modeltime.gluonts)
 # 6. Get All Keyboard Shortcuts,  [Alt + Shift + K] ----
 # - Get all the keyboard shortcuts!
 
+# LEARNING MORE ----
+
+# FREE MASTERCLASS
+# - 10 SECRETS TO BECOMING A DATA SCIENTIST
+#   https://learn.business-science.io/free-rtrack-masterclass
+
+

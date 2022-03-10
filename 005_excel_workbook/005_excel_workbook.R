@@ -50,3 +50,11 @@ saveWorkbook(wb, "005_excel_workbook/stock_analysis.xlsx", overwrite = TRUE)
 
 # * Open the Workbook ----
 openXL("005_excel_workbook/stock_analysis.xlsx")
+
+# LEARNING MORE ----
+
+# FREE MASTERCLASS
+# - 10 SECRETS TO BECOMING A DATA SCIENTIST
+#   https://learn.business-science.io/free-rtrack-masterclass
+
+

@@ -48,5 +48,5 @@ modelStudio::modelStudio(explainer)
 
 # FREE MASTERCLASS
 # - 10 SECRETS TO BECOMING A DATA SCIENTIST
-#   https://mailchi.mp/business-science/rtrack-master-class-signup-3
+#   https://learn.business-science.io/free-rtrack-masterclass
 

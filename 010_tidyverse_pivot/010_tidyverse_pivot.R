@@ -59,10 +59,10 @@ mpg_long_summary_table %>%
     labs(title = "Class by Auto Manufacturer")
 
 # LEARNING MORE ----
-# - A lot more to working with data
-# - Become a PRO: Check out R For Business Course (DS4B 101-R)
-#   - Data Wrangling (Weeks 2 & 3)
-#   - Visualization (Week 4)
+
+# FREE MASTERCLASS
+# - 10 SECRETS TO BECOMING A DATA SCIENTIST
+#   https://learn.business-science.io/free-rtrack-masterclass
 
 
 

@@ -55,3 +55,11 @@ mpg %>%
 
 mpg %>%
     relocate(starts_with("m"), .before = year)
+
+# LEARNING MORE ----
+
+# FREE MASTERCLASS
+# - 10 SECRETS TO BECOMING A DATA SCIENTIST
+#   https://learn.business-science.io/free-rtrack-masterclass
+
+

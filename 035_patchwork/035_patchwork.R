@@ -113,4 +113,10 @@ gg_tx_map + (gg_tx_timeseries / gg_tx_ridge) +
           plot.tag = element_text(size = 8, hjust = 0, vjust = 0))
 
 
+# LEARNING MORE ----
+
+# FREE MASTERCLASS
+# - 10 SECRETS TO BECOMING A DATA SCIENTIST
+#   https://learn.business-science.io/free-rtrack-masterclass
+
 

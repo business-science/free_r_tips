@@ -53,7 +53,11 @@ gss_cat %>% plot_bar()
 gss_cat %>% plot_correlation(maxcat = 15)
 
 
-# LEARN DATA SCIENCE FOR BUSINESS ----
-# - Check out R for Business Analysis: Learn Data Science for Business in 8-Weeks
-#   https://university.business-science.io/p/ds4b-101-r-business-analysis-r
+# LEARNING MORE ----
+
+# FREE MASTERCLASS
+# - 10 SECRETS TO BECOMING A DATA SCIENTIST
+#   https://learn.business-science.io/free-rtrack-masterclass
+
+
 

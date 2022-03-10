@@ -81,13 +81,10 @@ mpg %>%
     theme_tq() +
     labs(title = "6 Cylinder Vehicles: Pickup and SUV causing Bi-Modal Relationship")
 
-# LEARNING MORE -----
+# LEARNING MORE ----
 
-# R FOR BUSINESS ANALYSIS COURSE (DS4B 101-R)
-# - Learn ggplot2 in Week 4 (Visualization)
-#   https://university.business-science.io/p/ds4b-101-r-business-analysis-r
+# FREE MASTERCLASS
+# - 10 SECRETS TO BECOMING A DATA SCIENTIST
+#   https://learn.business-science.io/free-rtrack-masterclass
 
-# 5-COURSE R-TRACK
-# - Beginner to Expert in 6-months
-#   https://university.business-science.io/p/5-course-bundle-machine-learning-web-apps-time-series/
 

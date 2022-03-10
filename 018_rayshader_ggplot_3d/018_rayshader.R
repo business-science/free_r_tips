@@ -85,3 +85,9 @@ volcano %>%
     sphere_shade() %>%
     plot_3d(volcano, zscale = 3)
 
+# LEARNING MORE ----
+
+# FREE MASTERCLASS
+# - 10 SECRETS TO BECOMING A DATA SCIENTIST
+#   https://learn.business-science.io/free-rtrack-masterclass
+

@@ -67,3 +67,10 @@ car_data_tbl %>%
             write_csv(data, path = unique(data$file_path))
         }
     )
+
+# LEARNING MORE ----
+
+# FREE MASTERCLASS
+# - 10 SECRETS TO BECOMING A DATA SCIENTIST
+#   https://learn.business-science.io/free-rtrack-masterclass
+

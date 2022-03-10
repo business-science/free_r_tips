@@ -113,3 +113,12 @@ pivot_table_gt
 # webshot::install_phantomjs()
 pivot_table_gt %>%
     gtsave(filename = "006_pivot_tables/stock_returns.png")
+
+
+# LEARNING MORE ----
+
+# FREE MASTERCLASS
+# - 10 SECRETS TO BECOMING A DATA SCIENTIST
+#   https://learn.business-science.io/free-rtrack-masterclass
+
+

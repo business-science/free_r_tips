@@ -99,3 +99,11 @@ hwy_vs_city_tbl %>%
         p.value = gt::md("__P-Value__"),
         rating  = gt::md("__Rating__")
     )
+
+# LEARNING MORE ----
+
+# FREE MASTERCLASS
+# - 10 SECRETS TO BECOMING A DATA SCIENTIST
+#   https://learn.business-science.io/free-rtrack-masterclass
+
+

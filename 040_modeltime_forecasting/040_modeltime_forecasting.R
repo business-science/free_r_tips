@@ -100,10 +100,13 @@ future_forecast_tbl %>%
     plot_modeltime_forecast()
 
 # LEARNING MORE ----
-# - A LOT OF ROOM FOR IMPROVEMENT
-# 1. FEATURE ENGINEERING | RECIPES
-# 2. MACHINE LEARNING ALGORIMTHMS | TIDYMODELS & MODELTIME
-# 3. MODELTIME ECOSYSTEM | MODELTIME H2O, GLUONTS
 
-# HIGH PERFORMANCE TIME SERIES COURSE:
-# https://university.business-science.io/p/ds4b-203-r-high-performance-time-series-forecasting/
+# FREE MASTERCLASS
+# - 10 SECRETS TO BECOMING A DATA SCIENTIST
+#   https://learn.business-science.io/free-rtrack-masterclass
+
+# HIGH-PERFORMANCE TIME SERIES COURSE
+# - Become the time series expert for your organization
+#   https://university.business-science.io/p/ds4b-203-r-high-performance-time-series-forecasting
+
+

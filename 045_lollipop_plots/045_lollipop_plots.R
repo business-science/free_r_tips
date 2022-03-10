@@ -73,8 +73,7 @@ g2
 
 # LEARNING MORE ----
 
-# 5-COURSE R-TRACK
-# - Beginner to Expert in 6-months
-#   https://university.business-science.io/p/5-course-bundle-machine-learning-web-apps-time-series/
-
+# FREE MASTERCLASS
+# - 10 SECRETS TO BECOMING A DATA SCIENTIST
+#   https://learn.business-science.io/free-rtrack-masterclass
 

@@ -93,4 +93,10 @@ data_prepared_tbl %>%
     scale_color_viridis_d(end = 0.4) +
     labs(title = "Older Vehicles have Lower Fuel Economy")
 
+# LEARNING MORE ----
+
+# FREE MASTERCLASS
+# - 10 SECRETS TO BECOMING A DATA SCIENTIST
+#   https://learn.business-science.io/free-rtrack-masterclass
+
 

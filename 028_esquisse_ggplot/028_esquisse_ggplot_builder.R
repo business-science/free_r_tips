@@ -35,3 +35,11 @@ ggplot(mpg) +
     geom_smooth(span = 1L) +
     scale_color_viridis_d(option = "cividis") +
     theme_minimal()
+
+# LEARNING MORE ----
+
+# FREE MASTERCLASS
+# - 10 SECRETS TO BECOMING A DATA SCIENTIST
+#   https://learn.business-science.io/free-rtrack-masterclass
+
+
