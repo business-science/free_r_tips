@@ -1,5 +1,5 @@
-# R TIPS ----
-# TIP 037 | DataEditR: GUI for Data Wrangling in R ----
+# BUSINESS SCIENCE R TIPS ----
+# R-TIP 037 | DataEditR: GUI for Data Wrangling in R ----
 #
 # 👉 For Weekly R-Tips, Sign Up Here:
 #    https://learn.business-science.io/r-tips-newsletter

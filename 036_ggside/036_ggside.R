@@ -1,5 +1,5 @@
-# R TIPS ----
-# TIP 036 | ggside: side-plots for ggplot ----
+# BUSINESS SCIENCE R TIPS ----
+# R-TIP 036 | ggside: side-plots for ggplot ----
 #
 # 👉 For Weekly R-Tips, Sign Up Here:
 #    https://learn.business-science.io/r-tips-newsletter

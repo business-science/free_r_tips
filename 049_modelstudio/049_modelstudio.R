@@ -1,5 +1,5 @@
-# R TIPS ----
-# TIP 049| ModelStudio: Interactive Studio for Explanatory Model Analysis  ----
+# BUSINESS SCIENCE R TIPS ----
+# R-TIP 049 | ModelStudio: Interactive Studio for Explanatory Model Analysis  ----
 #
 # 👉 For Weekly R-Tips, Sign Up Here:
 #    https://learn.business-science.io/r-tips-newsletter

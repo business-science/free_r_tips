@@ -1,5 +1,5 @@
-# R TIPS ----
-# TIP 035 | patchwork: combine ggplots into 1 ----
+# BUSINESS SCIENCE R TIPS ----
+# R-TIP 035 | patchwork: combine ggplots into 1 ----
 #
 # 👉 For Weekly R-Tips, Sign Up Here: https://learn.business-science.io/r-tips-newsletter
 

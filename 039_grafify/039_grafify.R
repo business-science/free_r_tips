@@ -1,5 +1,5 @@
-# R TIPS ----
-# TIP 039 | grafify: Easy Graphs and ANOVAs ----
+# BUSINESS SCIENCE R TIPS ----
+# R-TIP 039 | grafify: Easy Graphs and ANOVAs ----
 #
 # 👉 For Weekly R-Tips, Sign Up Here:
 #    https://learn.business-science.io/r-tips-newsletter

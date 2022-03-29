@@ -1,5 +1,5 @@
-# R TIPS ----
-# TIP 050 | Trelliscope JS: Interactive Data Visualization with ggplot  ----
+# BUSINESS SCIENCE R TIPS ----
+# R-TIP 050 | Trelliscope JS: Interactive Data Visualization with ggplot  ----
 #
 # 👉 For Weekly R-Tips, Sign Up Here:
 #    https://learn.business-science.io/r-tips-newsletter

@@ -1,5 +1,5 @@
-# R TIPS ----
-# TIP 046| furrr: Parallel Processing ----
+# BUSINESS SCIENCE R TIPS ----
+# R-TIP 046| furrr: Parallel Processing ----
 #
 # 👉 For Weekly R-Tips, Sign Up Here:
 #    https://learn.business-science.io/r-tips-newsletter

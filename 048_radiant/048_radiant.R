@@ -1,5 +1,5 @@
-# R TIPS ----
-# TIP 048| radiant: Business Intelligence with R  ----
+# BUSINESS SCIENCE R TIPS ----
+# R-TIP 049 | radiant: Business Intelligence with R  ----
 #
 # 👉 For Weekly R-Tips, Sign Up Here:
 #    https://learn.business-science.io/r-tips-newsletter

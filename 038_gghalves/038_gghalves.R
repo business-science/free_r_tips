@@ -1,5 +1,5 @@
-# R TIPS ----
-# TIP 038 | gghalves: Half Dot Plots and Half Boxplots ----
+# BUSINESS SCIENCE R TIPS ----
+# R-TIP 038 | gghalves: Half Dot Plots and Half Boxplots ----
 #
 # 👉 For Weekly R-Tips, Sign Up Here:
 #    https://learn.business-science.io/r-tips-newsletter

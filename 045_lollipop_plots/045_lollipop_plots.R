@@ -1,5 +1,5 @@
-# R TIPS ----
-# TIP 045| ggalt: Lollipop Plots ----
+# BUSINESS SCIENCE R TIPS ----
+# R-TIP 045| ggalt: Lollipop Plots ----
 #
 # 👉 For Weekly R-Tips, Sign Up Here:
 #    https://learn.business-science.io/r-tips-newsletter

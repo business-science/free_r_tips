@@ -1,5 +1,5 @@
-# R TIPS ----
-# TIP 047| ggplot2: Customer Heat Map ----
+# BUSINESS SCIENCE R TIPS ----
+# R-TIP 047| ggplot2: Customer Heat Map ----
 #
 # 👉 For Weekly R-Tips, Sign Up Here:
 #    https://learn.business-science.io/r-tips-newsletter

@@ -1,5 +1,5 @@
-# R TIPS ----
-# TIP 044 | ggalt: dumbbell plots ----
+# BUSINESS SCIENCE R TIPS ----
+# R-TIP 044 | ggalt: dumbbell plots ----
 #
 # 👉 For Weekly R-Tips, Sign Up Here:
 #    https://learn.business-science.io/r-tips-newsletter

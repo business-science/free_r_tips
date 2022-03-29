@@ -1,5 +1,5 @@
-# R TIPS ----
-# TIP 040 | Introduction to Modeltime: In Under 10-Minutes ----
+# BUSINESS SCIENCE R TIPS ----
+# R-TIP 040 | Introduction to Modeltime: In Under 10-Minutes ----
 #
 # 👉 For Weekly R-Tips, Sign Up Here:
 #    https://learn.business-science.io/r-tips-newsletter

@@ -1,5 +1,5 @@
-# R TIPS ----
-# TIP 041 | Easystats Performance | Check Model ----
+# BUSINESS SCIENCE R TIPS ----
+# R-TIP 041 | Easystats Performance | Check Model ----
 #
 # 👉 For Weekly R-Tips, Sign Up Here:
 #    https://learn.business-science.io/r-tips-newsletter

@@ -1,5 +1,5 @@
-# R TIPS ----
-# TIP 032 | datapasta: Copy & Paste HTML or Excel Tables ----
+# BUSINESS SCIENCE R TIPS ----
+# R-TIP 032 | datapasta: Copy & Paste HTML or Excel Tables ----
 #
 # 👉 For Weekly R-Tips, Sign Up Here: https://learn.business-science.io/r-tips-newsletter
 

@@ -1,5 +1,5 @@
-# R TIPS ----
-# TIP 042 | ggdist: Raincloud Plots ----
+# BUSINESS SCIENCE R TIPS ----
+# R-TIP 042 | ggdist: Raincloud Plots ----
 #
 # 👉 For Weekly R-Tips, Sign Up Here:
 #    https://learn.business-science.io/r-tips-newsletter

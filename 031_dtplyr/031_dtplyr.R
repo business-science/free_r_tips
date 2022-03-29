@@ -1,5 +1,5 @@
-# R TIPS ----
-# TIP 031 | dtplyr: Data Table Backend ----
+# BUSINESS SCIENCE R TIPS ----
+# R-TIP 031 | dtplyr: Data Table Backend ----
 #
 # 👉 For Weekly R-Tips, Sign Up Here: https://learn.business-science.io/r-tips-newsletter
 
