@@ -21,6 +21,17 @@ mpg
 esquisser()
 
 
+
+
+
+
+
+
+
+library(dplyr)
+library(ggplot2)
+
+
 drinks %>%
     filter(date >= "2005-01-14" & date <= "2014-01-22") %>%
     ggplot() +
