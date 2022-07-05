@@ -1,0 +1,31 @@
+.variable-selector-panel {
+  position: fixed;
+  width: 300px;
+}
+
+.variable-link {
+  padding: 5px 15px;
+}
+
+.main-content {
+  left: 300px;
+  width: auto;
+}
+
+.plot-container {
+  padding: 0px 20px;
+/*  text-align: center; */
+}
+
+.plot {
+  width: 60%;
+}
+
+.archivist-code {
+  width: 60%;
+}
+
+.contents h1, .contents h2, .contents h3, .contents h4 {
+  padding-top: 50px;
+  margin-top: -50px;
+}

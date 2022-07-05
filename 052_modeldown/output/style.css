@@ -1,0 +1,88 @@
+body {font-family: Arial;}
+
+table {
+  display: table;
+}
+
+.intro-header {
+  border-radius: 10px;
+  background-color: #6d60a9;
+  box-shadow: 5px 5px 15px -5px #444;
+  color: #fff;
+}
+
+.footer {
+    width: 100%;
+    background-color: #4a3c89;
+    text-align: center;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 10px;
+    box-shadow: 5px 5px 15px -5px #444;
+}
+
+.footer a {
+  color: #c8c3dc;
+}
+
+.footer a:hover {
+  color: #aea7cc;
+}
+
+/* Help panel */
+.help-panel {
+  margin-top: 10px;
+  color: #333;
+  display: inline-block;
+}
+
+.help-panel > * {
+    display: inline-block;
+    padding: 1px 10px;
+    position: relative;
+    float: left;
+    color: #333;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 1.5;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+.help-panel > a {
+    touch-action: manipulation;
+    cursor: pointer;
+    user-select: none;
+}
+
+.help-panel > a:hover {
+    background-color: #e6e6e6;
+    border-color: #adadad;
+    text-decoration: none;
+    color: #333;
+}
+
+.help-panel > *:first-child:not(:last-child) {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.help-panel > *:not(:first-child):not(:last-child) {
+    border-radius: 0;
+}
+
+.help-panel *+* {
+    margin-left: -1px;
+}
+
+.help-panel > .title {
+  color: #888;
+}
+
+.help-panel > .title > i.fa {
+  font-size: 13px;
+}
