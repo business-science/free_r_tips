@@ -37,8 +37,7 @@ g1 <- mpg %>%
     theme_tq() +
     labs(title = "High Density Regions")
 
-g1 +
-    facet_wrap(~ class)
+g1 + facet_wrap(~ class, ncol = 2)
 
 # * High Density Lines ----
 g2 <- mpg %>%
