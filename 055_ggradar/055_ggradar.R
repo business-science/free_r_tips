@@ -11,6 +11,7 @@
 library(ggradar)
 library(tidyverse)
 library(tidyquant)
+library(corrr)
 
 
 # DATA ----
@@ -65,6 +66,40 @@ vehicle_summary_tbl %>%
     # Title
     labs(title = "MPG Comparison By Vehicle Class")
 
+
+# BONUS: Which Vehicles Are Most Similar? ----
+
+# * Get Vehicle Similarity ----
+vehicle_similarity_tbl <- vehicle_summary_tbl %>%
+
+    # Transpose
+    pivot_longer(cols = -1) %>%
+    pivot_wider(
+        names_from  = group,
+        values_from = value
+    ) %>%
+
+    # Correlate and Arrange
+    corrr::correlate() %>%
+    mutate(across(where(is.numeric), .fns = ~ replace_na(., 1))) %>%
+    arrange(`2seater`)
+
+vehicle_similarity_tbl
+
+# * Reorder By Similarity ----
+vehicle_summary_tbl %>%
+
+    mutate(group = factor(group, levels = vehicle_similarity_tbl$term)) %>%
+
+    ggradar() +
+    facet_wrap(~ group, ncol = 3) +
+    scale_color_tq() +
+    labs(title = "Vehicle Classes Arranged By Similarity") +
+    theme(
+        legend.position  = "none",
+        strip.background = element_rect(fill = "#2C3E50"),
+        strip.text       = element_text(color = "white")
+    )
 
 # LEARNING MORE ----
 # - If your data science progress has stopped...
