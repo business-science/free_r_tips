@@ -50,7 +50,7 @@ mpg %>%
     )
 
 # LEARNING MORE ----
-# - If you are having a tough time becoming a data scientist...
+# - If your data science progress has stopped...
 
 # FREE MASTERCLASS
 # - 10 SECRETS TO BECOMING A DATA SCIENTIST
