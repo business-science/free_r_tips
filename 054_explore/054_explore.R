@@ -18,6 +18,7 @@ mpg
 # EXPLORE ----
 
 # * Shiny App ----
+
 mpg %>% explore()
 
 # * Describe ----
@@ -27,6 +28,7 @@ mpg %>% describe_all()
 mpg %>% describe_cat(manufacturer)
 
 # * Explore All Variables ----
+
 mpg %>%
     explore_all(
         target = hwy,
