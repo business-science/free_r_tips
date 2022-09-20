@@ -21,6 +21,8 @@ mpg
 
 mpg %>% explore()
 
+mpg %>% select(-cty) %>% explore()
+
 # * Describe ----
 
 mpg %>% describe_all()
