@@ -4,13 +4,16 @@
 # 👉 For Weekly R-Tips, Sign Up Here:
 #    https://learn.business-science.io/r-tips-newsletter
 
-# Documentation: https://github.com/rolkra/explore
+# Documentation: https://github.com/ricardo-bion/ggradar
 
 # LIBRARIES ----
+
+# devtools::install_github("ricardo-bion/ggradar", dependencies = TRUE)
 
 library(ggradar)
 library(tidyverse)
 library(tidyquant)
+library(scales)
 library(corrr)
 
 
@@ -22,11 +25,15 @@ mpg
 
 vehicle_summary_tbl <- mpg %>%
     select(class, where(is_numeric), -year) %>%
+
+    # Median Values By Vehicle Class
     group_by(class) %>%
     summarise(
         across(displ:hwy, .fns = median)
     ) %>%
     ungroup() %>%
+
+    # Prep for ggradar (make sure to scale to 0-1)
     rename(group = class) %>%
     mutate_at(vars(-group), rescale)
 
@@ -102,7 +109,7 @@ vehicle_summary_tbl %>%
     )
 
 # LEARNING MORE ----
-# - If your data science progress has stopped...
+# - Has your data science progress has stopped?
 
 # FREE MASTERCLASS
 # - 10 SECRETS TO BECOMING A DATA SCIENTIST

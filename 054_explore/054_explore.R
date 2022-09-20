@@ -52,7 +52,7 @@ mpg %>%
     )
 
 # LEARNING MORE ----
-# - If your data science progress has stopped...
+# - Has your data science progress has stopped?
 
 # FREE MASTERCLASS
 # - 10 SECRETS TO BECOMING A DATA SCIENTIST
