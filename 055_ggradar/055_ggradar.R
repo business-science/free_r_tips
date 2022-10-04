@@ -44,15 +44,24 @@ vehicle_summary_tbl
 # * Single Radar ----
 vehicle_summary_tbl %>% ggradar()
 
-vehicle_summary_tbl %>% ggradar(
-    group.colours = palette_light() %>% unname(),
-    plot.title    = "MPG Comparison By Vehicle Class"
-)
+vehicle_summary_tbl %>%
+    ggradar(
+        group.colours    = palette_light() %>% unname(),
+        group.point.size = 0,
+        group.line.width = 1,
+        plot.title       = "MPG Comparison By Vehicle Class",
+        fill             = TRUE,
+        fill.alpha       = 0.25
+    )
 
 
 # * Faceted Radar ----
 vehicle_summary_tbl %>%
-    ggradar() +
+    ggradar(
+        group.colours = palette_light() %>% unname(),
+        fill          = TRUE,
+        fill.alpha    = 0.25
+    ) +
 
     # Facet
     facet_wrap(~ group, ncol = 3) +
@@ -62,12 +71,13 @@ vehicle_summary_tbl %>%
     scale_color_tq() +
     theme(
         strip.text = element_text(
-            size = 12,
+            size   = 12,
             colour = "white",
             margin = margin(t = 5, b = 5)
         ),
         strip.background = element_rect(fill = "#2C3E50"),
-        legend.position = "none"
+        legend.position = "none",
+        plot.margin = margin(10, 10, 10, 10)
     ) +
 
     # Title
@@ -98,7 +108,14 @@ vehicle_summary_tbl %>%
 
     mutate(group = factor(group, levels = vehicle_similarity_tbl$term)) %>%
 
-    ggradar() +
+    ggradar(
+        group.colours    = palette_light() %>% unname(),
+        group.point.size = 0,
+        group.line.width = 1,
+        fill             = TRUE,
+        fill.alpha       = 0.25,
+        grid.label.size  = 4
+    ) +
     facet_wrap(~ group, ncol = 3) +
     scale_color_tq() +
     labs(title = "Vehicle Classes Arranged By Similarity") +
