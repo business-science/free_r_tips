@@ -30,9 +30,9 @@ mpg_summarized_tbl <- mpg %>%
     ) %>%
     ungroup() %>%
     mutate(
-        prop = count / sum(count),
+        prop       = count / sum(count),
         all_groups = "all_groups",
-        class = fct_reorder(class, prop)
+        class      = fct_reorder(class, prop)
     )
 
 mpg_summarized_tbl
@@ -112,10 +112,12 @@ mpg_summarized_tbl %>%
 
 # 3.0 PLOTTING WITH DUAL Y-AXIS ----
 
-mpg_summarized_tbl %>%
+# * 3.1 PRIMARY Y-AXIS ----
+
+g1 <- mpg_summarized_tbl %>%
     ggplot(aes(x = class)) +
 
-    # * 3.1 PRIMARY Y-AXIS ----
+
     geom_col(
         aes(y = prop, fill = "Vehicle Proportion (%)"),
         alpha = 0.9
@@ -126,9 +128,13 @@ mpg_summarized_tbl %>%
             label = str_glue("{scales::percent(prop)}"),
             color = "Vehicle Proportion (%)"
         )
-    ) +
+    )
 
-    # * 3.2 SECONDARY AXIS ----
+g1
+
+# * 3.2 SECONDARY AXIS ----
+
+g2 <- g1 +
     geom_line(
         aes(
             y     = transformer$inv_func(hwy_median),
@@ -163,9 +169,13 @@ mpg_summarized_tbl %>%
             name  = "Highway MPG"
         )
     ) +
-    expand_limits(y = c(0,0.30)) +
+    expand_limits(y = c(0,0.30))
 
-    # * 3.3 THEME ----
+g2
+
+# * 3.3 THEME ----
+
+g3 <- g2 +
     theme_tq() +
     scale_color_manual(values = c(
         palette_light()[["red"]],
@@ -179,7 +189,7 @@ mpg_summarized_tbl %>%
     ) +
     labs(title = "Dual Y-Axis Plot: Vehicle Class Proportion vs Fuel Economy")
 
-
+g3
 
 
 
