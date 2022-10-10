@@ -53,9 +53,10 @@ mpg_summarized_tbl %>%
 
 # 2.0 DUAL Y-AXIS PLOTTING TRANSFORMER ----
 
+# * Transformer Function ----
 transformer_dual_y_axis <- function(data, primary_column, secondary_column, include_y_zero = FALSE) {
 
-    # PARAMETER SETUP ----
+    # PARAMETER SETUP
     params_tbl <- data %>%
         summarise(
             max_primary   = max(!! enquo(primary_column)),
@@ -75,7 +76,7 @@ transformer_dual_y_axis <- function(data, primary_column, secondary_column, incl
             shift = min_primary - min_secondary
         )
 
-    # MAKE SCALER FUNCTIONS ----
+    # MAKE SCALER FUNCTIONS
     scale_func <- function(x) {
         x * params_tbl$scale - params_tbl$shift
     }
@@ -84,7 +85,7 @@ transformer_dual_y_axis <- function(data, primary_column, secondary_column, incl
         (x + params_tbl$shift) / params_tbl$scale
     }
 
-    # RETURN ----
+    # RETURN
     ret <- list(
         scale_func = scale_func,
         inv_func   = inv_func,
@@ -94,13 +95,15 @@ transformer_dual_y_axis <- function(data, primary_column, secondary_column, incl
     return(ret)
 }
 
+# * Make A Y-Axis Transformer ----
 transformer <- mpg_summarized_tbl %>%
     transformer_dual_y_axis(
         primary_column   = prop,
         secondary_column = hwy_median,
-        include_y_zero   = FALSE
+        include_y_zero   = TRUE
     )
 
+# * How the transformer works... ----
 mpg_summarized_tbl %>%
     pull(hwy_median) %>%
     transformer$inv_func() %>%
@@ -115,7 +118,7 @@ mpg_summarized_tbl %>%
     # * 3.1 PRIMARY Y-AXIS ----
     geom_col(
         aes(y = prop, fill = "Vehicle Proportion (%)"),
-        alpha = 0.8
+        alpha = 0.9
     ) +
     geom_label(
         aes(
