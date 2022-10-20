@@ -54,7 +54,9 @@ mpg_summarized_tbl %>%
 # 2.0 DUAL Y-AXIS PLOTTING TRANSFORMER ----
 
 # * Transformer Function ----
-transformer_dual_y_axis <- function(data, primary_column, secondary_column, include_y_zero = FALSE) {
+transformer_dual_y_axis <- function(data,
+                                    primary_column, secondary_column,
+                                    include_y_zero = FALSE) {
 
     # PARAMETER SETUP
     params_tbl <- data %>%
@@ -190,6 +192,13 @@ g3 <- g2 +
     labs(title = "Dual Y-Axis Plot: Vehicle Class Proportion vs Fuel Economy")
 
 g3
+
+# LEARNING MORE ----
+# - Has your data science progress has stopped?
+
+# FREE MASTERCLASS
+# - 10 SECRETS TO BECOMING A DATA SCIENTIST
+#   https://learn.business-science.io/free-rtrack-masterclass
 
 
 
