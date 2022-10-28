@@ -12,8 +12,8 @@ library(timetk)
 
 # 2.0 GET DATA ----
 
-stock_data_tbl <- c("AAPL", "GOOG", "NFLX", "NVDA") %>%
-    tq_get(from = "2010-01-01", to = "2019-12-31")
+stock_data_tbl <- c("AMD", "GOOG", "VOW.F", "TSLA") %>%
+    tq_get(from = "2010-01-01", to = "2021-12-31")
 
 stock_pivot_table <- stock_data_tbl %>%
     pivot_table(

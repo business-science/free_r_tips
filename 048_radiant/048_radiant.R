@@ -15,11 +15,11 @@
 library(radiant)
 library(timetk)
 
-data(walmart_sales_weekly)
+data<-data(walmart_sales_weekly)
 
 # RUN RADIANT ----
 
-radiant()
+radiant(data)
 
 # LEARNING MORE ----
 
