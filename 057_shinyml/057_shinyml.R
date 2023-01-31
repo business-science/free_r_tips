@@ -47,7 +47,10 @@ models %>%
         sort_metric = "AUTO"
     )
 
-# LEARNING MORE ----
+# PS - Want to learn more H2O?
+#   I teach H2O in-depth in my 2nd course in my R-Track Program
+
+# READY TO LEARNING MORE FASTER? ----
 # - Want to learn faster - get my 10 secrets to becoming a data scientist?
 
 # FREE MASTERCLASS
