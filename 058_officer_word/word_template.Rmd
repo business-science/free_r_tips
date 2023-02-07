@@ -1,0 +1,70 @@
+---
+title: "Word Automation"
+author: "Business Science"
+date: "2023-02-07"
+output: officedown::rdocx_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+    echo = FALSE,
+    # Table Captioning
+    tab.cap.style = "Table Caption",
+    tab.cap.pre = "Table ",
+    tab.cap.sep = ": ",
+    # Figure Captioning
+    fig.cap.style = "Image Caption",
+    fig.cap.pre = "Figure ",
+    fig.cap.sep = ": "
+)
+
+# LIBRARIES
+library(officedown)
+library(officer)
+library(tidyverse)
+library(timetk)
+```
+
+## Executive Summary
+
+This document tracks the economics data of US population and unemployment.
+
+\newpage
+
+## Table of Contents
+
+```{r}
+block_toc()
+```
+## Table of Figures
+
+```{r}
+block_toc(style = "Image Caption")
+```
+
+\newpage
+
+## Figures
+
+This is a linked reference to a figure \@ref(fig:tsplot), its number is computed by Word 
+and it's linked to the corresponding graphic when clicking on it.
+
+```{r fig.cap="economics plot", fig.id = "tsplot", fig.cap.style = "Image Caption"}
+economics %>%
+    plot_time_series(
+        .date_var    = date, 
+        .value       = unemploy / pop,
+        .interactive = FALSE
+    )
+```
+
+## Tables
+
+This is a linked reference to a table \@ref(tab:mytab), its number is computed by Word 
+and it's linked to the corresponding table when clicking on it.
+
+```{r tab.cap="economics table", tab.id = "mytab", tab.cap.style = "Table Caption"}
+head(economics)
+```
+
+
