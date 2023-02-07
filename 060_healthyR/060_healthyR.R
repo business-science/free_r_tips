@@ -8,7 +8,9 @@
 # Documentation: https://www.spsanderson.com/healthyR/
 
 # TABLE OF CONTENTS: ----
-# 1. GARTNER MAGIC CHART
+# 1. READMITANCE RATE CHARTS
+# 2. AVERAGE LENGTHS OF STAY PLOTS
+# 3. BONUS: GARTNER MAGIC CHART
 
 # Libraries ----
 library(healthyR)
