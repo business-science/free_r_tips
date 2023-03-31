@@ -16,7 +16,7 @@ library(mapview)
 # DATA ----
 # (will show how to get this from an API in R-Tip 60)
 
-pittsburgh_pharmacies_tbl <- read_csv("059_geocoding/data/pittsburgh_pharmacies_geocoded.csv")
+pittsburgh_pharmacies_tbl <- read_csv("059_geocoding/pittsburgh_pharmacies_geocoded.csv")
 pittsburgh_pharmacies_tbl
 
 
