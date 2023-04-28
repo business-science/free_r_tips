@@ -6,7 +6,7 @@
 #
 # **** -----
 
-# GOAL: Demonstrate how to get lat/long and map for ANY
+# GOAL: Demonstrate how to get & map lat/long for ANY business type
 
 # 1.0 CHATGPT + OSMDATA LESSON -----
 
@@ -18,20 +18,24 @@ Pittsburgh. Then use mapview to visualize the pharmacies on a map.
 
 # * FINAL RESPONSE ----
 
-# load necessary packages
+# Load required libraries
 library(osmdata)
 library(mapview)
 
-# define the bounding box for Pittsburgh
-bbox <- getbb("Pittsburgh")
+# Get the bounding box for Pittsburgh
+pittsburgh_bbox <- getbb("Pittsburgh, Pennsylvania, USA")
 
-# search for pharmacies within the bounding box
-pharmacies <- opq(bbox) %>%
-    add_osm_feature(key = "amenity", value = "pharmacy") %>%
-    osmdata_sp()
+# Create an Overpass query for pharmacies in Pittsburgh
+query <- opq(bbox = pittsburgh_bbox) %>%
+    add_osm_feature(key = "amenity", value = "pharmacy")
 
-# visualize the pharmacies on a map
-mapview(pharmacies$osm_points)
+# Extract the data as an sf object
+pharmacies_sf <- osmdata_sf(query)
+
+# Visualize the pharmacies on a map
+mapview(pharmacies_sf$osm_points, zcol = "name")
+
+
 
 
 # 2.0 PREVIEW LEARNING LAB 83 ----
