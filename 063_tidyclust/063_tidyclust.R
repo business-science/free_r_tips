@@ -46,7 +46,7 @@ data_prep_tbl %>% glimpse()
 
 recipe_kmeans <- recipe(~ ., data = data_prep_tbl) %>%
     step_dummy(all_nominal_predictors(), one_hot = TRUE) %>%
-    step_scale(all_numeric_predictors()) %>%
+    step_normalize(all_numeric_predictors()) %>%
     step_rm("ID")
 
 recipe_kmeans %>% prep() %>% juice() %>% glimpse()
