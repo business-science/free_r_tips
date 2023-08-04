@@ -64,7 +64,7 @@ cashflow_wide_tbl %>%
         subtitle = "Exxon Mobil (FY2009 - FY2018)"
     ) %>%
     tab_spanner(
-        label = "Fiscal Year (Values in Billions)",
+        label = "Fiscal Year (Values in Millions)",
         columns = fy_09:fy_18,
     ) %>%
     cols_label(
