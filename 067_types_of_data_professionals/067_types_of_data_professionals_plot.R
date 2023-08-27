@@ -41,7 +41,7 @@ basic_radar_plot <- data_prep_tbl %>%
     ggplot(aes(name, value, group = type)) +
     geom_polygon(aes(fill = type, color = type), alpha = 0.25) +
     geom_point(aes(color = type)) +
-    expand_limits(y = c(0, 12)) +
+    scale_y_continuous(limits = c(-1, 12), breaks = c(0, 2.5, 5, 7.5, 10)) +
     coord_radar(start = -0.3, clip = "off") +
     facet_wrap(~ type)
 
@@ -74,7 +74,9 @@ basic_radar_plot  +
         legend.position = "none",
         axis.text.y = element_blank(),
         axis.text.x = element_text(vjust = -1),
-        panel.spacing = unit(50, "points")
+        panel.spacing = unit(50, "points"),
+        # panel.grid.minor = element_blank(),
+        panel.grid.major.y = element_line(colour = c(rep("#ebebeb", 5), NA))
     )
 
 
