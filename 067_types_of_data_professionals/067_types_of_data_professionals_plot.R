@@ -97,4 +97,61 @@ basic_radar_plot  +
 # - HERE'S HOW: 10 SECRETS TO BECOMING A 6-FIGURE DATA SCIENTIST
 #   https://learn.business-science.io/free-rtrack-masterclass
 
+# BONUS VISUAL ----
+data_prep_2_tbl <- tibble(
+    description = "Customers",
+    gained = 10,
+    lost = 45,
+    average_customer_lifetime_value = 29847
+) %>%
+    mutate(
+        total_gain = gained * average_customer_lifetime_value,
+        total_loss = lost * average_customer_lifetime_value
+    ) %>%
+    select(description, total_gain, total_loss) %>%
+    pivot_longer(-description) %>%
+    mutate(name = c("Gained Customers", "Lost Customers"))
 
+data_prep_2_tbl %>%
+    ggplot(aes(name, value)) +
+    geom_col(aes(fill = name)) +
+    geom_text(
+        aes(label = scales::dollar(value)),
+        nudge_y = -50000,
+        size = 14,
+        color = "white"
+    ) +
+    geom_text(
+        aes(label = name),
+        nudge_y = 50000,
+        size = 10
+    ) +
+    theme_minimal() +
+    scale_fill_manual(values = c("#2C3E50", "#E31A1C")) +
+    scale_y_continuous(labels = scales::dollar_format()) +
+    labs(
+        title = "Your Customers Are Dying",
+        subtitle = "Would you like help?",
+        legend = NULL,
+        x = NULL,
+        y = NULL
+    ) +
+    theme(
+        plot.title = element_text(
+            hjust = 0.5,
+            margin = margin(t = 5, b = 20),
+            size = 28,
+            face = "bold",
+            family = "serif"
+        ),
+        plot.subtitle = element_text(
+            color = "dodgerblue",
+            hjust = 0.5,
+            margin = margin(t = 0, b = 20),
+            size = 20,
+            face = "bold",
+
+        ),
+        axis.text.y = element_text(size = 12, face = "bold"),
+        legend.position = "none",
+    )
