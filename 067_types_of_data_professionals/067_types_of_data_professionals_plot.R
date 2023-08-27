@@ -4,12 +4,10 @@
 # 👉 For Weekly R-Tips, Sign Up Here:
 #    https://learn.business-science.io/r-tips-newsletter
 
-# LIBRARIES ----
+# LIBRARIES & DATA----
 
 library(tidyverse)
-library(patchwork)
 library(readxl)
-
 
 types_of_data_professionals_tbl <- read_excel("067_types_of_data_professionals/data/types_of_data_professionals.xlsx")
 types_of_data_professionals_tbl
