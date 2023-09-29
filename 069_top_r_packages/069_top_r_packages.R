@@ -66,7 +66,7 @@ library(readr)
 
 # Reading a CSV file containing financial data
 
-financial_data <- read_csv("069_top_13_r_packages/data/walmart_sales.csv")
+financial_data <- read_csv("069_top_r_packages/data/walmart_sales.csv")
 
 # 7. Tidymodels ----
 library(tidymodels)
@@ -88,7 +88,7 @@ linear_model %>% predict(tibble(Marketing_Spend = 4000))
 library(leaflet)
 
 # Sample Data Frame with Latitude and Longitude
-data <- data.frame(
+data <- tibble(
     Store = c('Store 1', 'Store 2'),
     Lat = c(37.7749, 34.0522),
     Lng = c(-122.4194, -118.2437)
