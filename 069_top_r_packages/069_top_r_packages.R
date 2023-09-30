@@ -27,7 +27,7 @@ library(ggplot2)
 
 # Sample Data Frame
 data <- tibble(
-    Month = c('Jan', 'Feb', 'Mar'),
+    Month = c('Jan', 'Feb', 'Mar') %>% as_factor(),
     Revenue = c(2000, 2500, 3000)
 )
 
