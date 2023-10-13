@@ -1,41 +1,3 @@
-# BUSINESS SCIENCE R TIPS ----
-# R-TIP 70 | ChatGPT: Excel Spreadsheet Analyzer ----
-#
-# 👉 For Weekly R-Tips, Sign Up Here:
-#    https://learn.business-science.io/r-tips-newsletter
-
-# PROMPT 1: ----
-#  Start by making a shiny app that uploads a users excel file.
-
-# PROMPT 2: ----
-# Add a way to visualize the date column (automatically selected) versus a value column from the excel file.
-
-# PROMPT 3: ----
-# Include some sample data for the user to get started with.
-
-# PROMPT 4: ----
-# Once the user uploads data, preview it the same way Load Sample Data button works
-
-# PROMPT 5: ----
-# Allow the user to pick the date column
-
-# PROMPT 6: ----
-# allow for adding an optional faceting column
-
-# PROMPT 7: ----
-# convert to data table for table and plotly for the plot
-
-# PROMPT 8: ----
-# make the data table smaller so I can see the plot. Show only the first 5 rows and compress the size with any formatting you think will help keep it clean and professional looking.
-
-# PROMPT 9: ----
-# Make the plotly plot better appearance. reduce font sizes and give it a professional color theme
-
-# LEARNING MORE: LIVE CHATGPT FOR DATA SCIENTISTS WORKSHOP ----
-# 👉 Register Here: https://learn.business-science.io/registration-chatgpt-2?el=youtube
-
-# FINAL SHINY APP CODE ----
-
 # Load the required packages
 library(shiny)
 library(readxl)
@@ -156,5 +118,8 @@ server <- function(input, output, session) {
 
 # Run the application
 shinyApp(ui = ui, server = server)
+
+
+
 
 
