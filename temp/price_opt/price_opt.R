@@ -1,4 +1,5 @@
 
+library(ggplot2)
 
 set.seed(123) # For reproducibility
 
@@ -13,28 +14,28 @@ products$product1 <- data.frame(
     price = runif(n, 50, 100),
     quantity_sold = NA
 )
-products$product1$quantity_sold <- 1000 * exp(-0.05 * products$product1$price) + rnorm(n, 0, 30)
+products$product1$quantity_sold <- pmax(1000 * exp(-0.05 * products$product1$price) + rnorm(n, 0, 30), 0)
 
 # Product 2: Moderate price with medium range
 products$product2 <- data.frame(
     price = runif(n, 30, 70),
     quantity_sold = NA
 )
-products$product2$quantity_sold <- 1200 * exp(-0.05 * products$product2$price) + rnorm(n, 0, 25)
+products$product2$quantity_sold <- pmax(1200 * exp(-0.05 * products$product2$price) + rnorm(n, 0, 25), 0)
 
 # Product 3: Cheaper with lower range but with more variance
 products$product3 <- data.frame(
     price = runif(n, 10, 50),
     quantity_sold = NA
 )
-products$product3$quantity_sold <- 1500 * exp(-0.05 * products$product3$price) + rnorm(n, 0, 50) # Increased SD to 50
+products$product3$quantity_sold <- pmax(1500 * exp(-0.05 * products$product3$price) + rnorm(n, 0, 50), 0)
 
 # Product 4: Expensive with medium range
 products$product4 <- data.frame(
     price = runif(n, 40, 90),
     quantity_sold = NA
 )
-products$product4$quantity_sold <- 1100 * exp(-0.05 * products$product4$price) + rnorm(n, 0, 25)
+products$product4$quantity_sold <- pmax(1100 * exp(-0.05 * products$product4$price) + rnorm(n, 0, 25), 0)
 
 # Plot
 par(mfrow=c(2,2))
@@ -44,3 +45,20 @@ for (i in 1:4) {
     abline(h=0, col="red", lty=2)
 }
 
+library(ggplot2)
+
+# Combine data for ggplot2
+combined_data <- do.call(rbind, lapply(names(products), function(name) {
+    df <- products[[name]]
+    df$product <- name
+    df
+}))
+
+# Plot
+ggplot(combined_data, aes(x=price, y=quantity_sold, color=product)) +
+    geom_point() +
+    labs(title="Price vs. Quantity Sold for 4 iPhone Case Products",
+         x="Price",
+         y="Quantity Sold") +
+    theme_minimal() +
+    scale_color_discrete(name="Product")
