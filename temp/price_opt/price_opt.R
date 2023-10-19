@@ -10,12 +10,16 @@ n <- 100
 # Generate data for 4 products
 products <- list()
 
-# Product 1: Expensive with high range
+# Product 1: Expensive with high range for S-shaped pattern
 products$product1 <- data.frame(
-    price = runif(n, 50, 100),
+    price = runif(n, 5, 35),
     quantity_sold = NA
 )
-products$product1$quantity_sold <- pmax(1200 * exp(-0.05 * products$product1$price) + rnorm(n, 0, 30), 0)
+L <- 1200
+k <- -0.1
+x0 <- 25  # Adjust as needed; this is roughly the midpoint for price range [50, 100]
+
+products$product1$quantity_sold <- pmax(L / (1 + exp(-k * (products$product1$price - x0))) + rnorm(n, 0, 75), 0)
 
 # Product 2: Moderate price with medium range
 products$product2 <- data.frame(
@@ -61,7 +65,8 @@ combined_data <- do.call(rbind, lapply(names(products), function(name) {
 ggplot(combined_data, aes(x=price, y=quantity_sold, color=product)) +
     geom_point() +
     geom_smooth() +
-    labs(title="Price vs. Quantity Sold for 4 iPhone Case Products",
+    labs(title="Price Elasticity and Optimization",
+         subtitle="Price vs. Quantity Sold for iPhone Case Products",
          x="Price",
          y="Quantity Sold") +
     theme_tq() +
