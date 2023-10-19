@@ -14,28 +14,28 @@ products$product1 <- data.frame(
     price = runif(n, 50, 100),
     quantity_sold = NA
 )
-products$product1$quantity_sold <- pmax(1000 * exp(-0.05 * products$product1$price) + rnorm(n, 0, 30), 0)
+products$product1$quantity_sold <- pmax(1200 * exp(-0.05 * products$product1$price) + rnorm(n, 0, 30), 0)
 
 # Product 2: Moderate price with medium range
 products$product2 <- data.frame(
     price = runif(n, 30, 70),
     quantity_sold = NA
 )
-products$product2$quantity_sold <- pmax(1200 * exp(-0.05 * products$product2$price) + rnorm(n, 0, 25), 0)
+products$product2$quantity_sold <- pmax(1600 * exp(-0.03 * products$product2$price) + rnorm(n, 0, 25), 0)
 
 # Product 3: Cheaper with lower range but with more variance
 products$product3 <- data.frame(
     price = runif(n, 10, 50),
     quantity_sold = NA
 )
-products$product3$quantity_sold <- pmax(1500 * exp(-0.05 * products$product3$price) + rnorm(n, 0, 50), 0)
+products$product3$quantity_sold <- pmax(1900 * exp(-0.07 * products$product3$price) + rnorm(n, 0, 50), 0)
 
 # Product 4: Expensive with medium range
 products$product4 <- data.frame(
     price = runif(n, 40, 90),
     quantity_sold = NA
 )
-products$product4$quantity_sold <- pmax(1100 * exp(-0.05 * products$product4$price) + rnorm(n, 0, 25), 0)
+products$product4$quantity_sold <- pmax(1100 * exp(-0.025 * products$product4$price) + rnorm(n, 0, 75), 0)
 
 # Plot
 par(mfrow=c(2,2))
