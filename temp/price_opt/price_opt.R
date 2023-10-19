@@ -10,7 +10,7 @@ n <- 200
 # Event data
 events <- tibble(
     event_name = c("No Promo", "The Big Game", "Black Friday", "Christmas", "New iPhone"),
-    effect = c(0, 0.1, 0.4, 0.2, -0.6)
+    effect = c(0, 0.1, 0.4, 0.2, -0.75)
 )
 
 # Function to apply promotions and iPhone launch effects
@@ -33,7 +33,7 @@ product1 <- tibble(
         L = 1200,
         k = -0.1,
         x0 = 25,
-        quantity_sold = pmax(L / (1 + exp(-k * (price - x0))) + rnorm(n, 0, 75), 0),
+        quantity_sold = pmax(L / (1 + exp(-k * (price*0.5 - x0))) + rnorm(n, 0, 75), 0),
         product = "product1"
     ) %>%
     apply_promotions()
@@ -43,9 +43,14 @@ product2 <- tibble(
     price = runif(n, 30, 70)
 ) %>%
     mutate(
-        decay_rate = if_else(price > 45, 0.023, 0.02),
-        quantity_sold = pmax(1600 * exp(-decay_rate * price) + rnorm(n, 0, 50), 0),
+        L = 1000,
+        k = -0.1,
+        x0 = 50,
+        quantity_sold = pmax(L / (1 + exp(-k * (price*0.65 - x0))) + rnorm(n, 0, 50), 0),
         product = "product2"
+        # decay_rate = if_else(price > 45, 0.023, 0.02),
+        # quantity_sold = pmax(1600 * exp(-decay_rate * price) + rnorm(n, 0, 50), 0),
+        # product = "product2"
     ) %>%
     apply_promotions()
 
@@ -54,7 +59,7 @@ product3 <- tibble(
     price = runif(n, 10, 50)
 ) %>%
     mutate(
-        quantity_sold = pmax(1900 * exp(-0.07 * price) + rnorm(n, 0, 100), 0),
+        quantity_sold = pmax(1900 * exp(-0.055 * price) + rnorm(n, 0, 100), 0),
         product = "product3"
     ) %>%
     apply_promotions()
@@ -90,5 +95,6 @@ ggplot(combined_data, aes(x=price, y=quantity_sold, color=product)) +
 
 # Final Dataset:
 combined_data %>%
-    select(price, quantity_sold, product, event)
+    select(price, quantity_sold, product, event) %>%
+    write_csv("temp/price_opt/price_opt.csv")
 
