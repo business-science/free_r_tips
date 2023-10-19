@@ -9,8 +9,8 @@ n <- 200
 
 # Event data
 events <- tibble(
-    event_name = c("No Promo", "Event1", "Event2", "Event3", "New iPhone"),
-    effect = c(0, 0.1, 0.4, 0.2, -1.5)
+    event_name = c("No Promo", "The Big Game", "Black Friday", "Christmas", "New iPhone"),
+    effect = c(0, 0.1, 0.4, 0.2, -0.6)
 )
 
 # Function to apply promotions and iPhone launch effects
@@ -19,7 +19,9 @@ apply_promotions <- function(product_data) {
     effect_multiplier <- events$effect[match(sample_events, events$event_name)]
     product_data %>% mutate(
         event = sample_events,
-        quantity_sold = quantity_sold * (1 + effect_multiplier)
+        # Adjust the "New iPhone" effect to be more prominent as price increases
+        adjusted_effect = ifelse(event == "New iPhone", effect_multiplier * price / max(price, na.rm = TRUE), effect_multiplier),
+        quantity_sold = pmax(0, quantity_sold * (1 + adjusted_effect)) # Ensure quantity_sold never drops below 0
     )
 }
 
@@ -34,7 +36,7 @@ product1 <- tibble(
         quantity_sold = pmax(L / (1 + exp(-k * (price - x0))) + rnorm(n, 0, 75), 0),
         product = "product1"
     ) %>%
-    apply_promotions
+    apply_promotions()
 
 # Generate data for Product 2
 product2 <- tibble(
@@ -45,17 +47,17 @@ product2 <- tibble(
         quantity_sold = pmax(1600 * exp(-decay_rate * price) + rnorm(n, 0, 50), 0),
         product = "product2"
     ) %>%
-    apply_promotions
+    apply_promotions()
 
 # Generate data for Product 3
 product3 <- tibble(
     price = runif(n, 10, 50)
 ) %>%
     mutate(
-        quantity_sold = pmax(1900 * exp(-0.07 * price) + rnorm(n, 0, 50), 0),
+        quantity_sold = pmax(1900 * exp(-0.07 * price) + rnorm(n, 0, 100), 0),
         product = "product3"
     ) %>%
-    apply_promotions
+    apply_promotions()
 
 # Generate data for Product 4
 product4 <- tibble(
@@ -65,7 +67,8 @@ product4 <- tibble(
         quantity_sold = pmax(1100 * exp(-0.025 * price) + rnorm(n, 0, 75), 0),
         product = "product4"
     ) %>%
-    apply_promotions
+    apply_promotions()
+
 
 # Combine data
 combined_data <- bind_rows(product1, product2, product3, product4) %>%
@@ -75,7 +78,8 @@ combined_data <- bind_rows(product1, product2, product3, product4) %>%
 ggplot(combined_data, aes(x=price, y=quantity_sold, color=product)) +
     geom_point() +
     # geom_point(color = "red", size = 5, shape = 21, data = combined_data %>% filter(promo_event == "Promo Event")) +
-    geom_smooth() +
+    geom_smooth(span = 1, level = 0.999) +
+    # facet_wrap(~ product, scales = "free") +
     labs(title="Price Elasticity and Optimization",
          subtitle="Price vs. Quantity Sold for iPhone Case Products with Promotions",
          x="Price",
@@ -84,4 +88,7 @@ ggplot(combined_data, aes(x=price, y=quantity_sold, color=product)) +
     scale_color_tq(name="Product") +
     theme(legend.position="bottom")
 
+# Final Dataset:
+combined_data %>%
+    select(price, quantity_sold, product, event)
 
