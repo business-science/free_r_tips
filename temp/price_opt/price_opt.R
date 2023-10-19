@@ -1,5 +1,6 @@
 
 library(ggplot2)
+library(tidyquant)
 
 set.seed(123) # For reproducibility
 
@@ -21,7 +22,9 @@ products$product2 <- data.frame(
     price = runif(n, 30, 70),
     quantity_sold = NA
 )
-products$product2$quantity_sold <- pmax(1600 * exp(-0.03 * products$product2$price) + rnorm(n, 0, 25), 0)
+decay_rate <- ifelse(products$product2$price > 45, 0.023, 0.02)
+products$product2$quantity_sold <- pmax(1600 * exp(-decay_rate * products$product2$price) + rnorm(n, 0, 50), 0)
+
 
 # Product 3: Cheaper with lower range but with more variance
 products$product3 <- data.frame(
@@ -57,8 +60,9 @@ combined_data <- do.call(rbind, lapply(names(products), function(name) {
 # Plot
 ggplot(combined_data, aes(x=price, y=quantity_sold, color=product)) +
     geom_point() +
+    geom_smooth() +
     labs(title="Price vs. Quantity Sold for 4 iPhone Case Products",
          x="Price",
          y="Quantity Sold") +
-    theme_minimal() +
-    scale_color_discrete(name="Product")
+    theme_tq() +
+    scale_color_tq(name="Product")
