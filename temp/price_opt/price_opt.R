@@ -34,7 +34,7 @@ product1 <- tibble(
         k = -0.1,
         x0 = 25,
         quantity_sold = pmax(L / (1 + exp(-k * (price*0.5 - x0))) + rnorm(n, 0, 75), 0),
-        product = "product1"
+        product = "Standard Case | iPhone 15 Pro Max"
     ) %>%
     apply_promotions()
 
@@ -47,7 +47,7 @@ product2 <- tibble(
         k = -0.1,
         x0 = 50,
         quantity_sold = pmax(L / (1 + exp(-k * (price*0.65 - x0))) + rnorm(n, 0, 50), 0),
-        product = "product2"
+        product = "Premium Case | iPhone 15 Pro Max"
         # decay_rate = if_else(price > 45, 0.023, 0.02),
         # quantity_sold = pmax(1600 * exp(-decay_rate * price) + rnorm(n, 0, 50), 0),
         # product = "product2"
@@ -60,7 +60,7 @@ product3 <- tibble(
 ) %>%
     mutate(
         quantity_sold = pmax(1900 * exp(-0.055 * price) + rnorm(n, 0, 100), 0),
-        product = "product3"
+        product = "Standard Case | iPhone 15 Pro"
     ) %>%
     apply_promotions()
 
@@ -70,7 +70,7 @@ product4 <- tibble(
 ) %>%
     mutate(
         quantity_sold = pmax(1100 * exp(-0.025 * price) + rnorm(n, 0, 75), 0),
-        product = "product4"
+        product = "Premium Case | iPhone 15 Pro"
     ) %>%
     apply_promotions()
 
