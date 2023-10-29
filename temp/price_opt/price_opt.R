@@ -77,7 +77,9 @@ product4 <- tibble(
 
 # Combine data
 combined_data <- bind_rows(product1, product2, product3, product4) %>%
-    mutate(promo_event = ifelse(event == "No Promo", NA, "Promo Event"))
+    mutate(promo_event = ifelse(event == "No Promo", NA, "Promo Event")) %>%
+    mutate(quantity_sold = round(quantity_sold)) %>%
+    mutate(price = round(price, 2))
 
 # Plot
 ggplot(combined_data, aes(x=price, y=quantity_sold, color=product)) +
