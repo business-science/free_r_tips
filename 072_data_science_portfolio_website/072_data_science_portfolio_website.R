@@ -42,7 +42,15 @@ portfoliodown::serve_site(
     .site_dir = "072_data_science_portfolio_website/my_portfolio_website/"
 )
 
-# 6.0 QUESTION- DO YOU:
+# 6.0 EDIT YOUR PORTFOLIO ----
+# Update the homepage.yml work section
+
+# 7.0 PUBLISH ----
+# Use usethis::use_github()
+# Deploy to Netlify
+
+# 8.0 QUESTION? ----
+# DO YOU:
 #   1. Need data science skills: Data Visualization, Time Series, Machine Learning, Production, Web Apps, and Cloud?
 #   2. Data science projects to fill your portfolio?
 #   3. Know how to communicate your results to non-technical audiences?
