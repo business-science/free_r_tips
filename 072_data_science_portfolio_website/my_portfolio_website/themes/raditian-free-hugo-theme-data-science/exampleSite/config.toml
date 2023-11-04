@@ -1,0 +1,77 @@
+baseURL = "/"
+languageCode = "en-us"
+theme = "raditian-free-hugo-theme"
+
+# Plugins
+[params.plugins]
+
+  # CSS Plugins
+  [[params.plugins.css]]
+  URL = "css/main.css"
+  [[params.plugins.css]]
+  URL = "css/rad-icons.css"
+  [[params.plugins.css]]
+  URL = "css/custom.css"
+
+  # JS Plugins
+  [[params.plugins.js]]
+  URL = "js/rad-animations.js"
+  [[params.plugins.js]]
+  URL = "js/sticky-header.js"
+  [[params.plugins.js]]
+  URL = "js/library/fontfaceobserver.js"
+
+
+# navigation
+[menu]
+
+  [[menu.header]]
+  name = "About"
+  URL = "#about"
+  weight = 2
+
+  [[menu.header]]
+  name = "Portfolio"
+  URL = "#portfolio"
+  weight = 3
+
+  [[menu.header]]
+  name = "Contact"
+  URL = "#contact"
+  weight = 4
+
+
+  [[menu.footer]]
+  name = "About"
+  URL = "#about"
+  weight = 2
+
+  [[menu.footer]]
+  name = "Portfolio"
+  URL = "#portfolio"
+  weight = 3
+
+  [[menu.footer]]
+  name = "Contact"
+  URL = "#contact"
+  weight = 4
+
+
+[params]
+
+  sections = ["showcase", "about", "client-and-work", "experience", "education",  "testimonial", "contact", "newsletter"]
+
+  googleAnalyticsID = "" 
+
+  [params.logo]
+    text1 = "Matt"
+    text2 = "Dancho"
+
+  [params.footer]
+      copyright = "© Matt Dancho. All rights reserved."
+      [params.footer.site_logo]
+        x = "img/general/business-science-logo.png"
+        _2x = "img/general/business-science-logo.png"
+        alt = "Design & Code - Business Science"
+  
+  

@@ -1,0 +1,14 @@
+Package: raditian_free_hugo_theme_data_science
+Title: The Raditian Hugo Theme (Data Science Version)
+Version: 0.0.1.9000
+Authors@R: 
+     c(
+    person("Matt", "Dancho", email = "mdancho@business-science.io", role = c("aut", "cre"))
+  )
+Description:
+  This package is used with portfoliodown to install the "kross" Data Science Website Theme.
+  A modified version of the Raditian Hugo Theme <https://github.com/radity/raditian-free-hugo-theme>.
+License: MIT + file LICENSE
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.1.2

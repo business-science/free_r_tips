@@ -1,0 +1,73 @@
+@font-face {
+  font-family: 'rad-icons';
+  src: url('../fonts/rad-icons.eot?32706191');
+  src: url('../fonts/rad-icons.eot?32706191#iefix') format('embedded-opentype'),
+       url('../fonts/rad-icons.woff2?32706191') format('woff2'),
+       url('../fonts/rad-icons.woff?32706191') format('woff'),
+       url('../fonts/rad-icons.ttf?32706191') format('truetype'),
+       url('../fonts/rad-icons.svg?32706191#rad-icons') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+/* Chrome hack: SVG is rendered more smooth in Windozze. 100% magic, uncomment if you need it. */
+/* Note, that will break hinting! In other OS-es font will be not as sharp as it could be */
+/*
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+  @font-face {
+    font-family: 'rad-icons';
+    src: url('../font/rad-icons.svg?32706191#rad-icons') format('svg');
+  }
+}
+*/
+ 
+ [class^="icon-"]:before, [class*=" icon-"]:before {
+  font-family: "rad-icons";
+  font-style: normal;
+  font-weight: normal;
+  speak: none;
+ 
+  display: inline-block;
+  text-decoration: inherit;
+  width: 1em;
+  margin-right: .2em;
+  text-align: center;
+  /* opacity: .8; */
+ 
+  /* For safety - reset parent styles, that can break glyph codes*/
+  font-variant: normal;
+  text-transform: none;
+ 
+  /* fix buttons height, for twitter bootstrap */
+  line-height: 1em;
+ 
+  /* Animation center compensation - margins should be symmetric */
+  /* remove if not needed */
+  margin-left: .2em;
+ 
+  /* you can be more comfortable with increased icons size */
+  /* font-size: 120%; */
+ 
+  /* Font smoothing. That was taken from TWBS */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+ 
+  /* Uncomment for 3D effect */
+  /* text-shadow: 1px 1px 1px rgba(127, 127, 127, 0.3); */
+}
+ 
+.icon-arrow-right:before { content: '\e800'; } /* '' */
+.icon-behance-line:before { content: '\e801'; } /* '' */
+.icon-dribbble-line:before { content: '\e803'; } /* '' */
+.icon-instagram-line:before { content: '\e806'; } /* '' */
+.icon-linkedin-fill:before { content: '\e807'; } /* '' */
+.icon-profile-fill:before { content: '\e809'; } /* '' */
+.icon-smile-fill:before { content: '\e80a'; } /* '' */
+.icon-twitter-line:before { content: '\e80b'; } /* '' */
+.icon-youtube-line:before { content: '\e80c'; } /* '' */
+.icon-quote:before { content: '\e80d'; } /* '' */
+.icon-mail-fill:before { content: '\e80e'; } /* '' */
+.icon-codepen-line:before { content: '\e80f'; } /* '' */
+.icon-facebook-line:before { content: '\e810'; } /* '' */
+.icon-github-line:before { content: '\e811'; } /* '' */
+.icon-linkedin-line:before { content: '\e812'; } /* '' */
+.icon-yelp-line:before { content: '\e82c'; } /* '' */

@@ -1,0 +1,33 @@
+{{ if .Site.Data.homepage.experience.enable }}
+<section id="experience" class="section section--border-bottom rad-animation-group">
+    <div class="container">
+        <div class="row flex-column-reverse flex-md-row rad-fade-down">
+            <div class="col-12 col-sm-6 mt-5 mt-sm-0">
+                {{ range .Site.Data.homepage.experience.items }}
+                <div class="experience">
+                    <div class="experience__date">{{ .duration | safeHTML }}</div>
+                    <div class="experience__title">{{ .title | safeHTML }}</div>
+                    <div class="experience__company">{{ .company | safeHTML }}</div>
+                </div>
+                {{ end }}
+            </div>
+            <div class="col-12 col-sm-6">
+                <h2>{{ .Site.Data.homepage.experience.title | safeHTML }}</h2>
+                <p class="lead">
+                    {{ .Site.Data.homepage.experience.description | safeHTML }}
+                </p>
+                <a href="{{ .Site.Data.homepage.experience.button.URL | absURL }}" class="btn btn-primary"
+                   target="_blank">
+                    <i class="{{ .Site.Data.homepage.experience.button.icon }}"></i>
+                    {{ .Site.Data.homepage.experience.button.btnText }}
+                    <i class="icon-arrow-right"></i></a>
+                <a href="{{ .Site.Data.homepage.experience.button2.URL | absURL }}" class="btn btn-frameless"
+                   target="_blank">
+                    <i class="{{ .Site.Data.homepage.experience.button2.icon }}"></i>
+                    {{ .Site.Data.homepage.experience.button2.btnText }}
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+{{ end }}

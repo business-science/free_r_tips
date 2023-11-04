@@ -1,0 +1,53 @@
+{{ if .Site.Data.homepage.showcase.enable }}
+<section class="rad-showcase rad-showcase--index rad-animation-group rad-fade-down">
+  <div class="rad-showcase__bg">
+    <img
+      class="lozad img-responsive"
+      src="data:image/gif;base64,R0lGODlhBwACAIAAAP///wAAACH5BAEAAAEALAAAAAAHAAIAAAIDjI9YADs="
+      data-src="{{ .Site.Data.homepage.showcase.image.x | absURL }}"
+      data-srcset="{{ .Site.Data.homepage.showcase.image.x | absURL }} 1x, {{ .Site.Data.homepage.showcase.image._2x | absURL }} 1x"
+      alt="{{ .Site.Data.homepage.showcase.image.alt }}"
+    />
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-12 col-sm-12 col-md-8 col-lg-7 col-xl-6">
+        <h1 class="display-1">
+          {{ .Site.Data.homepage.showcase.title }}
+          <br />
+          <span
+            >{{ .Site.Data.homepage.showcase.subtitle }}</span
+          >
+        </h1>
+        <p class="lead">
+          {{ .Site.Data.homepage.showcase.description | safeHTML }}
+        </p>
+        <a
+          href="{{ .Site.Data.homepage.showcase.button.URL | absURL }}"
+          class="btn btn-primary"
+        >
+          <i class="{{ .Site.Data.homepage.showcase.button.icon }}"></i>
+          {{ .Site.Data.homepage.showcase.button.btnText }}
+        </a>
+      </div>
+    </div>
+    <div class="row platform-links">
+      <div class="col-12">
+        {{ range .Site.Data.homepage.showcase.socialLinks }}
+        <a href="{{ .URL | absURL }}" target="_blank"
+          ><i class="icon-{{ .icon }}-line"></i
+        ></a>
+        {{ end }}
+      </div>
+    </div>
+  </div>
+  <div class="rad-showcase__bg rad-showcase__bg--mobile">
+    <img
+      class="lozad img-responsive"
+      src="data:image/gif;base64,R0lGODlhBwACAIAAAP///wAAACH5BAEAAAEALAAAAAAHAAIAAAIDjI9YADs="
+      data-src="{{ .Site.Data.homepage.showcase.imageMobile.x | absURL }}"
+      alt="{{ .Site.Data.homepage.showcase.imageMobile.alt }}"
+    />
+  </div>
+</section>
+{{ end }}

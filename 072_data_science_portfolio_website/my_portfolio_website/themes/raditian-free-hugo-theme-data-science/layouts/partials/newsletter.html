@@ -1,0 +1,36 @@
+{{ if .Site.Data.homepage.newsletter.enable }}
+<section class="section section--cta">
+<div class="container">
+  <div class="row">
+    <div class="col-12 text-center">
+      <h2>{{ .Site.Data.homepage.newsletter.title }}</h2>
+      <div class="rad-subscription-group">
+        <form id="rad-subscription" action="">
+          <input
+            id="rad-subscription-email"
+            type="email"
+            class="form-control"
+            aria-describedby="emailHelp"
+            placeholder="Email Address..."
+            aria-label="Email Address"
+          />
+          <button type="submit" id="rad-subscription-submit" class="btn btn-light btn-rounded">
+            Sign Up
+          </button>
+        </form>
+        <div id="rad-subscription-success" class="d-none">
+          <p class="lead">{{ .Site.Data.homepage.newsletter.success_message }}</p>
+        </div>
+        <div id="rad-subscription-fail" class="d-none">
+          <p>{{ .Site.Data.homepage.newsletter.error_message }}</p>
+        </div>
+        <script src="/js/subscription.js"></script>
+      </div>
+      <small id="emailHelp" class="form-text text-muted"
+        >{{ .Site.Data.homepage.newsletter.note }}</small
+      >
+    </div>
+  </div>
+</div>
+</section>
+{{ end }}

@@ -1,0 +1,75 @@
+{{ if .Site.Data.homepage.client_and_work.enable }}
+<section id="portfolio" class="section section--border-bottom">
+  <div class="container">
+    <h2 class=" rad-animation-group rad-fade-down">
+      {{ .Site.Data.homepage.client_and_work.title | safeHTML }}
+    </h2>
+    {{ if .Site.Data.homepage.client_and_work.enable_clients }}
+    <div class="row row--padded rad-animation-group rad-fade-down">
+      <div class="col-12">
+        <div class="clients">
+          {{ range .Site.Data.homepage.client_and_work.clients }}
+          <div class="clients__item">
+            <a href="https://www.business-science.io/">
+              <img
+                class="lozad img-responsive"
+                src="data:image/gif;base64,R0lGODlhBwACAIAAAP///wAAACH5BAEAAAEALAAAAAAHAAIAAAIDjI9YADs="
+                data-src="{{ .logo.x | absURL }}"
+                data-srcset="{{ .logo.x | absURL }} 1x, {{ .logo._2x | absURL }} 2x"
+                alt="{{ .alt }}"
+              />
+            </a>
+          </div>
+          {{ end }}
+        </div>
+      </div>
+    </div>
+    {{ end }}
+    {{ range $index, $element := .Site.Data.homepage.client_and_work.works }}
+    <div
+      class="row row--padded rad-animation-group rad-fade-down {{ if .is_even }}flex-column-reverse flex-md-row{{ end }}"
+    >
+      {{ if .is_even }}
+      <div class="col-12 col-md-5 mt-4 mt-md-0 my-md-auto">
+        <h3>{{ .title | safeHTML }}</h3>
+        <p class="lead">
+          {{ .description | safeHTML }}
+        </p>
+        <a href="{{ .button.URL | absURL }}" class="btn btn-primary" target="_blank"
+          >{{ .button.btnText }}<i class="{{ .button.icon }}"></i
+        ></a>
+      </div>
+      <div class="col-12 col-md-7 pl-md-0 text-right">
+        <img
+          class='lozad img-responsive {{ cond (eq ( mod $index 4) 0) "img-clip-left-backward" "img-clip-left-forward" }}'
+          src="data:image/gif;base64,R0lGODlhBwACAIAAAP///wAAACH5BAEAAAEALAAAAAAHAAIAAAIDjI9YADs="
+          data-src="{{ .image.x | absURL }}"
+          data-srcset="{{ .image.x | absURL }} 1x, {{ .image._2x | absURL }} 2x"
+          alt="{{ .title }}"
+        />
+      </div>
+      {{ else }}
+      <div class="col-12 col-md-7 pl-md-0 text-right">
+        <img
+          class='lozad img-responsive {{ cond (eq ( mod $index 4) 1)  "img-clip-right-backward" "img-clip-right-forward" }}'
+          src="data:image/gif;base64,R0lGODlhBwACAIAAAP///wAAACH5BAEAAAEALAAAAAAHAAIAAAIDjI9YADs="
+          data-src="{{ .image.x | absURL }}"
+          data-srcset="{{ .image.x | absURL }} 1x, {{ .image._2x | absURL }} 2x"
+          alt="{{ .title }}"
+        />
+      </div>
+      <div class="col-12 col-md-5 mt-4 mt-md-0 my-md-auto">
+        <h3>{{ .title | safeHTML }}</h3>
+        <p class="lead">
+          {{ .description | safeHTML }}
+        </p>
+        <a href="{{ .button.URL | absURL }}" class="btn btn-primary" target="_blank"
+          >{{ .button.btnText }}<i class="{{ .button.icon }}"></i
+        ></a>
+      </div>
+      {{ end }}
+    </div>
+    {{ end }}
+  </div>
+</section>
+{{ end }}

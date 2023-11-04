@@ -1,0 +1,41 @@
+<footer class="footer">
+  <div class="container">
+
+    <div class="footer__left">
+      <div class="footer__copy">
+        {{ .Site.Params.footer.copyright }}
+      </div>
+    </div>
+    
+    <div class="footer__links">
+      <ul class="navbar-nav ">
+        <li class="nav-item">
+          <a class="nav-link" href="/">HOME</a>
+        </li>
+        {{ range .Site.Menus.footer }}
+        <li class="nav-item">
+          <a class="nav-link" href="{{ .URL | absURL }}">{{ .Name | upper }}</a>
+        </li>
+        {{ end }}
+      </ul>
+    </div>
+    
+    <div class="footer__right">
+      <div class="footer__copy">
+        Site built with  <a href="https://business-science.github.io/portfoliodown/" target="_blank">portfoliodown</a>.
+        
+      </div>
+      <!--
+      <a href="https://www.business-science.io/"
+        ><img
+          src="{{ .Site.Params.footer.site_logo.x | absURL }}"
+          srcset="{{ .Site.Params.footer.site_logo.x | absURL }} 1x, {{ .Site.Params.footer.site_logo._2x | absURL }} 2x"
+          alt="{{ .Site.Params.footer.site_logo.alt }}"
+          style="max-width:70px;"
+      /></a>
+      -->
+    </div>
+    
+    
+  </div>
+</footer>

@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <!-- Google Tag Manager -->
+    <script>
+      (function(w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({
+          "gtm.start": new Date().getTime(),
+          event: "gtm.js"
+        });
+        var f = d.getElementsByTagName(s)[0],
+          j = d.createElement(s),
+          dl = l != "dataLayer" ? "&l=" + l : "";
+        j.async = true;
+        j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
+        f.parentNode.insertBefore(j, f);
+      })(window, document, "script", "dataLayer", "GTM-XXXXXXX");
+    </script>
+    <!-- End Google Tag Manager -->
+    <title>404 Page Not Found | Raditian</title>
+    <style>
+      /* Fade In animation triggering after font load or 3s timeout */
+      .rad-fade-in {
+        will-change: opacity, transform;
+        animation-name: rad-fade-in-fallback;
+        animation-duration: 5s;
+        animation-fill-mode: both;
+      }
+
+      @keyframes rad-fade-in-fallback {
+        0% {
+          opacity: 0;
+        }
+
+        75% {
+          opacity: 0;
+        }
+
+        100% {
+          opacity: 1;
+        }
+      }
+
+      .fonts-loaded .rad-fade-in.rad-waiting {
+        animation-name: none;
+        opacity: 0;
+      }
+
+      .fonts-loaded .rad-fade-in.rad-animate {
+        animation-name: rad-fade-in;
+        animation-duration: 1.1s;
+        animation-fill-mode: both;
+      }
+
+      @keyframes rad-fade-in {
+        0% {
+          opacity: 0;
+        }
+
+        100% {
+          opacity: 1;
+        }
+      }
+
+      /* Fade In Long animation triggering after font load or 3s timeout */
+      .rad-fade-in-long {
+        will-change: opacity, transform;
+        animation-name: rad-fade-in-long-fallback;
+        animation-duration: 8s;
+        animation-fill-mode: both;
+      }
+
+      @keyframes rad-fade-in-long-fallback {
+        0% {
+          opacity: 0;
+        }
+
+        75% {
+          opacity: 0;
+        }
+
+        100% {
+          opacity: 1;
+        }
+      }
+
+      .fonts-loaded .rad-fade-in-long.rad-waiting {
+        animation-name: none;
+        opacity: 0;
+      }
+
+      .fonts-loaded .rad-fade-in-long.rad-animate {
+        animation-name: rad-fade-in-long;
+        animation-duration: 2s;
+        animation-fill-mode: both;
+      }
+
+      @keyframes rad-fade-in-long {
+        0% {
+          opacity: 0;
+        }
+
+        20% {
+          opacity: 0;
+        }
+
+        100% {
+          opacity: 1;
+        }
+      }
+
+      /* Fade Down animation triggering after font load or 3s timeout */
+      .rad-fade-down {
+        will-change: opacity, transform;
+        animation-name: rad-fade-down-fallback;
+        animation-duration: 5s;
+        animation-fill-mode: both;
+        transform: translateY(-30px);
+      }
+
+      @keyframes rad-fade-down-fallback {
+        0% {
+          opacity: 0;
+          transform: translateY(-30px);
+        }
+
+        75% {
+          opacity: 0;
+          transform: translateY(-30px);
+        }
+
+        100% {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .fonts-loaded .rad-fade-down.rad-waiting {
+        animation-name: none;
+        opacity: 0;
+        transform: translateY(-30px);
+      }
+
+      .fonts-loaded .rad-fade-down.rad-animate {
+        animation-name: rad-fade-down;
+        animation-duration: 1.1s;
+      }
+
+      @keyframes rad-fade-down {
+        0% {
+          opacity: 0;
+          transform: translateY(-30px);
+        }
+
+        100% {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* Scale Down animation triggering after font load or 3s timeout */
+      .rad-scale-down {
+        will-change: opacity, transform;
+        animation-name: rad-scale-down-fallback;
+        animation-duration: 5s;
+        animation-fill-mode: both;
+        transform-origin: 50% 0;
+      }
+
+      @keyframes rad-scale-down-fallback {
+        0% {
+          opacity: 0;
+          transform: scaleY(0.95);
+        }
+
+        75% {
+          opacity: 0;
+          transform: scaleY(0.95);
+        }
+
+        100% {
+          opacity: 1;
+          transform: scaleY(1);
+        }
+      }
+
+      .fonts-loaded .rad-scale-down.rad-waiting {
+        animation-name: none;
+        opacity: 0;
+        transform: scaleY(0.95);
+      }
+
+      .fonts-loaded .rad-scale-down.rad-animate {
+        animation-name: rad-scale-down;
+        animation-duration: 1.1s;
+        animation-fill-mode: both;
+      }
+
+      @keyframes rad-scale-down {
+        0% {
+          opacity: 0;
+          transform: scaleY(0.95);
+        }
+
+        100% {
+          opacity: 1;
+          transform: scaleY(1);
+        }
+      }
+    </style>
+
+    <link rel="stylesheet" href='{{ "css/main.css" | absURL }}' />
+    <link rel="stylesheet" href='{{ "css/rad-icons.css" | absURL }}' />
+  </head>
+
+  <body>
+    {{ partial "header.html" . }}
+
+
+    <section class="section four-o-four">
+      <div class="container text-center">
+        <h1 class="display-1">404</h1>
+        <h4>Page not found</h4>
+        <p>
+          Sorry, but the page you were looking for could not be found.
+        </p>
+        <a href="{{ .Site.BaseURL | absURL }}" class="btn btn-primary">Back to homepage</a>
+      </div>
+    </section>
+
+    {{ partial "footer.html" . }} {{ partial "base-foot.html" . }}
+  </body>
+</html>

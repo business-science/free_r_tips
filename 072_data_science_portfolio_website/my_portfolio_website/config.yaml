@@ -1,0 +1,53 @@
+baseURL: /
+languageCode: en-us
+theme: raditian-free-hugo-theme-data-science
+params:
+  footer:
+    copyright: © Matt Dancho. All rights reserved.
+    site_logo:
+      _2x: img/general/business-science-logo.png
+      alt: Design & Code - Business Science
+      x: img/general/business-science-logo.png
+  googleAnalyticsID: ''
+  logo:
+    text1: Matt
+    text2: Dancho
+  plugins:
+    css:
+      - URL: css/main.css
+      - URL: css/rad-icons.css
+      - URL: css/custom.css
+    js:
+      - URL: js/rad-animations.js
+      - URL: js/sticky-header.js
+      - URL: js/library/fontfaceobserver.js
+  sections:
+    - showcase
+    - about
+    - client-and-work
+    - experience
+    - education
+    - testimonial
+    - contact
+    - newsletter
+menu:
+  footer:
+    - URL: '#about'
+      name: About
+      weight: 2
+    - URL: '#portfolio'
+      name: Portfolio
+      weight: 3
+    - URL: '#contact'
+      name: Contact
+      weight: 4
+  header:
+    - URL: '#about'
+      name: About
+      weight: 2
+    - URL: '#portfolio'
+      name: Portfolio
+      weight: 3
+    - URL: '#contact'
+      name: Contact
+      weight: 4
