@@ -1,5 +1,5 @@
 # BUSINESS SCIENCE R TIPS ----
-# R-TIP 72 | Introducing Anomalize for TimeTK in R ----
+# R-TIP 72 | How To Make A Data Science Portfolio ----
 #
 # 👉 For Weekly R-Tips, Sign Up Here:
 #    https://learn.business-science.io/r-tips-newsletter
