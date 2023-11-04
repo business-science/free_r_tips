@@ -56,7 +56,8 @@ portfoliodown::serve_site(
 #   3. Know how to communicate your results to non-technical audiences?
 #   4. Know how to build production web applications?
 #   5. Know how to work with a team?
-# IF NOT, I CAN HELP: https://learn.business-science.io/free-rtrack-masterclass
+# IF YOU NEED ANY OF THESE, I CAN HELP:
+#  https://learn.business-science.io/free-rtrack-masterclass
 
 
 
