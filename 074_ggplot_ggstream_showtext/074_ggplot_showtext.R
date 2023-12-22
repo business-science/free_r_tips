@@ -144,7 +144,7 @@ sales_by_category2_y_tbl %>%
         label = "Cannondale Bicycle\nSales",
         x = parse_date2("2011-01-01") %>% as_datetime(),
         y = 2.4e7,
-        size = 13,
+        size = 12,
         hjust = 0,
         vjust = 1,
         family = "Josefin_Sans",
