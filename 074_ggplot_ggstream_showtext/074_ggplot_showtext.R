@@ -45,6 +45,53 @@ sales_by_category2_y_tbl <- transactions_raw_tbl %>%
     mutate(category_2 = fct_reorder2(category_2, order_date, total_sales)) %>%
     arrange(category_2)
 
+# ADVANCED VISUALIZATION TUTORIAL ----
+
+# Step 1: Basic Stacked Area ----
+
+sales_by_category2_y_tbl %>%
+    ggplot(aes(order_date, total_sales, fill = category_2, color = category_2, label=category_2)) +
+    geom_area()
+
+# Step 2: Geom Stream ----
+
+sales_by_category2_y_tbl %>%
+    ggplot(aes(order_date, total_sales, fill = category_2, color = category_2, label=category_2)) +
+    geom_stream(type = "ridge", bw = 1.1, extra_span = 0.10)
+
+# Step 3: Improve the appearance -----
+
+sales_by_category2_y_tbl %>%
+    ggplot(aes(order_date, total_sales, fill = category_2, color = category_2, label=category_2)) +
+    geom_stream(type = "ridge", bw = 1.1, extra_span = 0.10) +
+
+    # Theme
+    labs(title= "Cannondale Bicycle Sales", x = "Date", y = "Total Sales") +
+    scale_color_tq() +
+    scale_fill_tq() +
+    theme_tq()
+
+
+
+# Step 4: Better Fonts -----
+# * Make sure to run the "Custom Fonts" code above
+
+sales_by_category2_y_tbl %>%
+    ggplot(aes(order_date, total_sales, fill = category_2, color = category_2, label=category_2)) +
+    geom_stream(type = "ridge", bw = 1.1, extra_span = 0.10) +
+
+    # Theme
+    labs(title= "Cannondale Bicycle Sales", x = "Date", y = "Total Sales") +
+    scale_color_tq() +
+    scale_fill_tq() +
+    theme_tq(
+        base_family = "Josefin_Sans"
+    )
+
+
+
+# BONUS: Step 5: Advanced Annotation and Theming ----
+
 # * Y-Label Data ----
 y_label_tbl <- sales_by_category2_y_tbl %>%
     group_by(category_2) %>%
@@ -71,48 +118,7 @@ x_label_tbl <- sales_by_category2_y_tbl %>%
     mutate(points = c(12492885, 13513075, 16030775, 15424085, 18971510)) %>%
     mutate(x_text = scales::dollar(total_sales_all))
 
-# ADVANCED VISUALIZATION TUTORIAL ----
-
-# Step 1: Basic Stacked Area ----
-
-sales_by_category2_y_tbl %>%
-    ggplot(aes(order_date, total_sales, fill = category_2, color = category_2, label=category_2)) +
-    geom_area()
-
-# Step 2: Geom Stream ----
-
-sales_by_category2_y_tbl %>%
-    ggplot(aes(order_date, total_sales, fill = category_2, color = category_2, label=category_2)) +
-    geom_stream(type = "ridge", bw = 1.1, extra_span = 0.10)
-
-# Step 3: Improve the appearance -----
-
-sales_by_category2_y_tbl %>%
-    ggplot(aes(order_date, total_sales, fill = category_2, color = category_2, label=category_2)) +
-    geom_stream(type = "ridge", bw = 1.1, extra_span = 0.10) +
-
-    # Theme
-    scale_color_tq() +
-    scale_fill_tq() +
-    theme_tq()
-
-# Step 4: Better Fonts -----
-# * Make sure to run the "Custom Fonts" code above
-
-sales_by_category2_y_tbl %>%
-    ggplot(aes(order_date, total_sales, fill = category_2, color = category_2, label=category_2)) +
-    geom_stream(type = "ridge", bw = 1.1, extra_span = 0.10) +
-
-    # Theme
-    scale_color_tq() +
-    scale_fill_tq() +
-    theme_tq(base_family = "Josefin_Sans") +
-
-    labs(title= "Cannondale Bicycle Sales")
-
-
-
-# BONUS: Step 5: Advanced Annotation and Theming ----
+# * Publication-Quality Visualization ----
 
 sales_by_category2_y_tbl %>%
     ggplot(aes(order_date, total_sales)) +
@@ -120,6 +126,7 @@ sales_by_category2_y_tbl %>%
     labs(x = "", y = "") +
 
     # Theme
+    # labs(title= "Cannondale Bicycle Sales", x = "Date", y = "Total Sales") +
     scale_color_tq() +
     scale_fill_tq() +
     theme_tq(base_family = "Josefin_Sans") +
@@ -136,14 +143,14 @@ sales_by_category2_y_tbl %>%
     ) +
 
     # Advanced Annotations
-    expand_limits(y = 2.5e7) +
+    expand_limits(y = 2.4e7) +
 
     # Title
     annotate(
         "text",
         label = "Cannondale Bicycle\nSales",
         x = parse_date2("2011-01-01") %>% as_datetime(),
-        y = 2.4e7,
+        y = 2.3e7,
         size = 12,
         hjust = 0,
         vjust = 1,
