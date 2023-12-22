@@ -37,13 +37,10 @@ sales_by_category_2_total_tbl <- sales_by_category2_y_tbl %>%
     summarise(
         order_date = max(order_date),
         total_sales_all = sum(total_sales),
-        total_sales_1y = last(total_sales)
     ) %>%
     mutate(category_2 = fct_reorder2(category_2, order_date, total_sales_all)) %>%
     arrange(desc(category_2)) %>%
-    mutate(total_sales_lag1 = lag(total_sales_1y, n = 1)) %>%
-    mutate(total_sales_lag1 = replace_na(total_sales_lag1, 0)) %>%
-    mutate(midpoint = (total_sales_1y + total_sales_lag1) / 2)
+    mutate(total_sales_cummulative = cumsum(total_sales_all))
 
 # ADVANCED VISUALIZATION TUTORIAL ----
 
@@ -86,8 +83,7 @@ sales_by_category2_y_tbl %>%
 
 sales_by_category2_y_tbl %>%
     ggplot(aes(order_date, total_sales, fill = category_2, color = category_2, label=category_2)) +
-    geom_area() +
-    # geom_stream(type = "ridge", bw = 1.1, extra_span = 0.10) +
+    geom_stream(type = "ridge", bw = 1.1, extra_span = 0.10) +
     labs(x = "", y = "") +
 
     # Theme
@@ -96,6 +92,7 @@ sales_by_category2_y_tbl %>%
     theme_tq(base_family = "Josefin_Sans") +
 
     # Advanced Theming
+    coord_cartesian(clip = "off") +
     theme(
         legend.position = "none",
         axis.line.x = element_line(linewidth = .75),
@@ -122,8 +119,7 @@ sales_by_category2_y_tbl %>%
 
     #
     geom_text(
-        aes(x = (order_date + days(30)) , y = midpoint),
-        label = "test",
+        aes(x = (order_date + days(30)) , y = total_sales_all, label = total_sales_all),
         hjust = 0,
         data = sales_by_category_2_total_tbl
     )
