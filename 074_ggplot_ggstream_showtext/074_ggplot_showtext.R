@@ -21,6 +21,7 @@ transactions_raw_tbl %>% glimpse()
 
 # Data Wrangling ----
 
+# * Main Summary Data ----
 sales_by_category2_y_tbl <- transactions_raw_tbl %>%
     mutate(total_sales = quantity * price) %>%
     group_by(category_2) %>%
@@ -32,6 +33,7 @@ sales_by_category2_y_tbl <- transactions_raw_tbl %>%
     mutate(category_2 = fct_reorder2(category_2, order_date, total_sales)) %>%
     arrange(category_2)
 
+# * Label Data ----
 sales_by_category_2_total_tbl <- sales_by_category2_y_tbl %>%
     group_by(category_2) %>%
     summarise(
@@ -40,7 +42,12 @@ sales_by_category_2_total_tbl <- sales_by_category2_y_tbl %>%
     ) %>%
     mutate(category_2 = fct_reorder2(category_2, order_date, total_sales_all)) %>%
     arrange(desc(category_2)) %>%
-    mutate(total_sales_cummulative = cumsum(total_sales_all))
+    mutate(
+        midpoint = c(0, 0.5e6, 1e6, 2e6, 3e6, 4.7e6, 7.5e6, 1.1e7, 1.5e7)
+    ) %>%
+    mutate(
+        text = str_glue("{category_2} {scales::dollar(total_sales_all, suffix = 'M', scale = 1/1e6)}")
+    )
 
 # ADVANCED VISUALIZATION TUTORIAL ----
 
@@ -99,7 +106,7 @@ sales_by_category2_y_tbl %>%
         panel.grid = element_blank(),
         axis.text.y = element_blank(),
         panel.border = element_blank(),
-        plot.margin = margin(20,120,20,20),
+        plot.margin = margin(20,160,20,20),
     ) +
 
     # Advanced Annotations
@@ -117,12 +124,15 @@ sales_by_category2_y_tbl %>%
         family = "Josefin_Sans"
     ) +
 
-    #
+    # Y-Axis Labels (Legend)
     geom_text(
-        aes(x = (order_date + days(30)) , y = total_sales_all, label = total_sales_all),
+        aes(x = (order_date + days(30)) , y = midpoint, label = text),
         hjust = 0,
+        family = "Josefin_Sans",
         data = sales_by_category_2_total_tbl
     )
+
+
 
 
 
