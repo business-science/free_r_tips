@@ -6,8 +6,12 @@ library(tidyverse)
 library(timetk)
 library(ggstream) # smooth geom area shapes
 library(showtext) # load custom fonts
-library(ggtext)
-library(tidyquant)
+library(tidyquant) # tq theme
+
+# Custom Fonts ----
+# * Run this to enable showtext fonts used in this tutorial:
+font_add_google(name = "Josefin Sans", family = "Josefin_Sans")
+showtext_auto()
 
 # Data ----
 # * ONE OF THE BUSINESS DATASETS FROM THE R-TRACK PROGRAM
@@ -25,9 +29,23 @@ sales_by_category2_y_tbl <- transactions_raw_tbl %>%
         total_sales = sum(total_sales)
     ) %>%
     ungroup() %>%
-    mutate(category_2 = fct_reorder2(category_2, order_date, total_sales))
+    mutate(category_2 = fct_reorder2(category_2, order_date, total_sales)) %>%
+    arrange(category_2)
 
-# VISUALIZATION ----
+sales_by_category_2_total_tbl <- sales_by_category2_y_tbl %>%
+    group_by(category_2) %>%
+    summarise(
+        order_date = max(order_date),
+        total_sales_all = sum(total_sales),
+        total_sales_1y = last(total_sales)
+    ) %>%
+    mutate(category_2 = fct_reorder2(category_2, order_date, total_sales_all)) %>%
+    arrange(desc(category_2)) %>%
+    mutate(total_sales_lag1 = lag(total_sales_1y, n = 1)) %>%
+    mutate(total_sales_lag1 = replace_na(total_sales_lag1, 0)) %>%
+    mutate(midpoint = (total_sales_1y + total_sales_lag1) / 2)
+
+# ADVANCED VISUALIZATION TUTORIAL ----
 
 # Step 1: Basic Stacked Area ----
 
@@ -53,8 +71,7 @@ sales_by_category2_y_tbl %>%
     theme_tq()
 
 # Step 4: Better Fonts -----
-
-font_add_google(name = "Josefin Sans", family = "Josefin_Sans")
+# * Make sure to run the "Custom Fonts" code above
 
 sales_by_category2_y_tbl %>%
     ggplot(aes(order_date, total_sales, fill = category_2, color = category_2, label=category_2)) +
@@ -69,7 +86,8 @@ sales_by_category2_y_tbl %>%
 
 sales_by_category2_y_tbl %>%
     ggplot(aes(order_date, total_sales, fill = category_2, color = category_2, label=category_2)) +
-    geom_stream(type = "ridge", bw = 1.1, extra_span = 0.10) +
+    geom_area() +
+    # geom_stream(type = "ridge", bw = 1.1, extra_span = 0.10) +
     labs(x = "", y = "") +
 
     # Theme
@@ -100,7 +118,15 @@ sales_by_category2_y_tbl %>%
         hjust = 0,
         vjust = 1,
         family = "Josefin_Sans"
-    )
+    ) +
 
     #
+    geom_text(
+        aes(x = (order_date + days(30)) , y = midpoint),
+        label = "test",
+        hjust = 0,
+        data = sales_by_category_2_total_tbl
+    )
+
+
 
