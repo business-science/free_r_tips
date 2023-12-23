@@ -1,5 +1,5 @@
 # BUSINESS SCIENCE R TIPS ----
-# R-TIP 74 | Advanced ggplot2 visualizations: ggstream and showtext ----
+# R-TIP 75 | Time Series Analysis ----
 
 # 👉 For Weekly R-Tips, Sign Up Here:
 #    https://learn.business-science.io/r-tips-newsletter
