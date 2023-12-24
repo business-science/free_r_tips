@@ -48,5 +48,11 @@ ts_tbl %>%
     plot_seasonal_diagnostics(date, value, .interactive = F)
 
 
+# BONUS: Price of oil visualization ----
 
+library(tidyquant)
+
+tq_get("DCOILWTICO", get = "economic.data", from = "2013-01-01", to = "2018-06-01") %>%
+    group_by(symbol) %>%
+    plot_time_series(date, price, .interactive = F, .y_intercept = 0, .title = "Price of Oil")
 
