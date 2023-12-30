@@ -114,62 +114,31 @@ tune_stage_2 %>% collect_metrics() %>% arrange(-mean)
 
 # BEST ROC STAGE 2: 0.839 (NO IMPROVEMENT)
 
+# FINAL MODEL ----
 
-
-# Define the tuning grid
-xgb_grid <- grid_latin_hypercube(
-    trees = seq(50, 1000, length = 10),
-    min_n = seq(10, 30, length = 5),
-    tree_depth = seq(1, 10, length = 5),
-    learn_rate = seq(0.01, 0.3, length = 5),
-    loss_reduction = seq(0, 10, length = 5),
-    sample_size = seq(0.5, 1, length = 5)
-)
-
-# Create a workflow
-xgb_workflow <- workflow() %>%
-    add_model(xgb_spec)
-# add_recipe(your_preprocessor) # Add this if you have a preprocessor
-
-# Tune the model
-set.seed(123)
-cv_folds <- vfold_cv(train_data, v = 5)
-tune_results <- tune_grid(
-    xgb_workflow,
-    resamples = cv_folds,
-    grid = xgb_grid,
-    metrics = metric_set(roc_auc, accuracy) # Use appropriate metrics
-)
-
-# Analyze the results
-tune_results %>%
+# * Select Best Params ----
+best_params_stage_2 <- tune_stage_2 %>%
     collect_metrics() %>%
-    arrange(desc(mean)) %>%
-    top_n(1) # Top 1 result
+    arrange(-mean) %>%
+    slice(1)
 
-# Finalize the model with the best hyperparameters
-# (Assuming you have identified the best hyperparameters)
-final_xgb_spec <- xgb_spec %>%
-    set_args(trees = best_trees,
-             min_n = best_min_n,
-             tree_depth = best_tree_depth,
-             learn_rate = best_learn_rate,
-             loss_reduction = best_loss_reduction,
-             sample_size = best_sample_size)
+# * Update Best Parameters Args ----
+xgb_spec_final <- xgb_spec_stage_2 %>%
+    set_args(
+        tree_depth     = best_params_stage_2$tree_depth,
+        loss_reduction = best_params_stage_2$loss_reduction,
+        stop_iter      = best_params_stage_2$stop_iter,
+    )
 
-final_workflow <- workflow() %>%
-    add_model(final_xgb_spec)
-# add_recipe(your_preprocessor) # Add this if you have a preprocessor
+# * Fit the Final Model ----
+wflw_final <- wflw_xgb_stage_2 %>%
+    update_model(xgb_spec_final) %>%
+    fit(churn_tbl)
 
-# Fit the final model on the training data
-final_fit <- final_workflow %>%
-    fit(data = train_data)
-
-# Evaluate the model on the test data
-final_results <- final_fit %>%
-    predict(test_data) %>%
-    bind_cols(test_data) %>%
-    metrics(truth = your_target_variable, estimate = .pred_class)
-
-print(final_results)
+# * Make Predictions ----
+bind_cols(
+    wflw_final %>% predict(churn_tbl),
+    wflw_final %>% predict(churn_tbl, type = "prob"),
+    churn_tbl
+)
 
