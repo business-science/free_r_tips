@@ -109,7 +109,6 @@ tune_stage_2 <- tune_grid(
     control   = control_grid(verbose = TRUE)
 )
 
-
 tune_stage_2 %>% collect_metrics() %>% arrange(-mean)
 
 # BEST ROC STAGE 2: 0.839 (NO IMPROVEMENT)
