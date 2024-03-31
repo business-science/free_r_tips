@@ -1,5 +1,5 @@
 # BUSINESS SCIENCE R TIPS ----
-# R-TIP 76 | XGBoost: My 2-Step Hyperparamter Tuning Process ----
+# R-TIP 77 | XGBoost: My 2-Step Hyperparamter Tuning Process ----
 
 # 👉 For Weekly R-Tips, Sign Up Here:
 #    https://learn.business-science.io/r-tips-newsletter
