@@ -9,15 +9,9 @@
 #   https://learn.business-science.io/free-rtrack-masterclass
 
 
-# Run these to install PDF Scraping Libraries:
-# install.packages("pdftools")
-# remotes::install_github(c("ropensci/tabulizerjars", "ropensci/tabulizer"))
-
 library(tidyverse)
 library(pdftools)
-library(tabulizer)
 library(httr)
-
 
 file_path <- "078_pdf_scraping/pdf/meta_10k_filing_feb_2024.pdf"
 
@@ -37,22 +31,8 @@ length(text) # 147 pages of text
 text[1] # PAGE 1 TEXT
 text[2] # PAGE 2 TEXT
 
-# 2.0 EXTRACT TABLES ----
 
-# Takes a while for all pages in document
-tables <- extract_tables(file_path, output = "matrix")
-
-tables %>% write_rds("078_pdf_scraping/tables/tables.rds")
-
-tables <- read_rds("078_pdf_scraping/tables/tables.rds")
-
-length(tables)
-
-tables
-
-tables[[34]] %>% as_tibble()
-
-# 3.0 SUMMARIZE PDF DOCUMENT WITH OPENAI ----
+# 2.0 SUMMARIZE PDF DOCUMENT WITH OPENAI ----
 
 # My API key is stored as an environment variable (see usethis::edit_r_environ())
 api_key <- Sys.getenv("OPENAI_API_KEY")
