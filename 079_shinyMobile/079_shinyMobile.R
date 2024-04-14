@@ -31,11 +31,11 @@ time_series_data <- data.frame(Date = dates, Stocks = stocks, Bonds = bonds, ETF
 
 shinyApp(
     ui = f7Page(
-        title = "My app",
+        title = "Business Science Mobile Investment App",
         options = list(dark = TRUE, filled = FALSE, theme = "md", color = "blue"),
         f7TabLayout(
             navbar = f7Navbar(
-                title = "Investment App",
+                title = "Business Science Mobile Investment App",
                 hairline = TRUE,
                 shadow = TRUE
             ),
@@ -51,7 +51,7 @@ shinyApp(
                         intensity = 16,
                         hover = TRUE,
                         f7Card(
-                            title = "Portfolio Growth Over Time",
+                            title = "Portfolio Growth Over Time (In $1,000's)",
                             apexchartOutput("lineChart")
                         )
                     )
@@ -120,7 +120,16 @@ shinyApp(
                     fill = name
                 )
             ) %>%
-                ax_tooltip(theme = "dark")
+                ax_tooltip(theme = "dark") %>%
+                ax_yaxis(
+                    labels = list(
+                        formatter = htmlwidgets::JS("
+                        function(value) {
+                          return '$' + (value).toFixed(1) + 'K';  // Converting to thousands for cleaner display
+                        }
+                    ")
+                    )
+                )
         })
     }
 )
