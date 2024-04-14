@@ -2,13 +2,13 @@ library(shiny)
 library(shinyMobile)
 library(apexcharter)
 library(dplyr)
+library(tidyr)
 library(ggplot2)
-library(thematic)
+library(lubridate)
 
 thematic_shiny(font = "auto")
 
 data("economics_long")
-
 economics_long <- economics_long %>%
     group_by(variable) %>%
     slice((n()-100):n())
@@ -18,7 +18,16 @@ portfolio <- data.frame(
     value = c(10, 55, 25, 10)
 )
 
-# thematic::auto_config()
+# Generate time series data
+set.seed(123)
+dates <- seq(as.Date("2020-01-01"), by="month", length.out=36)
+stocks <- cumsum(rnorm(36, 0.5, 2))
+bonds <- cumsum(rnorm(36, 0.3, 1))
+etfs <- cumsum(rnorm(36, 0.4, 1.5))
+cash <- rep(10, 36)  # Cash stays constant
+
+time_series_data <- data.frame(Date = dates, Stocks = stocks, Bonds = bonds, ETFs = etfs, Cash = cash) %>%
+    pivot_longer(cols = -Date)
 
 shinyApp(
     ui = f7Page(
@@ -36,9 +45,20 @@ shinyApp(
                 swipeable = TRUE,
                 id = "tabset",
                 f7Tab(
-                    tabName = "Tab2",
+                    tabName = "PortfolioGrowth",
+                    icon = f7Icon("graph_square"),
+                    f7Shadow(
+                        intensity = 16,
+                        hover = TRUE,
+                        f7Card(
+                            title = "Portfolio Growth Over Time",
+                            apexchartOutput("lineChart")
+                        )
+                    )
+                ),
+                f7Tab(
+                    tabName = "PortfolioSnapshot",
                     icon = f7Icon("chart_pie"),
-                    active = TRUE,
                     f7Shadow(
                         intensity = 16,
                         hover = TRUE,
@@ -49,27 +69,25 @@ shinyApp(
                     )
                 ),
                 f7Tab(
-                    tabName = "Tab1",
-                    icon = f7Icon("graph_square"),
-                    active = TRUE,
+                    tabName = "EconomicIndex",
+                    icon = f7Icon("info_circle"),
                     f7Shadow(
                         intensity = 16,
                         hover = TRUE,
                         f7Card(
                             title = "Economic Index Over Time",
-                            apexchartOutput("areaChart")
+                            apexchartOutput("econChart")
                         )
                     )
                 )
-
             )
         )
     ),
     server = function(input, output) {
-        output$areaChart <- renderApexchart({
+        output$econChart <- renderApexchart({
             apex(
                 data = economics_long,
-                type = "area",
+                type = "line",
                 mapping = aes(
                     x = date,
                     y = value01,
@@ -77,7 +95,8 @@ shinyApp(
                 )
             ) %>%
                 ax_yaxis(decimalsInFloat = 2) %>% # number of decimals to keep
-                ax_chart(stacked = TRUE)
+                # ax_chart(stacked = TRUE) %>%
+                ax_tooltip(theme = "dark")
         })
 
         output$donutChart <- renderApexchart({
@@ -89,6 +108,19 @@ shinyApp(
                     y = value
                 )
             )
+        })
+
+        output$lineChart <- renderApexchart({
+            apex(
+                data = time_series_data,
+                type = "line",
+                mapping = aes(
+                    x = Date,
+                    y = value,
+                    fill = name
+                )
+            ) %>%
+                ax_tooltip(theme = "dark")
         })
     }
 )
