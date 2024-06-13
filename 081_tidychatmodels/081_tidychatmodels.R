@@ -12,7 +12,7 @@ devtools::install_github("AlbertRapp/tidychatmodels")
 library(tidyverse)
 library(tidychatmodels)
 
-# 1.0 OPENAI API KEY SETUP
+# 1.0 OPENAI API KEY SETUP ----
 
 # Edit your R Environment Variables to add your OpenAI API Key:
 usethis::edit_r_environ()
@@ -22,12 +22,12 @@ usethis::edit_r_environ()
 my_api_key <- Sys.getenv('OPENAI_API_KEY')
 
 
-# 2.0 TIDY CHAT MODELS
+# 2.0 TIDY CHAT MODELS ----
 
 chat_openai <- create_chat('openai', Sys.getenv('OPENAI_API_KEY'))
 chat_openai
 
-# * Make a virtual chatbot that is designed to return R code
+# * Make a virtual chatbot that is designed to return R code ----
 
 rcode_chatbot <- chat_openai %>%
     add_model("gpt-4o") %>%
@@ -38,7 +38,7 @@ rcode_chatbot <- chat_openai %>%
         You only return R code. Do not return anything else."
     )
 
-# * Ask an R code question
+# * Ask an R code question ----
 
 rcode_chatbot_message_added <- rcode_chatbot %>%
     add_message(
@@ -49,11 +49,11 @@ rcode_chatbot_message_added <- rcode_chatbot %>%
         the plotly plot."
     )
 
-# * Perform the Chat (Costs $)
+# * Perform the Chat (Costs $) ----
 
 rcode_chatbot_result <- rcode_chatbot_message_added %>% perform_chat()
 
-# * Extracting Results as a data frame
+# * Extracting Results as a data frame ----
 
 rcode_chatbot_result %>% extract_chat(silent = TRUE)
 
@@ -62,7 +62,8 @@ rcode_chatbot_result %>%
     pluck("message", 3) %>%
     cat()
 
-# CHAT OUTPUT:
+# OUTPUT: ----
+
 # ```r
 # library(shiny)
 # library(plotly)
