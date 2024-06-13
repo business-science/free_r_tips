@@ -7,15 +7,15 @@
 
 # LIBRARIES
 
-# devtools::install_github("AlbertRapp/tidychatmodels")
+devtools::install_github("AlbertRapp/tidychatmodels")
 
 library(tidyverse)
 library(tidychatmodels)
 
 # 1.0 OPENAI API KEY SETUP
 
-# Edit your R Envionment Variabls to add your OpenAI API Key:
-# usethis::edit_r_environ()
+# Edit your R Environment Variables to add your OpenAI API Key:
+usethis::edit_r_environ()
 
 # Get your OpenAI API KEY from your environment variables
 
