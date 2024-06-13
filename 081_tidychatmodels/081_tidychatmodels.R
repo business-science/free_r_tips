@@ -1,4 +1,11 @@
+# BUSINESS SCIENCE R TIPS ----
+# R-TIP 81 | Tidychatmodels ----
 
+# 👉 Do you want to become the data science expert for your organization?
+#   HERE'S HOW: 10 SECRETS TO BECOMING A 6-FIGURE DATA SCIENTIST
+#   https://learn.business-science.io/free-rtrack-masterclass
+
+# INSTALL:
 # LIBRARIES
 
 # devtools::install_github("AlbertRapp/tidychatmodels")
