@@ -1,11 +1,10 @@
 # BUSINESS SCIENCE R TIPS ----
 # R-TIP 81 | Tidychatmodels ----
 
-# 👉 Do you want to become the data science expert for your organization?
-#   HERE'S HOW: 10 SECRETS TO BECOMING A 6-FIGURE DATA SCIENTIST
-#   https://learn.business-science.io/free-rtrack-masterclass
+# 👉 CHATGPT FOR DATA SCIENTISTS LIVE WORKSHOP:
+#   Learn 15+ data science skills with chatgpt!
+#   https://learn.business-science.io/registration-chatgpt-2
 
-# INSTALL:
 # LIBRARIES
 
 # devtools::install_github("AlbertRapp/tidychatmodels")
@@ -15,9 +14,10 @@ library(tidychatmodels)
 
 # 1.0 OPENAI API KEY SETUP
 
+# Edit your R Envionment Variabls to add your OpenAI API Key:
 # usethis::edit_r_environ()
 
-# Add your OpenAI API KEY
+# Get your OpenAI API KEY from your environment variables
 
 my_api_key <- Sys.getenv('OPENAI_API_KEY')
 
