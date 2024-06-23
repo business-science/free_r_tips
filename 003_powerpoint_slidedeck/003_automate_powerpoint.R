@@ -14,7 +14,7 @@ library(timetk)
 # - Use tidyquant to pull in some stock data
 
 stock_data_tbl <- c("AAPL", "GOOG", "FB", "NVDA") %>%
-    tq_get(from = "2019-01-01", to = "2020-08-31")
+    tq_get(from = Sys.Date()-365*2, to = Sys.Date())
 
 
 # 3.0 DATA WRANGLING ----
@@ -24,12 +24,13 @@ stock_returns_tbl <- stock_data_tbl %>%
     select(symbol, date, adjusted) %>%
     group_by(symbol) %>%
     summarise(
-        week    = last(adjusted) / first(tail(adjusted, 7)) - 1,
-        month   = last(adjusted) / first(tail(adjusted, 30)) - 1,
-        quarter = last(adjusted) / first(tail(adjusted, 90)) - 1,
-        year    = last(adjusted) / first(tail(adjusted, 365)) - 1,
+        week    = last(adjusted) / last(adjusted[date<=last(date)-7]) - 1,
+        month   = last(adjusted) / last(adjusted[date<=last(date)-30]) - 1,
+        quarter = last(adjusted) / last(adjusted[date<=last(date)-120]) - 1,
+        year    = last(adjusted) / last(adjusted[date<=last(date)-365]) - 1,
         all     = last(adjusted) / first(adjusted) - 1
     )
+
 
 # 4.0 PLOTS & TABLES ----
 # - ggplot2 (DS4B 101-R Weeks 4)
