@@ -13,8 +13,8 @@ library(timetk)
 # 2.0 DATA ----
 # - Use tidyquant to pull in some stock data
 
-stock_data_tbl <- c("AAPL", "GOOG", "FB", "NVDA") %>%
-    tq_get(from = "2019-01-01", to = "2020-08-31")
+stock_data_tbl <- c("AAPL", "GOOG", "META", "NVDA") %>%
+    tq_get(from = "2019-01-01", to = "2020-08-16")
 
 
 # 3.0 DATA WRANGLING ----
