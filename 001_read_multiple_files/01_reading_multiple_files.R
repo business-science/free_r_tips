@@ -24,10 +24,12 @@ file_contents <- set_names(file_contents, file_paths)
 
 # 2.0 PURRR MAP ----
 
-file_paths %>%
+file_contents <- file_paths %>%
     map(function (path) {
-        read_csv(path)
+        read_csv(path, col_types = "ccdddccddcc")
     })
+
+bind_rows(file_contents, .id = "file_path") %>% View()
 
 # LEARNING MORE ----
 
