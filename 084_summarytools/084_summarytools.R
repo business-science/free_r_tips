@@ -1,22 +1,17 @@
+# BUSINESS SCIENCE R TIPS ----
+# R-TIP 84 | SUMMARYTOOLS (ANALYZE DATA FASTER WITH R) ----
 
-
+# LIBRARIES & DATA
 
 library(summarytools)
 library(tidyverse)
 
-stock_data_tbl <- read_csv("084_summarytools/data/stock_data.csv")
-stock_data_tbl
-
-# Calculate returns (percentage change)
-stock_returns_tbl <- stock_data_tbl %>%
-    arrange(Date) %>%
-    mutate(across(-Date, ~ (./lag(.) - 1))) %>%
-    drop_na()
-
-stock_returns_tbl
+customer_churn_tbl <- read_csv("084_summarytools/data/customer_churn.csv")
+customer_churn_tbl %>% glimpse()
 
 # DF Summary ----
-stock_returns_tbl %>%
+customer_churn_tbl %>%
+    select(-customerID) %>%
     dfSummary(
         graph.col = TRUE,
         style="grid",
@@ -24,6 +19,15 @@ stock_returns_tbl %>%
     ) %>%
     stview()
 
-# Describe ----
-stock_returns_tbl %>% descr() %>% stview()
 
+# Describe (Numeric Features) ----
+customer_churn_tbl %>%
+    descr() %>%
+    stview()
+
+
+# Freq (Categorical Features)
+customer_churn_tbl %>%
+    select(-customerID) %>%
+    freq() %>%
+    stview()
