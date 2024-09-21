@@ -27,15 +27,16 @@ churn_data_tbl %>%
     gt_plt_summary("Churn Data Summary") %>%
     gtExtras::gt_theme_538()
 
-churn_data_tbl
-
+stock_data_tbl %>%
+    gt_plt_summary("Stock Data Summary") %>%
+    gtExtras::gt_theme_538()
 
 # CUSTOM FUNCTION THAT REPLICATES SUMMARYTOOLS DFSUMMARY() FROM R-TIP 84 ----
 
 gt_summarytools <- function(data, title = "Data Summary") {
 
     # Ensure required packages are installed
-    required_packages <- c("gt", "gtExtras", "dplyr", "tibble", "ggplot2", "scales", "purrr", "tidyr", "stringr", "glue")
+    required_packages <- c("gt", "gtExtras", "dplyr", "tibble", "ggplot2", "scales", "purrr", "tidyr", "stringr", "glue", "forcats")
     for (pkg in required_packages) {
         if (!requireNamespace(pkg, quietly = TRUE)) {
             stop(paste0("Package '", pkg, "' is required but is not installed."))
@@ -46,19 +47,21 @@ gt_summarytools <- function(data, title = "Data Summary") {
     if (is.null(title)) title <- deparse(substitute(data))
 
     # Check for list columns and large data size
-    if (any(sapply(data, class) == "list")) stop("create_summary_table() doesn't handle list columns.", call. = FALSE)
+    if (any(sapply(data, class) == "list")) stop("gt_summarytools() doesn't handle list columns.", call. = FALSE)
     if (nrow(data) >= 1e5) warning("Data has more than 100,000 rows, consider sampling the data to reduce size.", call. = FALSE)
 
-
-    # Create summary table helper function
+    # Helper function to create summary table
     create_sum_table <- function(df) {
         vars <- names(df)
+
         sum_table <- purrr::map_df(vars, function(var_name) {
             x <- df[[var_name]]
             type <- class(x)[1]
             n_total <- length(x)
             n_missing <- sum(is.na(x))
             n_valid <- n_total - n_missing
+
+            # Numeric Variables
             if (is.numeric(x)) {
                 Mean <- mean(x, na.rm = TRUE)
                 SD <- sd(x, na.rm = TRUE)
@@ -67,6 +70,8 @@ gt_summarytools <- function(data, title = "Data Summary") {
                 Max <- max(x, na.rm = TRUE)
                 IQR_val <- IQR(x, na.rm = TRUE)
                 CV <- SD / Mean
+
+                # Prepare the summary for numeric variables
                 stats_values <- paste0(
                     "Mean (sd): ", round(Mean, 1), " (", round(SD, 1), ")<br>",
                     "min ≤ med ≤ max:<br>",
@@ -75,21 +80,33 @@ gt_summarytools <- function(data, title = "Data Summary") {
                     length(unique(x)), " distinct values"
                 )
                 Freqs_Percents <- NA_character_
+
+                # Categorical Variables
             } else if (is.character(x) || is.factor(x)) {
-                freqs <- table(x)
-                total <- sum(freqs)
+                # Apply lumping for variables with more than 10 distinct categories
+                if (length(unique(x)) > 10) {
+                    # Lump least frequent categories into "OTHER"
+                    x <- forcats::fct_lump_n(factor(x), n = 10, other_level = "OTHER", ties.method = "first")
+                }
+
+                # Create frequency and percentage summaries
+                freqs <- table(x, useNA = "ifany")
                 percents <- prop.table(freqs) * 100
                 levels <- names(freqs)
                 levels_numbers <- seq_along(levels)
+
+                # Prepare the summary for categorical variables
                 levels_info <- paste0("[", levels_numbers, "] ", levels)
                 freqs_info <- paste0(freqs, "\t(", round(percents, 1), "%)")
-                # Place each level and its frequency on separate lines
+
                 stats_values <- paste(levels_info, collapse = "</br>")
                 Freqs_Percents <- paste(freqs_info, collapse = "<br>")
+
             } else {
                 stats_values <- NA_character_
                 Freqs_Percents <- NA_character_
             }
+
             tibble(
                 No = NA_integer_,
                 Variable = var_name,
@@ -101,8 +118,9 @@ gt_summarytools <- function(data, title = "Data Summary") {
                 Missing = n_missing
             )
         })
+
         sum_table <- sum_table %>% mutate(No = row_number())
-        sum_table
+        return(sum_table)
     }
 
     # Inline plot function
@@ -231,7 +249,6 @@ gt_summarytools <- function(data, title = "Data Summary") {
             Freqs_Percents ~ px(150),
             Graph ~ px(150)
         ) %>%
-        # Format the 'stats_values' and 'Freqs_Percents' columns as Markdown to interpret line breaks
         fmt_markdown(columns = c("stats_values", "Freqs_Percents")) %>%
         gtExtras::gt_theme_espn() %>%
         tab_style(
@@ -259,14 +276,11 @@ gt_summarytools <- function(data, title = "Data Summary") {
 
 
 
-
-
-
 churn_data_tbl %>%
     select(-customerID) %>%
     gt_summarytools("Customer Churn Summary") %>%
     gt_theme_538()
 
 stock_data_tbl %>%
-    create_summary_table("Stock Data Summary") %>%
+    gt_summarytools("Stock Data Summary") %>%
     gt_theme_538()
