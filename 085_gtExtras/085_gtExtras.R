@@ -191,6 +191,45 @@ gt_summarytools <- function(data, title = "Data Summary") {
                     plot.margin = margin(1, 1, 3, 1),
                     text = element_text(family = "mono", size = 6)
                 )
+        } else if (grepl(x = col_type, pattern = "date|posix|time|hms", ignore.case = TRUE)) {
+            # message(glue::glue("Dates and times are not fully supported yet - plot and summaries skipped for col {col_name}"))
+
+            df_in <- dplyr::tibble(x = col) %>%
+                dplyr::filter(!is.na(x))
+
+            bw <- 2 * IQR(col, na.rm = TRUE) / length(col)^(1 / 5)
+
+            plot_out <- ggplot(data = df_in, aes(x = x)) +
+                geom_histogram(color = "white", fill = "#73a657", binwidth = bw) +
+                {
+                    if ("continuous" %in% ggplot2::scale_type(col)) {
+                        scale_x_continuous(
+                            breaks = range(col, na.rm = TRUE),
+                            labels = scales::label_date()(range(col, na.rm = TRUE))
+                        )
+                    } else if ("time" %in% ggplot2::scale_type(col)) {
+                        scale_x_time(
+                            breaks = range(col, na.rm = TRUE)
+                        )
+                    } else {
+                        scale_x_discrete(
+                            breaks = range(col, na.rm = TRUE)
+                        )
+                    }
+                } +
+                theme_void() +
+                theme(
+                    axis.text.x = element_text(
+                        color = "black",
+                        vjust = -2,
+                        size = 6
+                    ),
+                    axis.line.x = element_line(color = "black"),
+                    axis.ticks.x = element_line(color = "black"),
+                    axis.ticks.length.x = unit(1, "mm"),
+                    plot.margin = margin(1, 1, 3, 1),
+                    text = element_text(family = "mono", size = 6)
+                )
         } else {
             return("<div></div>")
         }
