@@ -58,7 +58,7 @@ create_summary_table <- function(data, title = "Data Summary") {
             locations = cells_body(columns = c("Variable")),
             fn = function(x) {
                 lapply(x, function(z) {
-                    html(glue::glue("<div style='font-weight: bold;'>{z}</div>"))
+                    gt::html(glue::glue("<div style='font-weight: bold;'>{z}</div>"))
                 })
             }
         ) %>%
@@ -85,9 +85,16 @@ create_summary_table <- function(data, title = "Data Summary") {
             columns = c("Valid", "Missing"),
             decimals = 0
         ) %>%
+        cols_width(
+            stats_values ~ px(200),
+            Freqs_Percents ~ px(150),
+            Graph ~ px(150)
+        ) %>%
+        # Format the 'stats_values' and 'Freqs_Percents' columns as Markdown to interpret line breaks
+        fmt_markdown(columns = c("stats_values", "Freqs_Percents")) %>%
         gtExtras::gt_theme_espn() %>%
         tab_style(
-            style = cell_text(weight = "bold"),
+            style = cell_text(weight = "bold", whitespace = "pre"),
             locations = cells_body(columns = c("Variable"))
         ) %>%
         tab_header(
@@ -101,10 +108,12 @@ create_summary_table <- function(data, title = "Data Summary") {
 
     # Handle missing values differently based on the version of gt
     if (utils::packageVersion("gt")$minor >= 6) {
-        gt_table %>% sub_missing()
+        gt_table <- gt_table %>% sub_missing()
     } else {
-        gt_table %>% fmt_missing(missing_text = "--")
+        gt_table <- gt_table %>% fmt_missing(missing_text = "--")
     }
+
+    return(gt_table)
 }
 
 # Create summary table helper function
@@ -125,10 +134,10 @@ create_sum_table <- function(df) {
             IQR_val <- IQR(x, na.rm = TRUE)
             CV <- SD / Mean
             stats_values <- paste0(
-                "Mean (sd): ", round(Mean, 1), " (", round(SD, 1), ")\n",
-                "min ≤ med ≤ max:\n",
-                round(Min, 1), " ≤ ", round(Median, 1), " ≤ ", round(Max, 1), "\n",
-                "IQR (CV): ", round(IQR_val, 1), " (", round(CV, 1), ")\n",
+                "Mean (sd): ", round(Mean, 1), " (", round(SD, 1), ")<br>",
+                "min ≤ med ≤ max: ",
+                round(Min, 1), " ≤ ", round(Median, 1), " ≤ ", round(Max, 1), "<br>",
+                "IQR (CV): ", round(IQR_val, 1), " (", round(CV, 1), ")<br>",
                 length(unique(x)), " distinct values"
             )
             Freqs_Percents <- NA_character_
@@ -138,10 +147,11 @@ create_sum_table <- function(df) {
             percents <- prop.table(freqs) * 100
             levels <- names(freqs)
             levels_numbers <- seq_along(levels)
-            levels_info <- paste0(levels_numbers, ". ", levels)
+            levels_info <- paste0("[", levels_numbers, "] ", levels)
             freqs_info <- paste0(freqs, "\t(", round(percents, 1), "%)")
-            stats_values <- paste(levels_info, collapse = "\n")
-            Freqs_Percents <- paste(freqs_info, collapse = "\n")
+            # Place each level and its frequency on separate lines
+            stats_values <- paste(levels_info, collapse = "</br>")
+            Freqs_Percents <- paste(freqs_info, collapse = "<br>")
         } else {
             stats_values <- NA_character_
             Freqs_Percents <- NA_character_
@@ -203,7 +213,7 @@ plot_data <- function(col, col_name, n_missing, ...) {
 
         plot_out <- ggplot(df_in, aes(x = x)) +
             {
-                if (bw > 0) {
+                if (bw > 0 && !is.infinite(bw)) {
                     geom_histogram(color = "white", fill = "#f8bb87", binwidth = bw)
                 } else {
                     hist_breaks <- graphics::hist(col[!is.na(col)], breaks = "FD", plot = FALSE)$breaks
@@ -247,7 +257,12 @@ plot_data <- function(col, col_name, n_missing, ...) {
 
 
 
+
 churn_data_tbl %>%
     select(-customerID) %>%
     create_summary_table("Customer Churn Summary") %>%
+    gt_theme_538()
+
+stock_data_tbl %>%
+    create_summary_table("Stock Data Summary") %>%
     gt_theme_538()
