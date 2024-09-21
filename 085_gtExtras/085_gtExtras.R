@@ -81,6 +81,19 @@ gt_summarytools <- function(data, title = "Data Summary") {
                 )
                 Freqs_Percents <- NA_character_
 
+                # Date Variables
+            } else if (inherits(x, "Date") || inherits(x, "POSIXct")) {
+                Min <- min(x, na.rm = TRUE)
+                Median <- median(x, na.rm = TRUE)
+                Max <- max(x, na.rm = TRUE)
+                Range <- Max - Min
+
+                # Prepare the summary for date variables
+                stats_values <- paste0(
+                    "Min: ", Min, "<br>Median: ", Median, "</br>Max: ", Max, "<br>Range: ", Range
+                )
+                Freqs_Percents <- NA_character_
+
                 # Categorical Variables
             } else if (is.character(x) || is.factor(x)) {
                 # Apply lumping for variables with more than 10 distinct categories
