@@ -116,36 +116,39 @@ gt_summarytools <- function(data, title = "Data Summary") {
 
     # Inline plot function
     plot_data <- function(col, col_name, n_missing, ...) {
-        # Handle missing values
-        # total_length <- length(col)
-        # missing_ratio <- n_missing / total_length
-        # if (missing_ratio >= 0.99) return("<div></div>")
 
         col_type <- class(col)[1]
         col <- col[!is.na(col)]
 
-        # Categorical data
+        # Categorical data: Create horizontal bar plot
         if (col_type %in% c("factor", "character", "ordered")) {
             n_unique <- length(unique(col))
             cat_lab <- ifelse(col_type == "ordered", "categories, ordered", "categories")
             cc <- scales::seq_gradient_pal(low = "#3181bd", high = "#ddeaf7", space = "Lab")(seq(0, 1, length.out = n_unique))
 
+            # Create a horizontal bar plot for categorical data
             plot_out <- dplyr::tibble(vals = as.character(col)) %>%
                 dplyr::group_by(vals) %>%
                 dplyr::summarise(n = n(), .groups = 'drop') %>%
                 dplyr::arrange(desc(n)) %>%
                 dplyr::mutate(vals = factor(vals, levels = unique(rev(vals)), ordered = TRUE)) %>%
-                ggplot(aes(y = 1, fill = vals)) +
-                geom_bar(position = "fill") +
+                ggplot(aes(x = n, y = vals, fill = vals)) +
+                geom_bar(stat = "identity") +
                 guides(fill = "none") +
                 scale_fill_manual(values = rev(cc)) +
-                theme_void() +
+                theme_minimal() +
                 theme(
-                    axis.title.x = element_text(hjust = 0, size = 8),
+                    axis.title.x = element_blank(),
+                    axis.title.y = element_blank(),
+                    axis.text.y = element_text(size = 8),
+                    axis.text.x = element_text(size = 8),
                     plot.margin = margin(3, 1, 3, 1)
                 ) +
-                scale_x_continuous(expand = c(0, 0)) +
-                labs(x = paste(n_unique, cat_lab))
+                labs(y = paste(n_unique, cat_lab))  # Label showing the number of unique categories
+
+            # Dynamically set the plot height based on the number of unique categories
+            plot_height <- ifelse(n_unique <= 11, n_unique * 12, 12)  # Adjust height based on number of categories
+
         } else if (col_type %in% c("numeric", "double", "integer")) {
             # Handle numeric data
             df_in <- dplyr::tibble(x = col) %>%
@@ -182,6 +185,9 @@ gt_summarytools <- function(data, title = "Data Summary") {
                     plot.margin = margin(1, 1, 3, 1),
                     text = element_text(family = "mono", size = 6)
                 )
+
+            plot_height <- 12*3
+
         } else if (grepl(x = col_type, pattern = "date|posix|time|hms", ignore.case = TRUE)) {
             df_in <- dplyr::tibble(x = col) %>%
                 dplyr::filter(!is.na(x))
@@ -219,13 +225,14 @@ gt_summarytools <- function(data, title = "Data Summary") {
                     plot.margin = margin(1, 1, 3, 1),
                     text = element_text(family = "mono", size = 6)
                 )
+            plot_height <- 12*3
         } else {
             return("<div></div>")
         }
 
         # Save plot as SVG and return HTML for embedding
         out_name <- tempfile(fileext = ".svg")
-        ggsave(out_name, plot = plot_out, dpi = 25.4, height = 12, width = 50, units = "mm", device = "svg")
+        ggsave(out_name, plot = plot_out, dpi = 25.4, height = plot_height, width = 50, units = "mm", device = "svg")
 
         img_plot <- readLines(out_name, warn = FALSE) %>%
             paste0(collapse = "") %>%
