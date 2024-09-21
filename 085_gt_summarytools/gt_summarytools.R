@@ -123,6 +123,13 @@ gt_summarytools <- function(data, title = "Data Summary") {
         # Categorical data: Create horizontal bar plot
         if (col_type %in% c("factor", "character", "ordered")) {
             n_unique <- length(unique(col))
+
+            # Apply lumping: Limit categories to 10 and group others into "OTHER"
+            if (n_unique > 10) {
+                col <- forcats::fct_lump_n(factor(col), n = 10, other_level = "OTHER", ties.method = "first")
+                n_unique <- length(unique(col))  # Update the unique count after lumping
+            }
+
             cat_lab <- ifelse(col_type == "ordered", "categories, ordered", "categories")
             cc <- scales::seq_gradient_pal(low = "#3181bd", high = "#ddeaf7", space = "Lab")(seq(0, 1, length.out = n_unique))
 
@@ -147,7 +154,7 @@ gt_summarytools <- function(data, title = "Data Summary") {
                 labs(y = paste(n_unique, cat_lab))  # Label showing the number of unique categories
 
             # Dynamically set the plot height based on the number of unique categories
-            plot_height <- ifelse(n_unique <= 11, n_unique * 12, 12)  # Adjust height based on number of categories
+            plot_height <- ifelse(n_unique <= 11, n_unique * 8, 8)  # Adjust height based on number of categories
 
         } else if (col_type %in% c("numeric", "double", "integer")) {
             # Handle numeric data
@@ -186,7 +193,7 @@ gt_summarytools <- function(data, title = "Data Summary") {
                     text = element_text(family = "mono", size = 6)
                 )
 
-            plot_height <- 12*3
+            plot_height <- 8*3
 
         } else if (grepl(x = col_type, pattern = "date|posix|time|hms", ignore.case = TRUE)) {
             df_in <- dplyr::tibble(x = col) %>%
@@ -225,7 +232,7 @@ gt_summarytools <- function(data, title = "Data Summary") {
                     plot.margin = margin(1, 1, 3, 1),
                     text = element_text(family = "mono", size = 6)
                 )
-            plot_height <- 12*3
+            plot_height <- 8*3
         } else {
             return("<div></div>")
         }
