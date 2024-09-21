@@ -34,7 +34,7 @@ churn_data_tbl
 
 create_summary_table <- function(data, title = "Data Summary") {
     # Ensure required packages are installed
-    required_packages <- c("gt", "gtExtras", "dplyr", "tibble", "ggplot2", "scales")
+    required_packages <- c("gt", "gtExtras", "dplyr", "tibble", "ggplot2", "scales", "purrr", "tidyr", "stringr", "glue")
     for (pkg in required_packages) {
         if (!requireNamespace(pkg, quietly = TRUE)) {
             stop(paste0("Package '", pkg, "' is required but is not installed."))
@@ -55,82 +55,40 @@ create_summary_table <- function(data, title = "Data Summary") {
     gt_table <- summary_table %>%
         gt() %>%
         text_transform(
-            cells_body(columns = vars(name)),
-            fn = function(x) {
-                temp_df <- gtExtras::gt_index(gt_object = ., name, as_vector = FALSE)
-
-                apply_detail <- function(type, name, value) {
-                    if (grepl(x = type, pattern = "factor|character|ordered")) {
-                        value_count <- tapply(value, value, length) %>%
-                            sort(decreasing = TRUE) %>%
-                            labels() %>%
-                            unlist()
-
-                        html(glue::glue(
-                            "<div style='max-width: 150px;'>
-               <details style='font-weight: normal !important;'>
-               <summary style='font-weight: bold !important;'>{name}</summary>
-               {glue::glue_collapse(value_count, ', ', last = ' and ')}
-               </details></div>"
-                        ))
-                    } else {
-                        name
-                    }
-                }
-
-                mapply(
-                    FUN = apply_detail,
-                    temp_df$type,
-                    temp_df$name,
-                    temp_df$value,
-                    MoreArgs = NULL
-                )
-            }
-        ) %>%
-        text_transform(
-            cells_body(columns = vars(value)),
-            fn = function(x) {
-                .mapply(
-                    FUN = plot_data,
-                    list(
-                        gtExtras::gt_index(gt_object = ., value),
-                        gtExtras::gt_index(gt_object = ., name),
-                        gtExtras::gt_index(gt_object = ., n_missing)
-                    ),
-                    MoreArgs = NULL
-                )
-            }
-        ) %>%
-        fmt_number(
-            columns = vars(Mean, Median, SD),
-            decimals = 1
-        ) %>%
-        fmt_percent(columns = vars(n_missing), decimals = 1) %>%
-        text_transform(
-            cells_body(columns = vars(type)),
+            locations = cells_body(columns = c("Variable")),
             fn = function(x) {
                 lapply(x, function(z) {
-                    if (grepl(x = z, pattern = "factor|character|ordered")) {
-                        fontawesome::fa("list", "#4e79a7", height = "20px")
-                    } else if (grepl(x = z, pattern = "number|numeric|double|integer|complex")) {
-                        fontawesome::fa("signal", "#f18e2c", height = "20px")
-                    } else if (grepl(x = z, pattern = "date|time|posix|hms", ignore.case = TRUE)) {
-                        fontawesome::fa("clock", "#73a657", height = "20px")
-                    } else {
-                        fontawesome::fa("question", "black", height = "20px")
-                    }
+                    html(glue::glue("<div style='font-weight: bold;'>{z}</div>"))
                 })
             }
         ) %>%
+        text_transform(
+            locations = cells_body(columns = c("Graph")),
+            fn = function(x) {
+                plots <- map(seq_len(nrow(summary_table)), function(i) {
+                    plot_data(data[[summary_table$Variable[i]]], summary_table$Variable[i], summary_table$Missing[i])
+                })
+                plots
+            }
+        ) %>%
         cols_label(
-            name = "Column",
-            value = "Plot Overview",
-            type = "", n_missing = "Missing"
+            No = "No",
+            Variable = "Variable",
+            type = "Type",
+            stats_values = "Stats / Values",
+            Freqs_Percents = "Freqs (% of Valid)",
+            Graph = "Graph",
+            Valid = "Valid",
+            Missing = "Missing"
+        ) %>%
+        fmt_number(
+            columns = c("Valid", "Missing"),
+            decimals = 0
         ) %>%
         gtExtras::gt_theme_espn() %>%
         tab_style(
-            cells_body(columns = vars(name)),
-            style = cell_text(weight = "bold")
+            style = cell_text(weight = "bold"),
+            locations = cells_body(columns = c("Variable"))
         ) %>%
         tab_header(
             title = title,
@@ -143,51 +101,86 @@ create_summary_table <- function(data, title = "Data Summary") {
 
     # Handle missing values differently based on the version of gt
     if (utils::packageVersion("gt")$minor >= 6) {
-        gt_table %>% sub_missing(Mean:SD)
+        gt_table %>% sub_missing()
     } else {
-        gt_table %>% fmt_missing(Mean:SD, missing_text = "--")
+        gt_table %>% fmt_missing(missing_text = "--")
     }
 }
 
-# Create summary table helper function (adopted from your example)
+# Create summary table helper function
 create_sum_table <- function(df) {
-    sum_table <- df %>%
-        dplyr::summarise(dplyr::across(dplyr::everything(), list)) %>%
-        tidyr::pivot_longer(dplyr::everything()) %>%
-        dplyr::rowwise() %>%
-        dplyr::mutate(
-            type = paste0(class(value), collapse = " "),
-            n_missing = sum(is.na(value) | is.null(value)) / length(value)
-        ) %>%
-        dplyr::mutate(
-            Mean = ifelse(type %in% c("double", "integer", "numeric"), mean(value, na.rm = TRUE), NA),
-            Median = ifelse(type %in% c("double", "integer", "numeric"), median(value, na.rm = TRUE), NA),
-            SD = ifelse(type %in% c("double", "integer", "numeric"), sd(value, na.rm = TRUE), NA)
-        ) %>%
-        dplyr::ungroup() %>%
-        dplyr::select(type, name, dplyr::everything())
+    vars <- names(df)
+    sum_table <- purrr::map_df(vars, function(var_name) {
+        x <- df[[var_name]]
+        type <- class(x)[1]
+        n_total <- length(x)
+        n_missing <- sum(is.na(x))
+        n_valid <- n_total - n_missing
+        if (is.numeric(x)) {
+            Mean <- mean(x, na.rm = TRUE)
+            SD <- sd(x, na.rm = TRUE)
+            Min <- min(x, na.rm = TRUE)
+            Median <- median(x, na.rm = TRUE)
+            Max <- max(x, na.rm = TRUE)
+            IQR_val <- IQR(x, na.rm = TRUE)
+            CV <- SD / Mean
+            stats_values <- paste0(
+                "Mean (sd): ", round(Mean, 1), " (", round(SD, 1), ")\n",
+                "min ≤ med ≤ max:\n",
+                round(Min, 1), " ≤ ", round(Median, 1), " ≤ ", round(Max, 1), "\n",
+                "IQR (CV): ", round(IQR_val, 1), " (", round(CV, 1), ")\n",
+                length(unique(x)), " distinct values"
+            )
+            Freqs_Percents <- NA_character_
+        } else if (is.character(x) || is.factor(x)) {
+            freqs <- table(x)
+            total <- sum(freqs)
+            percents <- prop.table(freqs) * 100
+            levels <- names(freqs)
+            levels_numbers <- seq_along(levels)
+            levels_info <- paste0(levels_numbers, ". ", levels)
+            freqs_info <- paste0(freqs, "\t(", round(percents, 1), "%)")
+            stats_values <- paste(levels_info, collapse = "\n")
+            Freqs_Percents <- paste(freqs_info, collapse = "\n")
+        } else {
+            stats_values <- NA_character_
+            Freqs_Percents <- NA_character_
+        }
+        tibble(
+            No = NA_integer_,
+            Variable = var_name,
+            type = type,
+            stats_values = stats_values,
+            Freqs_Percents = Freqs_Percents,
+            Graph = NA_character_,
+            Valid = n_valid,
+            Missing = n_missing
+        )
+    })
+    sum_table <- sum_table %>% mutate(No = row_number())
     sum_table
 }
 
-# Inline plot function (adapted from your plot_data function)
+# Inline plot function
 plot_data <- function(col, col_name, n_missing, ...) {
     # Handle missing values
-    if (n_missing >= 0.99) return("<div></div>")
+    total_length <- length(col)
+    missing_ratio <- n_missing / total_length
+    if (missing_ratio >= 0.99) return("<div></div>")
 
-    col_type <- paste0(class(col), collapse = " ")
+    col_type <- class(col)[1]
     col <- col[!is.na(col)]
 
     # Categorical data
-    if (col_type %in% c("factor", "character", "ordered factor")) {
+    if (col_type %in% c("factor", "character", "ordered")) {
         n_unique <- length(unique(col))
-        cat_lab <- ifelse(col_type == "ordered factor", "categories, ordered", "categories")
+        cat_lab <- ifelse(col_type == "ordered", "categories, ordered", "categories")
         cc <- scales::seq_gradient_pal(low = "#3181bd", high = "#ddeaf7", space = "Lab")(seq(0, 1, length.out = n_unique))
 
         plot_out <- dplyr::tibble(vals = as.character(col)) %>%
             dplyr::group_by(vals) %>%
-            dplyr::mutate(n = n(), .groups = "drop") %>%
+            dplyr::summarise(n = n(), .groups = 'drop') %>%
             dplyr::arrange(desc(n)) %>%
-            dplyr::ungroup() %>%
             dplyr::mutate(vals = factor(vals, levels = unique(rev(vals)), ordered = TRUE)) %>%
             ggplot(aes(y = 1, fill = vals)) +
             geom_bar(position = "fill") +
@@ -200,7 +193,7 @@ plot_data <- function(col, col_name, n_missing, ...) {
             ) +
             scale_x_continuous(expand = c(0, 0)) +
             labs(x = paste(n_unique, cat_lab))
-    } else if (col_type %in% c("numeric", "double", "integer", "complex")) {
+    } else if (col_type %in% c("numeric", "double", "integer")) {
         # Handle numeric data
         df_in <- dplyr::tibble(x = col) %>%
             dplyr::filter(!is.na(x))
@@ -219,7 +212,7 @@ plot_data <- function(col, col_name, n_missing, ...) {
             } +
             scale_x_continuous(
                 breaks = range(col),
-                labels = scales::label_number(big.mark = ",", ..., scale_cut = scales::cut_long_scale())(range(col, na.rm = TRUE))
+                labels = scales::label_number(big.mark = ",", scale_cut = scales::cut_long_scale())(range(col, na.rm = TRUE))
             ) +
             geom_point(data = NULL, aes(x = rng_vals[1], y = 1), color = "transparent", size = 0.1) +
             geom_point(data = NULL, aes(x = rng_vals[2], y = 1), color = "transparent", size = 0.1) +
@@ -236,20 +229,21 @@ plot_data <- function(col, col_name, n_missing, ...) {
                 plot.margin = margin(1, 1, 3, 1),
                 text = element_text(family = "mono", size = 6)
             )
+    } else {
+        return("<div></div>")
     }
 
     # Save plot as SVG and return HTML for embedding
-    out_name <- file.path(tempfile(pattern = "file", tmpdir = tempdir(), fileext = ".svg"))
+    out_name <- tempfile(fileext = ".svg")
     ggsave(out_name, plot = plot_out, dpi = 25.4, height = 12, width = 50, units = "mm", device = "svg")
 
-    img_plot <- readLines(out_name) %>%
+    img_plot <- readLines(out_name, warn = FALSE) %>%
         paste0(collapse = "") %>%
         gt::html()
 
     on.exit(file.remove(out_name), add = TRUE)
     img_plot
 }
-
 
 
 
