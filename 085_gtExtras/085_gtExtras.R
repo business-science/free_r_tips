@@ -1,26 +1,21 @@
+# BUSINESS SCIENCE R TIPS ----
+# R-TIP 85 | ANALYZE DATA FASTER WITH R (PART 2) ----
 
-
-
+# LIBRARIES & DATA ----
 
 library(tidyverse)
 library(gt)
 library(gtExtras)
+library(summarytools)
 
-# DATA
+# DATASETS:
 
 churn_data_tbl <- read_csv("085_gtExtras/data/customer_churn.csv")
 
 stock_data_tbl <- read_csv("085_gtExtras/data/stock_data.csv")
 
-stock_data_tbl <- stock_data_tbl %>%
-    pivot_longer(
-        cols = -Date,
-        names_to = "symbol",
-        values_to = "price"
-    )
 
-
-# SUMMARY PLOT ----
+# 1.0 SUMMARY PLOT (GTEXTRAS) ----
 
 churn_data_tbl %>%
     select(-customerID) %>%
@@ -31,7 +26,14 @@ stock_data_tbl %>%
     gt_plt_summary("Stock Data Summary") %>%
     gtExtras::gt_theme_538()
 
-# CUSTOM FUNCTION THAT REPLICATES SUMMARYTOOLS DFSUMMARY() FROM R-TIP 84 ----
+# 2.0 SUMMARYTOOLS DF SUMMARY ----
+
+summarytools::dfSummary(churn_data_tbl) %>% stview()
+
+summarytools::dfSummary(stock_data_tbl) %>% stview()
+
+# 3.0 GT SUMMARYTOOLS ----
+# * CUSTOM FUNCTION THAT REPLICATES SUMMARYTOOLS DFSUMMARY() FROM R-TIP 84 ----
 
 gt_summarytools <- function(data, title = "Data Summary") {
 
@@ -60,6 +62,19 @@ gt_summarytools <- function(data, title = "Data Summary") {
             n_total <- length(x)
             n_missing <- sum(is.na(x))
             n_valid <- n_total - n_missing
+
+            # Calculate percentages
+            if (is.numeric(n_total) && n_total > 0) {
+                percent_valid <- round((n_valid / n_total) * 100, 1)
+                percent_missing <- round((n_missing / n_total) * 100, 1)
+            } else {
+                percent_valid <- NA
+                percent_missing <- NA
+            }
+
+            # Format the Valid and Missing columns with counts and percentages
+            valid_text <- paste0(n_valid, " (", percent_valid, "%)")
+            missing_text <- paste0(n_missing, " (", percent_missing, "%)")
 
             # Numeric Variables
             if (is.numeric(x)) {
@@ -127,8 +142,8 @@ gt_summarytools <- function(data, title = "Data Summary") {
                 stats_values = stats_values,
                 Freqs_Percents = Freqs_Percents,
                 Graph = NA_character_,
-                Valid = n_valid,
-                Missing = n_missing
+                Valid = valid_text,
+                Missing = missing_text
             )
         })
 
@@ -139,9 +154,9 @@ gt_summarytools <- function(data, title = "Data Summary") {
     # Inline plot function
     plot_data <- function(col, col_name, n_missing, ...) {
         # Handle missing values
-        total_length <- length(col)
-        missing_ratio <- n_missing / total_length
-        if (missing_ratio >= 0.99) return("<div></div>")
+        # total_length <- length(col)
+        # missing_ratio <- n_missing / total_length
+        # if (missing_ratio >= 0.99) return("<div></div>")
 
         col_type <- class(col)[1]
         col <- col[!is.na(col)]
@@ -205,8 +220,6 @@ gt_summarytools <- function(data, title = "Data Summary") {
                     text = element_text(family = "mono", size = 6)
                 )
         } else if (grepl(x = col_type, pattern = "date|posix|time|hms", ignore.case = TRUE)) {
-            # message(glue::glue("Dates and times are not fully supported yet - plot and summaries skipped for col {col_name}"))
-
             df_in <- dplyr::tibble(x = col) %>%
                 dplyr::filter(!is.na(x))
 
@@ -292,15 +305,6 @@ gt_summarytools <- function(data, title = "Data Summary") {
             Valid = "Valid",
             Missing = "Missing"
         ) %>%
-        fmt_number(
-            columns = c("Valid", "Missing"),
-            decimals = 0
-        ) %>%
-        cols_width(
-            stats_values ~ px(200),
-            Freqs_Percents ~ px(150),
-            Graph ~ px(150)
-        ) %>%
         fmt_markdown(columns = c("stats_values", "Freqs_Percents")) %>%
         gtExtras::gt_theme_espn() %>%
         tab_style(
@@ -325,6 +329,7 @@ gt_summarytools <- function(data, title = "Data Summary") {
 
     return(gt_table)
 }
+
 
 
 
