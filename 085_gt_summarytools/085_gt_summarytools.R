@@ -1,5 +1,5 @@
 # BUSINESS SCIENCE R TIPS ----
-# R-TIP 85 | ANALYZE DATA FASTER WITH R (PART 2) ----
+# R-TIP 85 | INTRODUCING GT SUMMARYTOOLS: ANALYZE DATA FASTER WITH R (PART 2) ----
 
 # LIBRARIES & DATA ----
 
@@ -10,9 +10,9 @@ library(summarytools)
 
 # DATASETS:
 
-churn_data_tbl <- read_csv("085_gtExtras/data/customer_churn.csv")
+churn_data_tbl <- read_csv("085_gt_summarytools/data/customer_churn.csv")
 
-stock_data_tbl <- read_csv("085_gtExtras/data/stock_data.csv")
+stock_data_tbl <- read_csv("085_gt_summarytools/data/stock_data.csv")
 
 
 # 1.0 SUMMARY PLOT (GTEXTRAS) ----
