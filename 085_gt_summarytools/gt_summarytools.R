@@ -1,7 +1,8 @@
 gt_summarytools <- function(data, title = "Data Summary") {
 
     # Ensure required packages are installed
-    required_packages <- c("gt", "gtExtras", "dplyr", "tibble", "ggplot2", "scales", "purrr", "tidyr", "stringr", "glue", "forcats")
+    required_packages <- c("gt", "gtExtras", "dplyr", "tibble", "ggplot2", "scales",
+                           "purrr", "tidyr", "stringr", "glue", "forcats")
     for (pkg in required_packages) {
         if (!requireNamespace(pkg, quietly = TRUE)) {
             stop(paste0("Package '", pkg, "' is required but is not installed."))
@@ -102,13 +103,23 @@ gt_summarytools <- function(data, title = "Data Summary") {
                 if (is.logical(x)) x <- as.character(x)
 
                 # Apply lumping for variables with more than 10 distinct categories
+                lumped <- FALSE
                 if (length(unique(x)) > 10) {
                     # Lump least frequent categories into "OTHER"
                     x <- forcats::fct_lump_n(factor(x), n = 10, other_level = "OTHER", ties.method = "first")
+                    lumped <- TRUE
                 }
 
                 # Compute frequencies using helper function
                 freq_df <- compute_freqs(x)
+
+                # Move "OTHER" to the end if it exists
+                if (lumped && "OTHER" %in% freq_df$vals) {
+                    other_row <- freq_df[freq_df$vals == "OTHER", ]
+                    freq_df <- freq_df[freq_df$vals != "OTHER", ]
+                    freq_df <- rbind(freq_df, other_row)
+                }
+
                 levels <- freq_df$vals
                 freqs <- freq_df$n
                 percents <- freq_df$percents
@@ -155,13 +166,23 @@ gt_summarytools <- function(data, title = "Data Summary") {
             if (is.logical(col)) col <- as.character(col)
 
             # Apply lumping for variables with more than 10 distinct categories
+            lumped <- FALSE
             if (length(unique(col)) > 10) {
                 # Lump least frequent categories into "OTHER"
                 col <- forcats::fct_lump_n(factor(col), n = 10, other_level = "OTHER", ties.method = "first")
+                lumped <- TRUE
             }
 
             # Compute frequencies using helper function
             freq_df <- compute_freqs(col)
+
+            # Move "OTHER" to the end if it exists
+            if (lumped && "OTHER" %in% freq_df$vals) {
+                other_row <- freq_df[freq_df$vals == "OTHER", ]
+                freq_df <- freq_df[freq_df$vals != "OTHER", ]
+                freq_df <- rbind(freq_df, other_row)
+            }
+
             levels_ordered <- freq_df$vals  # Levels ordered by frequency
 
             # Set factor levels to match the order in freq_df
@@ -307,7 +328,6 @@ gt_summarytools <- function(data, title = "Data Summary") {
                         col = data[[summary_table$Variable[i]]],
                         col_name = summary_table$Variable[i],
                         n_missing = summary_table$Missing[i]
-                        # No need to pass levels_ordered
                     )
                 })
                 plots
@@ -347,5 +367,3 @@ gt_summarytools <- function(data, title = "Data Summary") {
 
     return(gt_table)
 }
-
-
