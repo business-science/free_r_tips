@@ -28,7 +28,10 @@ stock_data_tbl %>%
 
 # 2.0 SUMMARYTOOLS DF SUMMARY ----
 
-summarytools::dfSummary(churn_data_tbl) %>% stview()
+churn_data_tbl %>%
+    select(-customerID) %>%
+    summarytools::dfSummary() %>%
+    stview()
 
 summarytools::dfSummary(stock_data_tbl) %>% stview()
 
