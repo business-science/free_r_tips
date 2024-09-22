@@ -8,12 +8,36 @@ gt_summarytools <- function(data, title = "Data Summary") {
         }
     }
 
+    # Load necessary libraries
+    library(gt)
+    library(gtExtras)
+    library(dplyr)
+    library(tibble)
+    library(ggplot2)
+    library(scales)
+    library(purrr)
+    library(tidyr)
+    library(stringr)
+    library(glue)
+    library(forcats)
+
     # If no title, return name of input dataframe
     if (is.null(title)) title <- deparse(substitute(data))
 
     # Check for list columns and large data size
     if (any(sapply(data, class) == "list")) stop("gt_summarytools() doesn't handle list columns.", call. = FALSE)
     if (nrow(data) >= 1e5) warning("Data has more than 100,000 rows, consider sampling the data to reduce size.", call. = FALSE)
+
+    # Helper function to compute frequencies consistently
+    compute_freqs <- function(x) {
+        x <- as.character(x)
+        freq_df <- dplyr::tibble(vals = x) %>%
+            dplyr::group_by(vals) %>%
+            dplyr::summarise(n = n(), .groups = 'drop') %>%
+            dplyr::arrange(desc(n))
+        freq_df$percents <- (freq_df$n / sum(freq_df$n)) * 100
+        return(freq_df)
+    }
 
     # Helper function to create summary table
     create_sum_table <- function(df) {
@@ -73,17 +97,21 @@ gt_summarytools <- function(data, title = "Data Summary") {
                 Freqs_Percents <- NA_character_
 
                 # Categorical Variables
-            } else if (is.character(x) || is.factor(x)) {
+            } else if (is.character(x) || is.factor(x) || is.logical(x)) {
+                # Convert logical to character to handle in the same way
+                if (is.logical(x)) x <- as.character(x)
+
                 # Apply lumping for variables with more than 10 distinct categories
                 if (length(unique(x)) > 10) {
                     # Lump least frequent categories into "OTHER"
                     x <- forcats::fct_lump_n(factor(x), n = 10, other_level = "OTHER", ties.method = "first")
                 }
 
-                # Create frequency and percentage summaries
-                freqs <- table(x, useNA = "ifany")
-                percents <- prop.table(freqs) * 100
-                levels <- names(freqs)
+                # Compute frequencies using helper function
+                freq_df <- compute_freqs(x)
+                levels <- freq_df$vals
+                freqs <- freq_df$n
+                percents <- freq_df$percents
                 levels_numbers <- seq_along(levels)
 
                 # Prepare the summary for categorical variables
@@ -121,24 +149,32 @@ gt_summarytools <- function(data, title = "Data Summary") {
         col <- col[!is.na(col)]
 
         # Categorical data: Create horizontal bar plot
-        if (col_type %in% c("factor", "character", "ordered")) {
-            n_unique <- length(unique(col))
+        if (col_type %in% c("factor", "character", "ordered", "logical")) {
 
-            # Apply lumping: Limit categories to 10 and group others into "OTHER"
-            if (n_unique > 10) {
+            # Convert logical to character to handle in the same way
+            if (is.logical(col)) col <- as.character(col)
+
+            # Apply lumping for variables with more than 10 distinct categories
+            if (length(unique(col)) > 10) {
+                # Lump least frequent categories into "OTHER"
                 col <- forcats::fct_lump_n(factor(col), n = 10, other_level = "OTHER", ties.method = "first")
-                n_unique <- length(unique(col))  # Update the unique count after lumping
             }
+
+            # Compute frequencies using helper function
+            freq_df <- compute_freqs(col)
+            levels_ordered <- freq_df$vals  # Levels ordered by frequency
+
+            # Set factor levels to match the order in freq_df
+            col <- factor(col, levels = levels_ordered, ordered = TRUE)
+
+            n_unique <- length(levels_ordered)
 
             cat_lab <- ifelse(col_type == "ordered", "categories, ordered", "categories")
             cc <- scales::seq_gradient_pal(low = "#3181bd", high = "#ddeaf7", space = "Lab")(seq(0, 1, length.out = n_unique))
 
             # Create a horizontal bar plot for categorical data
-            plot_out <- dplyr::tibble(vals = as.character(col)) %>%
-                dplyr::group_by(vals) %>%
-                dplyr::summarise(n = n(), .groups = 'drop') %>%
-                dplyr::arrange(desc(n)) %>%
-                dplyr::mutate(vals = factor(vals, levels = unique(rev(vals)), ordered = TRUE)) %>%
+            plot_out <- freq_df %>%
+                mutate(vals = factor(vals, levels = rev(levels_ordered), ordered = TRUE)) %>%
                 ggplot(aes(x = n, y = vals, fill = vals)) +
                 geom_bar(stat = "identity") +
                 guides(fill = "none") +
@@ -193,7 +229,7 @@ gt_summarytools <- function(data, title = "Data Summary") {
                     text = element_text(family = "mono", size = 6)
                 )
 
-            plot_height <- 8*3
+            plot_height <- 8 * 3
 
         } else if (grepl(x = col_type, pattern = "date|posix|time|hms", ignore.case = TRUE)) {
             df_in <- dplyr::tibble(x = col) %>%
@@ -232,7 +268,7 @@ gt_summarytools <- function(data, title = "Data Summary") {
                     plot.margin = margin(1, 1, 3, 1),
                     text = element_text(family = "mono", size = 6)
                 )
-            plot_height <- 8*3
+            plot_height <- 8 * 3
         } else {
             return("<div></div>")
         }
@@ -267,7 +303,12 @@ gt_summarytools <- function(data, title = "Data Summary") {
             locations = cells_body(columns = c("Graph")),
             fn = function(x) {
                 plots <- map(seq_len(nrow(summary_table)), function(i) {
-                    plot_data(data[[summary_table$Variable[i]]], summary_table$Variable[i], summary_table$Missing[i])
+                    plot_data(
+                        col = data[[summary_table$Variable[i]]],
+                        col_name = summary_table$Variable[i],
+                        n_missing = summary_table$Missing[i]
+                        # No need to pass levels_ordered
+                    )
                 })
                 plots
             }
@@ -306,3 +347,5 @@ gt_summarytools <- function(data, title = "Data Summary") {
 
     return(gt_table)
 }
+
+
