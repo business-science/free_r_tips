@@ -62,7 +62,7 @@ ggpairs(
 # 6. DataExplorer: Generate a full EDA report ----
 create_report(
     iris,
-    output_dir = "086_top_15_eda_packages/",
+    output_dir = "086_top_10_eda_packages/",
     output_file = "DataExplorer_Report.html"
 )
 
@@ -72,7 +72,7 @@ dfSummary(iris) %>% stview()
 # 8. SmartEDA: Generate a detailed EDA report in HTML ----
 ExpReport(
     iris,
-    op_dir = "086_top_15_eda_packages/",
+    op_dir = "086_top_10_eda_packages/",
     op_file = "SmartEDA_Report.html"
 )
 
