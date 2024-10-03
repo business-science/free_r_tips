@@ -21,9 +21,9 @@ library(inspectdf)
 library(tidyverse)
 
 # Load example data
-data(iris)
+iris <- read_csv("086_top_10_eda_packages/data/iris.csv")
 
-# TOP 14 R PACKAGES FOR EDA ----
+# TOP 10 R PACKAGES FOR EDA ----
 
 # 1. Skimr: Summary of the dataset ----
 skim(iris)
@@ -31,29 +31,67 @@ skim(iris)
 # 2. Psych: Descriptive statistics ----
 describe(iris)
 
+describe(iris) %>% gt::gt()
+
 # 3. Corrplot: Correlation matrix visualization ----
-corrplot(cor(iris[, 1:4]), method = "circle")
+corrplot(
+    cor(iris[, 1:4]),
+    method = "circle",
+    addCoef.col = 'grey',
+    order = 'hclust',
+    rect.col = 'blue',
+    addrect = 2
+)
 
 # 4. PerformanceAnalytics: Correlation matrix with scatterplots and histograms ----
-chart.Correlation(iris[, 1:4], histogram = TRUE, pch = 19)
+chart.Correlation(
+    iris[, 1:4],
+    histogram = TRUE,
+    pch = 19
+)
 
 # 5. GGally: Scatterplot matrix with pairwise relationships ----
-ggpairs(iris, columns = 1:4, aes(color = Species))
+ggpairs(
+    data    = iris,
+    columns = 1:4,
+    mapping = aes(color = Species)
+) +
+    tidyquant::scale_fill_tq() +
+    tidyquant::scale_color_tq()
 
 # 6. DataExplorer: Generate a full EDA report ----
-create_report(iris, output_dir = "086_top_15_eda_packages/", output_file = "DataExplorer_Report.html")
+create_report(
+    iris,
+    output_dir = "086_top_15_eda_packages/",
+    output_file = "DataExplorer_Report.html"
+)
 
 # 7. Summarytools: Summary table for the dataset ----
 dfSummary(iris) %>% stview()
 
 # 8. SmartEDA: Generate a detailed EDA report in HTML ----
-ExpReport(iris, op_dir = "086_top_15_eda_packages/", op_file = "SmartEDA_Report.html")
+ExpReport(
+    iris,
+    op_dir = "086_top_15_eda_packages/",
+    op_file = "SmartEDA_Report.html"
+)
 
-# 9. Janitor: Frequency table for a categorical variable ----
-iris %>% tabyl(Species)
+# 9. Janitor: Frequency table for a categorical variable with Tabyl ----
+iris %>%
+    tabyl(Species) %>%
+    adorn_totals("row") %>%
+    adorn_pct_formatting()
+
+iris %>%
+    tabyl(Species) %>%
+    adorn_totals("row") %>%
+    adorn_pct_formatting() %>%
+    gt::gt()
 
 # 10. Inspectdf: Visualize missing values in the dataset ----
 inspect_na(iris) %>% show_plot()
+inspect_cat(iris) %>% show_plot()
+inspect_cor(iris) %>% show_plot()
 
 
 # BECOME A BUSINESS SCIENTIST: ----
