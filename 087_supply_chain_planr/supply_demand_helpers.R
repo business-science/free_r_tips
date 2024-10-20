@@ -2,8 +2,9 @@ library(dplyr)
 library(reactable)
 library(reactablefmtr)
 library(htmltools)
+library(scales)  # For comma_format()
 
-# Define the status_PI.Index function (adjusted to handle missing PI.Index)
+# Define the status_PI.Index function
 status_PI.Index <- function(value) {
     color <- switch(
         value,
@@ -25,7 +26,7 @@ status_PI.Index <- function(value) {
 }
 
 # Create the function to generate the reactable table
-generate_supply_chain_table <- function(data) {
+generate_supply_chain_table <- function(data, table_title = "Supply Chain Inventory Analysis") {
     # Prepare the data
     df1 <- data
 
@@ -58,6 +59,16 @@ generate_supply_chain_table <- function(data) {
         highlight = TRUE,
         compact = TRUE,
         defaultPageSize = 20,
+        # caption = htmltools::tags$h2(table_title),  # Adding the title
+        theme = reactable::reactableTheme(
+            # Customize the font family here
+            style = list(fontFamily = "-system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif"),
+            headerStyle = list(
+                background = "#f7f7f8",
+                color = "#373a3c",
+                fontWeight = "bold"
+            )
+        ),
         columns = list(
             DFU = colDef(
                 name = "DFU",
@@ -76,12 +87,12 @@ generate_supply_chain_table <- function(data) {
                     df1,
                     fill_color = "#3fc1c9",
                     text_position = "outside-end",
-                    number_fmt = scales::comma_format()
+                    number_fmt = comma_format()
                 )
             ),
             Calculated.Coverage.in.Periods = colDef(
                 name = "Coverage (Periods)",
-                maxWidth = 90,
+                maxWidth = 150,
                 cell = color_tiles(df1, color_ref = "f_colorpal")
             ),
             Projected.Inventories.Qty = colDef(
@@ -89,11 +100,11 @@ generate_supply_chain_table <- function(data) {
                 format = colFormat(separators = TRUE, digits = 0),
                 style = function(value) {
                     if (value > 0) {
-                        color <- "#008000"
+                        color <- "#008000"  # Green
                     } else if (value < 0) {
-                        color <- "#e00000"
+                        color <- "#e00000"  # Red
                     } else {
-                        color <- "#777777"
+                        color <- "#777777"  # Gray
                     }
                     list(color = color)
                 }
@@ -104,7 +115,7 @@ generate_supply_chain_table <- function(data) {
                     df1,
                     fill_color = "#3CB371",
                     text_position = "outside-end",
-                    number_fmt = scales::comma_format()
+                    number_fmt = comma_format()
                 )
             ),
             Opening = colDef(
@@ -128,3 +139,4 @@ generate_supply_chain_table <- function(data) {
     # Return the reactable table
     return(reactable_table)
 }
+
