@@ -1,0 +1,51 @@
+Rank,Company,Ticker
+1,Apple Inc.,AAPL
+2,Microsoft Corporation,MSFT
+3,NVIDIA Corporation,NVDA
+4,Alphabet Inc. (Class A),GOOGL
+5,Alphabet Inc. (Class C),GOOG
+6,"Amazon.com, Inc.",AMZN
+7,"Tesla, Inc.",TSLA
+8,"Meta Platforms, Inc.",META
+9,Berkshire Hathaway Inc.,BRK.A
+10,Johnson & Johnson,JNJ
+11,Procter & Gamble Co.,PG
+12,Visa Inc.,V
+13,UnitedHealth Group Inc.,UNH
+14,JPMorgan Chase & Co.,JPM
+15,Exxon Mobil Corporation,XOM
+16,Mastercard Incorporated,MA
+17,"Home Depot, Inc.",HD
+18,Pfizer Inc.,PFE
+19,Verizon Communications,VZ
+20,Chevron Corporation,CVX
+21,"PepsiCo, Inc.",PEP
+22,The Walt Disney Company,DIS
+23,Intel Corporation,INTC
+24,"Cisco Systems, Inc.",CSCO
+25,"Merck & Co., Inc.",MRK
+26,International Business Machines Corporation,IBM
+27,Abbott Laboratories,ABT
+28,Danaher Corporation,DHR
+29,"Nike, Inc.",NKE
+30,"Salesforce, Inc.",CRM
+31,Adobe Inc.,ADBE
+32,"PayPal Holdings, Inc.",PYPL
+33,"Netflix, Inc.",NFLX
+34,Texas Instruments Inc.,TXN
+35,Broadcom Inc.,AVGO
+36,Qualcomm Incorporated,QCOM
+37,Starbucks Corporation,SBUX
+38,General Motors Company,GM
+39,Ford Motor Company,F
+40,The Coca-Cola Company,KO
+41,McDonald's Corporation,MCD
+42,The Boeing Company,BA
+43,Caterpillar Inc.,CAT
+44,3M Company,MMM
+45,Honeywell International Inc.,HON
+46,Lockheed Martin Corporation,LMT
+47,Raytheon Technologies Corporation,RTX
+48,Northrop Grumman Corporation,NOC
+49,General Electric Company,GE
+50,Emerson Electric Co.,EMR
